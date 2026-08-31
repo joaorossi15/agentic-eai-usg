@@ -1,0 +1,111 @@
+{
+  "requirement": {
+    "id": "DEV-001",
+    "text": "Users must be informed when they are interacting with an AI system."
+  },
+  "workflow_config": "full",
+  "model": "gpt-5.6-terra",
+  "analysis": {
+    "stakeholders": [
+      "Users interacting with the system",
+      "People who may need to distinguish an AI-mediated interaction from a human or non-AI interaction"
+    ],
+    "ethical_objective": "Ensure transparency about AI involvement in interactions so that users are aware of the nature of the system they are engaging with.",
+    "required_behaviors": [
+      "Inform users when they are interacting with an AI system.",
+      "Provide the information in connection with the interaction, rather than leaving users unaware of AI involvement.",
+      "Make the AI involvement distinguishable to users from interactions that are not represented as involving AI."
+    ],
+    "constraints": [
+      "The requirement applies to users.",
+      "The information to be provided concerns the fact that the interaction is with an AI system.",
+      "The requirement establishes an obligation to inform; it does not specify a particular disclosure mechanism, wording, timing, interface, or level of detail."
+    ],
+    "verification_targets": [
+      "Whether a user is informed that an interaction involves an AI system.",
+      "Whether the disclosure is presented in a way that is available to the user during the relevant interaction.",
+      "Whether the disclosure clearly communicates AI-system involvement rather than using wording that could reasonably be mistaken for human interaction or omit the AI role.",
+      "Whether applicable AI-mediated interaction points provide the required information."
+    ],
+    "ambiguities": [
+      "What counts as an 'interaction' with an AI system, including whether indirect, background, or partial AI involvement is included.",
+      "When users must be informed, such as before the interaction begins, at its start, or during it.",
+      "How the information must be communicated and what clarity, prominence, accessibility, or persistence is required.",
+      "Whether a single notice can cover repeated interactions or whether disclosure is required for each interaction.",
+      "Whether the requirement applies when AI is one component of a broader service or when a human oversees or participates in the interaction.",
+      "What level of specificity beyond identifying AI involvement, if any, is required."
+    ],
+    "unsupported_inferences_to_avoid": [
+      "Do not infer that users must be told the AI system's model, provider, capabilities, limitations, training data, decision logic, or data practices.",
+      "Do not infer a required interface mechanism such as a banner, label, pop-up, voice announcement, consent dialog, or watermark.",
+      "Do not infer a precise timing, recurrence, or prominence standard for disclosure.",
+      "Do not expand the requirement into obligations to obtain consent, offer human alternatives, explain decisions, or prohibit AI interaction.",
+      "Do not assign an ethical framework or classification beyond the transparency concern expressed by the requirement."
+    ]
+  },
+  "initial_draft": {
+    "title": "Disclose AI-System Interaction",
+    "description": "As a user, I want to be informed when I am interacting with an AI system, so that I can understand the nature of the interaction and distinguish it from a non-AI or human interaction.",
+    "work_items": [
+      "Users are provided information that their interaction involves an AI system.",
+      "The information identifying AI-system involvement is available to users in connection with the relevant AI-mediated interaction.",
+      "The information clearly communicates AI-system involvement and does not reasonably present the interaction as solely human or non-AI."
+    ]
+  },
+  "critique": {
+    "clarity": 4,
+    "completeness": 5,
+    "actionability": 4,
+    "testability": 4,
+    "faithfulness": 5,
+    "issues": [
+      {
+        "dimension": "actionability",
+        "severity": "minor",
+        "problem": "The phrase \"relevant AI-mediated interaction\" does not explicitly establish that disclosure is required for every interaction covered by the source requirement. This leaves the applicability boundary open to interpretation.",
+        "recommended_change": "Revise the second work item to state that the information is available in connection with each interaction in which the user is interacting with an AI system."
+      },
+      {
+        "dimension": "testability",
+        "severity": "minor",
+        "problem": "Because \"relevant\" is undefined, it is difficult to determine the complete set of interaction points that must be assessed for disclosure.",
+        "recommended_change": "Define the criterion's scope in terms of each user interaction involving an AI system, enabling evaluators to identify and check all applicable interaction points."
+      }
+    ],
+    "requires_revision": false
+  },
+  "revised_draft": null,
+  "validation": {
+    "clarity": 5,
+    "completeness": 5,
+    "actionability": 4,
+    "testability": 4,
+    "faithfulness": 5,
+    "issues": [
+      {
+        "dimension": "testability",
+        "severity": "minor",
+        "problem": "The third work item relies on subjective terms such as \"clearly\" and \"does not reasonably present\" without stating the directly observable minimum condition that demonstrates compliance. This leaves some room for inconsistent evaluation.",
+        "recommended_change": "State the observable requirement more directly, for example: \"Information provided in connection with an AI-mediated interaction explicitly identifies that an AI system is involved and does not describe the interaction as exclusively human.\""
+      }
+    ],
+    "passed": true
+  },
+  "validation_revision": null,
+  "final_validation": null,
+  "final_eus": {
+    "title": "Disclose AI-System Interaction",
+    "description": "As a user, I want to be informed when I am interacting with an AI system, so that I can understand the nature of the interaction and distinguish it from a non-AI or human interaction.",
+    "work_items": [
+      "Users are provided information that their interaction involves an AI system.",
+      "The information identifying AI-system involvement is available to users in connection with the relevant AI-mediated interaction.",
+      "The information clearly communicates AI-system involvement and does not reasonably present the interaction as solely human or non-AI."
+    ]
+  },
+  "api_response_ids": [
+    "resp_09b2b64b30786c1c006a95b9ac20c087d299ba1d34ad257b44",
+    "resp_0f7fd28687f2e906006a95b9b4abd487d28bdca97c4fd0fe06",
+    "resp_069a1b36714b28d7006a95b9b70ef887d28358c34c9b8c92fb",
+    "resp_06d67b20fb777649006a95b9c1c61887d29474581663565860"
+  ]
+}
