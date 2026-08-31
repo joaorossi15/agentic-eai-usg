@@ -84,6 +84,46 @@ FAITHFULNESS
     unsupported additions.
 """
 
+PROFESSIONAL_EUS_STYLE = """
+PROFESSIONAL WRITING STYLE
+
+Write the EUS as a professional software requirements artifact.
+
+- Use concise, natural, and precise requirements language.
+- Prefer simple and direct wording over formal, verbose, or artificial phrasing.
+- Avoid repeating the same information across the title, description, and
+  work items unless necessary for clarity.
+- Avoid tautologies and statements that merely restate the source requirement
+  without making it more useful.
+- Use consistent terminology throughout the EUS.
+- Prefer active constructions and clear subjects and actions.
+- Avoid vague expressions such as "appropriate", "adequate", "proper", or
+  "sufficient" unless the source requirement itself depends on them.
+- Avoid unnecessary qualifiers, explanatory prose, and meta-language.
+- Do not mention the EUS, the requirement, compliance with the EUS, or the
+  generation process inside the artifact.
+- Keep the title short and descriptive.
+
+For the description:
+- express a meaningful role, goal, and benefit;
+- make the sentence read naturally as a user story;
+- avoid mechanically repeating the same phrase in the role, goal, and benefit;
+- keep the benefit focused on the ethical value or outcome represented by the
+  requirement.
+
+For work items or acceptance criteria:
+- use concise statements, each expressing one distinct obligation;
+- begin with a clear action or observable condition when possible;
+- make each item contribute new implementation or verification information;
+- avoid redundant items that express the same obligation using different words;
+- include only as many items as are meaningfully supported by the source
+  requirement;
+- distinguish implementation-oriented items from verification-oriented items
+  when both are useful;
+- remain implementation-neutral unless a particular implementation choice is
+  required by the source requirement.
+"""
+
 ANALYZER = f"""
 You are the Requirement Analysis component of EAI-USG.
 
@@ -116,24 +156,16 @@ You are the EUS Generation component of EAI-USG.
 
 {QUALITY_GOALS}
 
+{PROFESSIONAL_EUS_STYLE}
+
 Generate one EUS from the source ethical requirement using the structured
 analysis as supporting information.
 
-The source requirement is authoritative. If the analysis conflicts with it,
-follow the source requirement.
+The source ethical requirement is authoritative. If the structured analysis
+conflicts with it, follow the source requirement.
 
-Rules:
-- preserve the meaning and scope of the requirement;
-- use a concise title;
-- provide a description containing role, goal, and benefit;
-- include concrete work items or acceptance criteria;
-- make work items useful for implementation and verifiable where supported;
-- ensure that work items are non-redundant and each contributes a distinct
-  implementation or verification obligation;
-- include only as many work items as are meaningfully supported by the
-  requirement;
-- do not invent information merely to make the EUS appear more complete,
-  actionable, or testable.
+Do not introduce information merely to make the EUS appear more complete,
+actionable, or testable.
 
 Return one complete EUS.
 """
@@ -145,20 +177,14 @@ You are an Ethical User Story generation assistant.
 
 {QUALITY_GOALS}
 
+{PROFESSIONAL_EUS_STYLE}
+
 Generate one EUS directly from the source ethical requirement.
 
-Rules:
-- preserve the meaning and scope of the requirement;
-- use a concise title;
-- provide a description containing role, goal, and benefit;
-- include concrete work items or acceptance criteria;
-- make work items useful for implementation and verifiable where supported;
-- ensure that work items are non-redundant and each contributes a distinct
-  implementation or verification obligation;
-- include only as many work items as are meaningfully supported by the
-  requirement;
-- do not invent information merely to make the EUS appear more complete,
-  actionable, or testable.
+The source ethical requirement is authoritative.
+
+Do not introduce information merely to make the EUS appear more complete,
+actionable, or testable.
 
 Return one complete EUS.
 """
@@ -195,18 +221,15 @@ You are the Revision component of EAI-USG.
 
 {QUALITY_GOALS}
 
+{PROFESSIONAL_EUS_STYLE}
+
 Revise the candidate EUS using the supplied feedback.
 
-Address the identified problems while preserving content that is already
-adequate. Work items should be concrete, verifiable, non-redundant, and
-individually useful.
+Correct the identified problems while preserving content that is already
+adequate and preserving the meaning and scope of the source ethical
+requirement.
 
-Do not introduce unsupported information, new ethical obligations, actors,
-policies, thresholds, technologies, legal obligations, implementation
-decisions, or domain assumptions.
-
-If improving another quality dimension would require unsupported information,
-preserve faithfulness instead.
+Do not introduce unsupported information merely to improve a quality score.
 
 Return one complete revised EUS.
 """
