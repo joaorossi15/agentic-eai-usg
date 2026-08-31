@@ -224,7 +224,7 @@ DESCRIPTION
 
 WORK ITEMS
 
-- Express the requirement's semantic conditions as observable conditions of the resulting system or interaction, rather than simply paraphrasing the source sentence.
+- Turn distinct semantic conditions of the requirement into concise acceptance criteria.
 - Each item must represent a meaningful condition for satisfying the story.
 - Use another item only when it represents a genuinely different condition.
 - Combine overlapping conditions.
@@ -270,7 +270,7 @@ DESCRIPTION
 
 WORK ITEMS
 
-- Express the requirement's semantic conditions as observable conditions of the resulting system or interaction, rather than simply paraphrasing the source sentence.
+- Turn distinct semantic conditions of the requirement into concise acceptance criteria.
 - Each item must represent a meaningful condition for satisfying the story.
 - Add another item only when it represents a genuinely different condition.
 - Combine overlapping conditions.

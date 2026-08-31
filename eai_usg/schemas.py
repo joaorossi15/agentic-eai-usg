@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import List
+
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -15,19 +16,40 @@ class EthicalRequirement(StrictModel):
 
 
 class RequirementAnalysis(StrictModel):
-    stakeholders: List[str]
     ethical_objective: str
-    required_behaviors: List[str]
+    stakeholders: List[str]
+    explicit_requirements: List[str]
+    supported_implications: List[str]
     constraints: List[str]
-    verification_targets: List[str]
     ambiguities: List[str]
-    unsupported_inferences_to_avoid: List[str]
+    unsupported_assumptions_to_avoid: List[str]
+    possible_operational_aspects: List[str]
+
+
+class SupportType(str, Enum):
+    explicit = "explicit"
+    reasonable_implication = "reasonable_implication"
+    unsupported = "unsupported"
+
+
+class CriterionSupport(StrictModel):
+    criterion: str
+    support_type: SupportType
+    supported_by: List[str]
+    explanation: str
 
 
 class EUS(StrictModel):
     title: str
     description: str
-    work_items: List[str] = Field(min_length=1)
+
+    work_items: List[str] = Field(
+        min_length=1,
+        description=(
+            "Distinct work items or acceptance criteria that operationalize "
+            "the ethical requirement."
+        ),
+    )
 
 
 class QualityDimension(str, Enum):
@@ -50,36 +72,92 @@ class QualityIssue(StrictModel):
     recommended_change: str
 
 
+class RevisionInstruction(StrictModel):
+    target: str
+    problem: str
+    objective: str
+
+
 class QualityAssessment(StrictModel):
+    semantic_gate_passed: bool
+
+    reason_is_non_circular: bool
+
+    criterion_support: List[CriterionSupport]
+
+    unsupported_claims: List[str]
+    redundancy_issues: List[str]
+
     clarity: int = Field(ge=1, le=5)
     completeness: int = Field(ge=1, le=5)
     actionability: int = Field(ge=1, le=5)
     testability: int = Field(ge=1, le=5)
     faithfulness: int = Field(ge=1, le=5)
+
     issues: List[QualityIssue]
+
+    preserve: List[str]
+    revision_plan: List[RevisionInstruction]
+
     requires_revision: bool
 
 
+class DeterministicCheckResult(StrictModel):
+    passed: bool
+    structure_issues: List[str]
+    redundancy_issues: List[str]
+
+
 class ValidationResult(StrictModel):
+    semantic_gate_passed: bool
+
+    criterion_support: List[CriterionSupport]
+
     clarity: int = Field(ge=1, le=5)
     completeness: int = Field(ge=1, le=5)
     actionability: int = Field(ge=1, le=5)
     testability: int = Field(ge=1, le=5)
     faithfulness: int = Field(ge=1, le=5)
+
+    resolved_issues: List[str]
+    unresolved_issues: List[str]
+    new_issues: List[str]
+
     issues: List[QualityIssue]
+
     passed: bool
+
+
+class RunStatus(str, Enum):
+    passed = "passed"
+    requires_human_review = "requires_human_review"
+    not_validated = "not_validated"
 
 
 class RunArtifacts(StrictModel):
     requirement: EthicalRequirement
+
     workflow_config: str
     model: str
+
     analysis: RequirementAnalysis | None = None
+
     initial_draft: EUS
+    initial_checks: DeterministicCheckResult
+
     critique: QualityAssessment | None = None
+
     revised_draft: EUS | None = None
+    revised_checks: DeterministicCheckResult | None = None
+
     validation: ValidationResult | None = None
+
     validation_revision: EUS | None = None
+    validation_revision_checks: DeterministicCheckResult | None = None
+
     final_validation: ValidationResult | None = None
+
     final_eus: EUS
+    status: RunStatus
+
     api_response_ids: List[str] = Field(default_factory=list)
