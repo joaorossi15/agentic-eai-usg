@@ -17,12 +17,19 @@ class EthicalRequirement(StrictModel):
 
 class RequirementAnalysis(StrictModel):
     ethical_objective: str
+
     stakeholders: List[str]
+
     explicit_requirements: List[str]
+
     supported_implications: List[str]
+
     constraints: List[str]
+
     ambiguities: List[str]
+
     unsupported_assumptions_to_avoid: List[str]
+
     possible_operational_aspects: List[str]
 
 
@@ -39,6 +46,7 @@ class CriterionSupport(StrictModel):
     explanation: str
 
 
+
 class EUS(StrictModel):
     title: str
     description: str
@@ -50,6 +58,7 @@ class EUS(StrictModel):
             "the ethical requirement."
         ),
     )
+
 
 
 class QualityDimension(str, Enum):
@@ -65,46 +74,27 @@ class Severity(str, Enum):
     major = "major"
 
 
+class IssueResolution(str, Enum):
+    revision = "revision"
+    source_limited = "source_limited"
+
+
 class QualityIssue(StrictModel):
     dimension: QualityDimension
     severity: Severity
+
     problem: str
+
     recommended_change: str
 
-
-class RevisionInstruction(StrictModel):
-    target: str
-    problem: str
-    objective: str
-
-
-class QualityAssessment(StrictModel):
-    semantic_gate_passed: bool
-
-    reason_is_non_circular: bool
-
-    criterion_support: List[CriterionSupport]
-
-    unsupported_claims: List[str]
-    redundancy_issues: List[str]
-
-    clarity: int = Field(ge=1, le=5)
-    completeness: int = Field(ge=1, le=5)
-    actionability: int = Field(ge=1, le=5)
-    testability: int = Field(ge=1, le=5)
-    faithfulness: int = Field(ge=1, le=5)
-
-    issues: List[QualityIssue]
-
-    preserve: List[str]
-    revision_plan: List[RevisionInstruction]
-
-    requires_revision: bool
+    resolution: IssueResolution
 
 
 class DeterministicCheckResult(StrictModel):
     passed: bool
+
     structure_issues: List[str]
+
     redundancy_issues: List[str]
 
 
@@ -113,14 +103,35 @@ class ValidationResult(StrictModel):
 
     criterion_support: List[CriterionSupport]
 
-    clarity: int = Field(ge=1, le=5)
-    completeness: int = Field(ge=1, le=5)
-    actionability: int = Field(ge=1, le=5)
-    testability: int = Field(ge=1, le=5)
-    faithfulness: int = Field(ge=1, le=5)
+    clarity: int = Field(
+        ge=1,
+        le=5,
+    )
+
+    completeness: int = Field(
+        ge=1,
+        le=5,
+    )
+
+    actionability: int = Field(
+        ge=1,
+        le=5,
+    )
+
+    testability: int = Field(
+        ge=1,
+        le=5,
+    )
+
+    faithfulness: int = Field(
+        ge=1,
+        le=5,
+    )
 
     resolved_issues: List[str]
+
     unresolved_issues: List[str]
+
     new_issues: List[str]
 
     issues: List[QualityIssue]
@@ -130,34 +141,51 @@ class ValidationResult(StrictModel):
 
 class RunStatus(str, Enum):
     passed = "passed"
-    requires_human_review = "requires_human_review"
+
+    requires_human_review = (
+        "requires_human_review"
+    )
+
     not_validated = "not_validated"
+
+
+class ReviewReason(str, Enum):
+    unresolved_quality_issue = (
+        "unresolved_quality_issue"
+    )
+
+    source_limitation = (
+        "source_limitation"
+    )
 
 
 class RunArtifacts(StrictModel):
     requirement: EthicalRequirement
 
     workflow_config: str
+
     model: str
 
     analysis: RequirementAnalysis | None = None
 
     initial_draft: EUS
+
     initial_checks: DeterministicCheckResult
-
-    critique: QualityAssessment | None = None
-
-    revised_draft: EUS | None = None
-    revised_checks: DeterministicCheckResult | None = None
 
     validation: ValidationResult | None = None
 
-    validation_revision: EUS | None = None
-    validation_revision_checks: DeterministicCheckResult | None = None
+    revised_draft: EUS | None = None
+
+    revised_checks: DeterministicCheckResult | None = None
 
     final_validation: ValidationResult | None = None
 
     final_eus: EUS
+
     status: RunStatus
 
-    api_response_ids: List[str] = Field(default_factory=list)
+    review_reason: ReviewReason | None = None
+
+    api_response_ids: List[str] = Field(
+        default_factory=list
+    )

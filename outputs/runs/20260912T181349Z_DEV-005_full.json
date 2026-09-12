@@ -1,0 +1,158 @@
+{
+  "requirement": {
+    "id": "DEV-005",
+    "text": "The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up."
+  },
+  "workflow_config": "full",
+  "model": "gpt-5.6-terra",
+  "analysis": {
+    "ethical_objective": "Provide a culturally resonant website experience that reflects an African aesthetic while remaining welcoming to non-African users, and use service-page animation to attract attention and encourage sign-up.",
+    "stakeholders": [
+      "Website users",
+      "African users",
+      "Non-African users",
+      "Prospective service users"
+    ],
+    "explicit_requirements": [
+      "The website should convey an African feel.",
+      "The website should not alienate non-African users.",
+      "Pages describing services should use animation.",
+      "The animation on service-description pages should grab users' attention and encourage sign-up."
+    ],
+    "supported_implications": [
+      "The desired African aesthetic is constrained by inclusivity toward non-African users.",
+      "Animation is required specifically in the context of pages that describe services.",
+      "The intended outcome of service-page animation is to promote user attention and sign-up interest."
+    ],
+    "constraints": [
+      "The African feel must not result in non-African users feeling alienated.",
+      "The animation requirement applies to pages describing services.",
+      "No particular visual style, animation type, or sign-up mechanism is specified."
+    ],
+    "ambiguities": [
+      "What constitutes an 'African feel' is not defined.",
+      "What would count as alienating non-African users is not defined.",
+      "It is unclear whether every service-description page must contain animation or whether animation is required only where such pages are present.",
+      "The type, amount, placement, and behavior of animation are unspecified.",
+      "The meaning of 'sign up' and the relevant sign-up action are unspecified.",
+      "No measurable standard is given for grabbing attention or encouraging sign-up."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a specific African country, region, culture, language, visual motif, color palette, imagery, or design style.",
+      "Do not assume that inclusivity requires localization, translation, cultural testing, demographic data collection, or specific accessibility measures.",
+      "Do not assume a particular animation technology, format, duration, motion style, or interaction pattern.",
+      "Do not assume animations must be present on pages other than service-description pages.",
+      "Do not assume sign-up conversion targets, analytics, or testing procedures.",
+      "Do not assume that the requirement guarantees increased sign-ups."
+    ],
+    "possible_operational_aspects": [
+      "Visual content and presentation can be assessed for whether they convey the intended African feel while remaining welcoming to non-African users.",
+      "Service-description pages can be assessed for the presence of animation intended to draw attention to services and encourage sign-up.",
+      "The sign-up invitation or path associated with service content may be considered in relation to the animation's stated purpose, without prescribing a specific design or mechanism."
+    ]
+  },
+  "initial_draft": {
+    "title": "Inclusive African-Inspired Service Presentation",
+    "description": "As a website user, I want an African-inspired website experience with engaging service-page animations so that I can explore the services and consider signing up.",
+    "work_items": [
+      "The website shall convey an African feel while remaining welcoming to non-African users.",
+      "Pages describing services shall include animation intended to attract users' attention and encourage sign-up."
+    ]
+  },
+  "initial_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "validation": {
+    "semantic_gate_passed": true,
+    "criterion_support": [
+      {
+        "criterion": "Role: website user",
+        "support_type": "explicit",
+        "supported_by": [
+          "The requirement refers to users and non-African users of the website."
+        ],
+        "explanation": "A generic website-user role is appropriate and does not add unsupported stakeholder characteristics."
+      },
+      {
+        "criterion": "Goal: experience an African-inspired website with engaging animations on service pages",
+        "support_type": "explicit",
+        "supported_by": [
+          "The website should have an African feel.",
+          "The website should use animation on pages describing the services."
+        ],
+        "explanation": "The goal combines the two stated website-experience requirements without prescribing a visual style or animation mechanism."
+      },
+      {
+        "criterion": "Reason: explore services and consider signing up",
+        "support_type": "reasonable_implication",
+        "supported_by": [
+          "Service-page animation is intended to grab users' attention and encourage them to sign up."
+        ],
+        "explanation": "Exploring service information and considering sign-up are direct, immediate uses and outcomes of engaging service-description pages. The reason does not claim that sign-up will occur."
+      },
+      {
+        "criterion": "The website shall convey an African feel while remaining welcoming to non-African users.",
+        "support_type": "explicit",
+        "supported_by": [
+          "The website should have an African feel but should not alienate non-Africans."
+        ],
+        "explanation": "“Remaining welcoming” is a faithful normalization of the constraint against alienating non-African users."
+      },
+      {
+        "criterion": "Pages describing services shall include animation intended to attract users' attention and encourage sign-up.",
+        "support_type": "explicit",
+        "supported_by": [
+          "The website should use animation on pages which are describing the services to grab the users attention and encourage them to sign up."
+        ],
+        "explanation": "The work item preserves the page scope, animation obligation, and stated intended purpose without adding an animation type, conversion target, or sign-up mechanism."
+      }
+    ],
+    "clarity": 5,
+    "completeness": 5,
+    "actionability": 3,
+    "testability": 3,
+    "faithfulness": 5,
+    "resolved_issues": [],
+    "unresolved_issues": [
+      "The source does not define what constitutes an African feel, what would make the website welcoming rather than alienating to non-African users, or how the intended attention and sign-up encouragement should be assessed. This limits implementation precision and objective verification."
+    ],
+    "new_issues": [],
+    "issues": [
+      {
+        "dimension": "actionability",
+        "severity": "minor",
+        "problem": "The core aesthetic and inclusivity conditions remain inherently underspecified: the source provides no criteria for an African feel or for avoiding alienation of non-African users.",
+        "recommended_change": "If greater implementation precision is required, obtain source-level criteria defining the intended aesthetic and inclusivity expectations; do not invent cultural motifs, styles, or assessment processes in the EUS.",
+        "resolution": "source_limited"
+      },
+      {
+        "dimension": "testability",
+        "severity": "major",
+        "problem": "Although the presence of animation on service-description pages can be checked, the African-feel, non-alienation, attention-grabbing, and sign-up-encouragement conditions lack defined observable or measurable standards.",
+        "recommended_change": "If verification at the required quality threshold is needed, obtain source-level acceptance standards for the subjective aesthetic, inclusivity, and intended animation outcomes.",
+        "resolution": "source_limited"
+      }
+    ],
+    "passed": false
+  },
+  "revised_draft": null,
+  "revised_checks": null,
+  "final_validation": null,
+  "final_eus": {
+    "title": "Inclusive African-Inspired Service Presentation",
+    "description": "As a website user, I want an African-inspired website experience with engaging service-page animations so that I can explore the services and consider signing up.",
+    "work_items": [
+      "The website shall convey an African feel while remaining welcoming to non-African users.",
+      "Pages describing services shall include animation intended to attract users' attention and encourage sign-up."
+    ]
+  },
+  "status": "requires_human_review",
+  "review_reason": "source_limitation",
+  "api_response_ids": [
+    "resp_08e25fa972fc8bfd006aa59643ac6487d2a0d4c13221d6c637",
+    "resp_0af04fe8b49a170f006aa5964f0a8c87d2a9c222e491bef005",
+    "resp_0ab541652ca897c3006aa59650f2bc87d2bd76deaaa00784b3"
+  ]
+}
