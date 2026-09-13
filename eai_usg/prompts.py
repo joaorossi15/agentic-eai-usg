@@ -1,20 +1,9 @@
-"""
-Prompts for EAI-USG.
-
-Workflow:
-    Analyze -> Generate -> Validate -> [Revise -> Revalidate]
-
-The ethical requirement is the only authoritative semantic input.
-"""
-
-
 # ===========================================================================
 # Shared EUS definition
 # ===========================================================================
 
 EUS_DEFINITION = """
-An Ethical User Story (EUS) operationalizes an ethical requirement as a
-professional software requirements artifact.
+An Ethical User Story (EUS) operationalizes an ethical requirement as a professional software requirements artifact.
 
 It contains:
 
@@ -26,20 +15,21 @@ It contains:
 
       "As a [role], I want [goal], so that [reason]."
 
-  The role represents the primary stakeholder perspective.
+  The role represents the type of user or stakeholder whose perspective the story adopts.
   The goal expresses the primary stakeholder need.
   The reason explains the immediate significance of that goal.
 
 - Work items / acceptance criteria:
   Concrete conditions that must hold for the story to be satisfied.
-  They may contain obligations or constraints from the source that do not
-  belong naturally in the description.
+  They may contain obligations or constraints from the source that do not belong naturally in the description.
 
-Use the simplest suitable stakeholder role.
+Use the simplest role supported by the source requirement.
 
-When the requirement explicitly identifies or clearly supports a meaningful domain-specific stakeholder, use that role when it improves precision, but try to use the simplest possible, such as "user" or other stakeholders described in one word.
+Prefer a short stakeholder category, normally one or a few words.
 
-Do not construct highly qualified roles from requirement conditions merely to make the role more specific.
+When the requirement explicitly identifies or clearly supports a meaningful domain-specific type of user or stakeholder, use that role when it improves precision. Otherwise, use a generic role such as "user".
+
+Do not infer a role from technical activities, system components, implementation responsibilities, or requirement conditions merely to make the story more specific.
 
 The description does not need to repeat every obligation from the source.
 
@@ -47,11 +37,9 @@ The source ethical requirement is authoritative.
 
 Preserve its meaning, not its wording.
 
-Normalize awkward or informal source language into clear,
-requirements-engineering terminology when the meaning remains unchanged.
+Normalize awkward or informal source language into clear, requirements-engineering terminology when the meaning remains unchanged.
 
-The result should read like a professional backlog artifact, not a paraphrase
-of the source sentence.
+The result should read like a professional backlog artifact, not a paraphrase of the source sentence.
 """
 
 
@@ -60,17 +48,15 @@ of the source sentence.
 # ===========================================================================
 
 REASON_GUIDANCE = """
-The reason should clearly explain the stakeholder's immediate rationale for
-the goal.
+The reason should clearly explain the stakeholder's immediate rationale for the goal.
 
-It must add meaning beyond merely stating that the goal was achieved, but it
-does not need to be semantically distant from the goal.
+It must add meaning beyond merely stating that the goal was achieved, but it does not need to be semantically distant from the goal.
 
-For informational or transparency requirements, examining, tracing,
-distinguishing, interpreting, or assessing the supplied information may be a
-valid rationale when it represents a direct use of that information.
+For informational or transparency requirements, examining, tracing, distinguishing, interpreting, or assessing the supplied information may be a valid rationale when it represents a direct use of that information.
 
 A reason is circular only when it effectively repeats the goal.
+
+Avoid repeating the same concern or object from the goal in the reason. When possible, express the immediate use or significance of the information more concisely.
 
 Example:
 
@@ -78,14 +64,11 @@ Example:
     "I want the data sources documented so that I know the data sources."
 
     Appropriate:
-    "I want the types and sources of training data documented so that I can
-     assess the provenance of the training data."
+    "I want the types and sources of training data documented so that I can assess their provenance."
 
-Do not invent broader benefits such as trust, safety, confidence, control, or
-better decision-making unless the source supports them.
+Do not invent broader benefits such as trust, safety, confidence, control, or better decision-making unless the source supports them.
 
-Do not introduce unsupported standards such as "sufficient", "adequate",
-"appropriate", or "reliable".
+Do not introduce unsupported standards such as "sufficient", "adequate", "appropriate", or "reliable".
 """
 
 
@@ -96,21 +79,15 @@ Do not introduce unsupported standards such as "sufficient", "adequate",
 REQUIREMENTS_GUIDANCE = """
 Preserve every distinct substantive obligation from the source.
 
-Use separate work items for genuinely different obligations and combine
-closely related conditions when appropriate.
+Use separate work items for genuinely different obligations and combine closely related conditions when appropriate.
 
-Keep the EUS problem- and outcome-oriented unless the source explicitly
-requires a particular solution or mechanism.
+Keep the EUS problem- and outcome-oriented unless the source explicitly requires a particular solution or mechanism.
 
-Do not introduce an implementation mechanism, internal prerequisite, or
-enabling capability merely because it could help implement another
-requirement.
+Do not introduce an implementation mechanism, internal prerequisite, or enabling capability merely because it could help implement another requirement.
 
-For example, needing internally to identify, classify, distinguish, track, or
-locate something does not by itself create a separate requirement.
+For example, needing internally to identify, classify, distinguish, track, or locate something does not by itself create a separate requirement.
 
-A work item should represent a substantive externally meaningful obligation
-or constraint supported by the source.
+A work item should represent a substantive externally meaningful obligation or constraint supported by the source.
 
 Do not invent:
 - implementation details;
@@ -123,13 +100,11 @@ Do not invent:
 - quality conditions;
 - additional stakeholder benefits.
 
-A source may itself be vague or underspecified. Preserve that limitation
-rather than inventing detail to make the EUS more actionable or testable.
+A source may itself be vague or underspecified. Preserve that limitation rather than inventing detail to make the EUS more actionable or testable.
 
 Use concise, clear, professional requirements language.
 
-Avoid unnecessary repetition, but do not sacrifice semantic precision merely
-to vary wording.
+Avoid unnecessary repetition, but do not sacrifice semantic precision merely to vary wording.
 """
 
 
@@ -148,8 +123,7 @@ CLARITY
 5 - Very clear, precise, and easy to understand, with no relevant ambiguity.
 
 COMPLETENESS
-Expected elements are title, description with role/goal/reason, and work
-items or acceptance criteria.
+Expected elements are title, description with role/goal/reason, and work items or acceptance criteria.
 
 1 - Major elements are missing.
 2 - Several expected elements are missing or underdeveloped.
@@ -180,8 +154,7 @@ FAITHFULNESS
 
 Faithfulness is semantic, not lexical.
 
-Do not improve Actionability, Testability, or Completeness by inventing
-information absent from the source.
+Do not improve Actionability, Testability, or Completeness by inventing information absent from the source.
 """
 
 
@@ -199,23 +172,33 @@ Analyze only the source ethical requirement.
 Identify:
 - the ethical objective;
 - supported stakeholders;
-- distinct explicit obligations;
+- distinct substantive obligations;
 - constraints and applicability conditions;
-- direct semantic implications;
 - ambiguities;
 - unsupported assumptions to avoid;
 - possible operational aspects.
 
+Represent stakeholders as short stakeholder categories rather than descriptions of their relationship to the requirement.
+
+Do not construct stakeholder categories by turning requirement conditions or details into qualifying phrases.
+
+If the source does not clearly support a meaningful specific stakeholder category, use a generic stakeholder such as "user", "data subject", etc.
+
 {REQUIREMENTS_GUIDANCE}
 
-A direct implication must follow from the requirement without requiring an
-additional assumption.
+Represent each distinct substantive obligation using:
+- id: a sequential identifier starting from O1;
+- text: a concise normalized statement of the obligation;
+- source_span: the exact portion of the source requirement that supports it;
+- support_type: "explicit" if directly stated in the source, or "reasonable_implication" if it follows directly from the source without requiring an additional assumption.
 
-Possible operational aspects must represent substantive source conditions,
-not inferred implementation steps.
+A reasonable implication must follow from the requirement without requiring an additional assumption.
 
-Separate distinct obligations when useful, but do not manufacture additional
-requirements.
+Possible operational aspects must represent substantive source conditions, not inferred implementation steps.
+
+Do not create obligations from implementation prerequisites, possible operational aspects, or unsupported assumptions.
+
+Separate distinct obligations when useful, but do not manufacture additional requirements or artificially split closely related conditions that belong to the same substantive obligation.
 
 Normalize terminology when the meaning is clear.
 
@@ -236,16 +219,13 @@ You are the EUS Generation component of EAI-USG.
 
 {REQUIREMENTS_GUIDANCE}
 
-Generate one professional EUS from the source requirement and its semantic
-analysis.
+Generate one professional EUS from the source requirement and its semantic analysis.
 
-The requirement is authoritative. The analysis is supporting information
-only.
-
+The requirement is authoritative. The analysis is supporting information only.
 
 DESCRIPTION
 
-- Choose a simple, meaningful stakeholder perspective.
+- Choose a simple, meaningful stakeholder perspective (probably user, stakeholder, etc).
 - Express the primary stakeholder need as the goal.
 - Include applicability conditions only when useful to the goal.
 - Do not force every source obligation into the description.
@@ -256,8 +236,7 @@ DESCRIPTION
 WORK ITEMS
 
 - Preserve every distinct substantive obligation.
-- Express obligations as conditions of the resulting system, behavior, data,
-  documentation, or interaction.
+- Express obligations as conditions of the resulting system, behavior, data, documentation, or interaction.
 - Separate genuinely different obligations.
 - Combine closely related ones when appropriate.
 - Do not create filler work items.
@@ -273,6 +252,8 @@ Prefer conventional requirements terminology and direct formulations.
 Avoid unnecessary repetition.
 
 Return one complete EUS.
+
+The description traceability must include every obligation that substantively supports either the goal or the reason.
 """
 
 
@@ -310,8 +291,7 @@ WORK ITEMS
 
 LANGUAGE
 
-Use concise, professional requirements-engineering terminology while
-preserving the meaning of the source.
+Use concise, professional requirements-engineering terminology while preserving the meaning of the source.
 
 Return one complete EUS.
 """
@@ -332,8 +312,7 @@ You are the Validation component of EAI-USG.
 
 {QUALITY_RUBRIC}
 
-Independently validate the candidate EUS against the original ethical
-requirement.
+Independently validate the candidate EUS against the original ethical requirement.
 
 The source requirement is authoritative.
 The semantic analysis, when supplied, is supporting information only.
@@ -343,17 +322,16 @@ DIAGNOSTIC ROLE
 
 Diagnose problems; do not author the next EUS.
 
-For a revision-fixable issue, state:
+For each substantive issue, state:
 - what is wrong;
 - why it matters;
 - what property a successful revision should achieve.
 
-The recommended_change field should describe the revision objective, not
-provide ready-made replacement wording.
+The recommended_change field should describe the revision objective, not provide ready-made replacement wording.
 
 Do not search for a problem merely because another wording is possible.
-Minor stylistic preference alone is not a revision-fixable issue.
 
+Minor stylistic preference alone is not a substantive issue.
 
 SEMANTIC SUPPORT
 
@@ -370,8 +348,7 @@ For each substantive work-item condition classify support as:
 
 Also evaluate the role, goal, and reason for unsupported meaning.
 
-A condition is not supported merely because it would be technically useful or
-necessary for implementing another obligation.
+A condition is not supported merely because it would be technically useful or necessary for implementing another obligation.
 
 Terminology normalization is acceptable when semantics are preserved.
 
@@ -386,11 +363,11 @@ Check that:
 - the role, goal, and reason avoid unnecessary repetition;
 - the wording is concise and professional.
 
-For transparency or informational requirements, a rationale may involve
-examining, tracing, distinguishing, interpreting, or assessing the disclosed
-information.
+For transparency or informational requirements, a rationale may involve examining, tracing, distinguishing, interpreting, or assessing the disclosed information.
 
 Do not require the reason to introduce a semantically distant consequence.
+
+When evaluating the role, also check that it is a simple stakeholder category rather than a descriptive phrase constructed from requirement conditions or details.
 
 
 WORK ITEMS
@@ -400,24 +377,26 @@ Check that:
 - each item expresses a meaningful requirement condition;
 - separate items represent genuinely different obligations;
 - no significant redundancy exists;
-- the items remain problem- or outcome-oriented unless the source explicitly
-  requires a solution or mechanism;
-- no implementation prerequisite or enabling capability has been promoted
-  into a requirement;
+- the items remain problem- or outcome-oriented unless the source explicitly requires a solution or mechanism;
+- no implementation prerequisite or enabling capability has been promoted into a requirement;
 - no unsupported detail has been introduced.
 
 
 ACTIONABILITY AND TESTABILITY
 
-Actionability means practitioners can understand and use the required
-condition during development.
+Actionability means practitioners can understand and use the required condition during development.
 
 Testability means its satisfaction can reasonably be checked.
 
 Do not require implementation instructions or testing procedures.
 
-If the source itself prevents greater specificity or testability, classify
-the limitation as source_limited rather than inventing detail.
+Missing or ambiguous information in the source requirement is not by itself a quality issue in the generated EUS.
+
+Do not penalize the EUS for faithfully preserving a source-defined or externally defined constraint whose exact value is not provided, such as an applicable legal timeframe.
+
+Report an issue only when the EUS itself has a quality problem, such as introducing unsupported information, omitting a substantive obligation, distorting the source meaning, or expressing the requirement unclearly.
+
+Source ambiguities identified by the analysis are supporting context and should not automatically cause validation failure.
 
 
 DETERMINISTIC CHECKS
@@ -429,14 +408,12 @@ When a genuine deterministic issue exists, report it as revision-fixable.
 
 INITIAL VALIDATION AND REVALIDATION
 
-If previous_draft and previous_feedback are absent, this is initial
-validation:
+If previous_draft and previous_feedback are absent, this is initial validation:
 - resolved_issues = [];
 - new_issues = [];
 - unresolved_issues contains current substantive problems.
 
-If previous_draft and previous_feedback are supplied, compare the revision
-with them and identify:
+If previous_draft and previous_feedback are supplied, compare the revision with them and identify:
 - resolved issues;
 - unresolved issues;
 - new issues.
@@ -444,31 +421,27 @@ with them and identify:
 
 ISSUE RESOLUTION
 
-Use resolution="revision" when rewriting the EUS can legitimately fix the
-problem using information already available in the source.
+Every reported issue must identify a quality problem in the candidate EUS that can legitimately be addressed without inventing unsupported information.
 
-Use resolution="source_limited" when fixing the problem would require
-inventing missing information, definitions, thresholds, mechanisms, or
-constraints.
+For every reported issue, set resolution="revision".
+
+Do not create an issue solely because the source requirement lacks information that the EUS cannot faithfully supply.
 
 
 QUALITY
 
-Score Clarity, Completeness, Actionability, Testability, and Faithfulness
-using the rubric.
+Score Clarity, Completeness, Actionability, Testability, and Faithfulness using the rubric.
 
 Set passed=true only when:
 - semantic_gate_passed=true;
 - no substantive unsupported content remains;
 - all distinct source obligations are represented;
-- the description contains an appropriate role, focused goal, and meaningful
-  rationale;
+- the description contains an appropriate role, focused goal, and meaningful rationale;
 - every quality score meets the supplied threshold;
-- no major revision-fixable issue remains;
+- no major quality issue remains;
 - no significant semantic redundancy remains.
 
-During revalidation, also ensure that previous major revision-fixable issues
-were resolved and no new major problem was introduced.
+During revalidation, also ensure that previous major issues were resolved and no new major problem was introduced.
 """
 
 
@@ -502,10 +475,10 @@ Make the smallest faithful change necessary and preserve adequate content.
 DESCRIPTION
 
 When needed:
-- correct an unsupported or unsuitable stakeholder role;
+- correct an unsupported or unsuitable stakeholder role, but try to mantain as simple as possible;
 - focus an overloaded goal;
 - fix a circular or unsupported rationale;
-- remove unnecessary repetition;
+- remove unnecessary repetition, specially on words repeating too much;
 - normalize awkward terminology.
 
 Do not solve a rationale problem by adding a broad unsupported benefit.

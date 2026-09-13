@@ -4,7 +4,7 @@ import os
 from enum import Enum
 
 from .agents import Agents
-from .checks import run_deterministic_checks
+from .checks import run_deterministic_checks, run_traceability_checks
 from .llm import StructuredLLM
 from .schemas import (
     EthicalRequirement,
@@ -15,64 +15,17 @@ from .schemas import (
 )
 
 
-# ===========================================================================
-# Issue helpers
-# ===========================================================================
-
-
 def _has_revision_issues(issues) -> bool:
-    """
-    Return True when at least one validation issue can legitimately be
-    addressed by rewriting the EUS using information already available in
-    the source requirement.
-    """
-    return any(
-        issue.resolution == IssueResolution.revision
-        for issue in issues
-    )
+    return any(issue.resolution == IssueResolution.revision for issue in issues)
 
 
-def _only_source_limited_issues(issues) -> bool:
-    """
-    Return True when at least one issue exists and every remaining issue is
-    caused by information missing or underspecified in the source requirement.
-    """
-    return bool(issues) and all(
-        issue.resolution == IssueResolution.source_limited
-        for issue in issues
-    )
-
-
-def _review_reason(issues) -> ReviewReason:
-    """
-    Determine why human review is required.
-    """
-    if _only_source_limited_issues(issues):
-        return ReviewReason.source_limitation
-
+def _review_reason() -> ReviewReason:
     return ReviewReason.unresolved_quality_issue
-
-
-# ===========================================================================
-# Workflow configurations
-# ===========================================================================
 
 
 class WorkflowConfig(str, Enum):
     FULL = "full"
-
-    NO_ANALYSIS = "no_analysis"
-
-    NO_REVISION = "no_revision"
-
-    NO_VALIDATION = "no_validation"
-
     SINGLE_PASS = "single_pass"
-
-
-# ===========================================================================
-# Pipeline
-# ===========================================================================
 
 
 class EAIUSGPipeline:
@@ -84,300 +37,165 @@ class EAIUSGPipeline:
         threshold = (
             quality_threshold
             if quality_threshold is not None
-            else int(
-                os.getenv(
-                    "EAI_VALIDATION_THRESHOLD",
-                    "4",
-                )
-            )
+            else int(os.getenv("EAI_VALIDATION_THRESHOLD", "4"))
         )
 
-        self.llm = StructuredLLM(
-            model=model,
-        )
-
-        self.agents = Agents(
-            self.llm,
-            quality_threshold=threshold,
-        )
+        self.llm = StructuredLLM(model=model)
+        self.agents = Agents(self.llm, quality_threshold=threshold)
 
     def run(
         self,
         requirement: EthicalRequirement,
         config: WorkflowConfig = WorkflowConfig.FULL,
     ) -> RunArtifacts:
-
-        response_start = len(
-            self.llm.response_ids
-        )
-
-        # ===================================================================
-        # Single-pass baseline
-        # ===================================================================
+        response_start = len(self.llm.response_ids)
 
         if config == WorkflowConfig.SINGLE_PASS:
-            initial = self.agents.generate(
-                requirement
-            )
-
-            initial_checks = (
-                run_deterministic_checks(
-                    initial
-                )
-            )
+            initial = self.agents.generate_direct(requirement)
+            initial_checks = run_deterministic_checks(initial)
 
             return RunArtifacts(
                 requirement=requirement,
                 workflow_config=config.value,
                 model=self.llm.model,
-
                 analysis=None,
-
                 initial_draft=initial,
+                initial_traceability=None,
                 initial_checks=initial_checks,
-
+                initial_traceability_checks=None,
                 validation=None,
-
                 revised_draft=None,
+                revised_traceability=None,
                 revised_checks=None,
-
+                revised_traceability_checks=None,
                 final_validation=None,
-
                 final_eus=initial,
-
+                final_traceability=None,
                 status=RunStatus.not_validated,
                 review_reason=None,
-
-                api_response_ids=(
-                    self.llm.response_ids[
-                        response_start:
-                    ]
-                ),
+                api_response_ids=self.llm.response_ids[response_start:],
             )
 
-        # ===================================================================
-        # Configure workflow
-        # ===================================================================
+        analysis = self.agents.analyze(requirement)
 
-        use_analysis = (
-            config
-            != WorkflowConfig.NO_ANALYSIS
-        )
-
-        use_revision = (
-            config
-            != WorkflowConfig.NO_REVISION
-        )
-
-        use_validation = (
-            config
-            != WorkflowConfig.NO_VALIDATION
-        )
-
-        # ===================================================================
-        # Analysis
-        # ===================================================================
-
-        analysis = (
-            self.agents.analyze(
-                requirement
-            )
-            if use_analysis
-            else None
-        )
-
-        # ===================================================================
-        # Generation
-        # ===================================================================
-
-        initial = self.agents.generate(
-            requirement,
+        generated = self.agents.generate(
+            requirement=requirement,
             analysis=analysis,
         )
 
-        initial_checks = (
-            run_deterministic_checks(
-                initial
-            )
+        initial = generated.eus
+        initial_traceability = generated.traceability
+
+        initial_checks = run_deterministic_checks(initial)
+        initial_traceability_checks = run_traceability_checks(
+            analysis=analysis,
+            eus=initial,
+            traceability=initial_traceability,
         )
 
         current = initial
+        current_traceability = initial_traceability
         current_checks = initial_checks
-
-        # Artifacts that may be populated later
-        validation = None
-
-        revised = None
-        revised_checks = None
-
-        final_validation = None
-
-        review_reason = None
-
-        # ===================================================================
-        # Validation disabled
-        # ===================================================================
-
-        if not use_validation:
-            return RunArtifacts(
-                requirement=requirement,
-                workflow_config=config.value,
-                model=self.llm.model,
-
-                analysis=analysis,
-
-                initial_draft=initial,
-                initial_checks=initial_checks,
-
-                validation=None,
-
-                revised_draft=None,
-                revised_checks=None,
-
-                final_validation=None,
-
-                final_eus=current,
-
-                status=RunStatus.not_validated,
-                review_reason=None,
-
-                api_response_ids=(
-                    self.llm.response_ids[
-                        response_start:
-                    ]
-                ),
-            )
-
-        # ===================================================================
-        # Initial validation
-        # ===================================================================
+        current_traceability_checks = initial_traceability_checks
 
         validation = self.agents.validate(
             requirement=requirement,
             candidate=current,
+            traceability=current_traceability,
             previous_draft=None,
             previous_feedback=None,
             checks=current_checks,
+            traceability_checks=current_traceability_checks,
             analysis=analysis,
         )
 
-        # ===================================================================
-        # Passed immediately
-        # ===================================================================
+        revised = None
+        revised_traceability = None
+        revised_checks = None
+        revised_traceability_checks = None
+        final_validation = None
+        review_reason = None
 
         if (
             validation.passed
             and current_checks.passed
+            and current_traceability_checks.passed
         ):
             status = RunStatus.passed
 
-        # ===================================================================
-        # Validation found something revision can fix
-        # ===================================================================
-
         elif (
-            use_revision
-            and (
-                _has_revision_issues(
-                    validation.issues
-                )
-                or not current_checks.passed
-            )
+            _has_revision_issues(validation.issues)
+            or not current_checks.passed
+            or not current_traceability_checks.passed
         ):
             before_revision = current
 
-            revised = self.agents.revise(
+            revised_generated = self.agents.revise(
                 requirement=requirement,
                 draft=current,
+                traceability=current_traceability,
                 feedback=validation,
                 analysis=analysis,
             )
 
-            revised_checks = (
-                run_deterministic_checks(
-                    revised
-                )
+            revised = revised_generated.eus
+            revised_traceability = revised_generated.traceability
+
+            revised_checks = run_deterministic_checks(revised)
+            revised_traceability_checks = run_traceability_checks(
+                analysis=analysis,
+                eus=revised,
+                traceability=revised_traceability,
             )
 
             current = revised
+            current_traceability = revised_traceability
             current_checks = revised_checks
+            current_traceability_checks = revised_traceability_checks
 
-            # ===============================================================
-            # One revalidation only
-            # ===============================================================
-
-            final_validation = (
-                self.agents.validate(
-                    requirement=requirement,
-                    candidate=current,
-                    previous_draft=before_revision,
-                    previous_feedback=validation,
-                    checks=current_checks,
-                    analysis=analysis,
-                )
+            final_validation = self.agents.validate(
+                requirement=requirement,
+                candidate=current,
+                traceability=current_traceability,
+                previous_draft=before_revision,
+                previous_feedback=validation,
+                checks=current_checks,
+                traceability_checks=current_traceability_checks,
+                analysis=analysis,
             )
 
             if (
                 final_validation.passed
                 and current_checks.passed
+                and current_traceability_checks.passed
             ):
                 status = RunStatus.passed
-
             else:
-                status = (
-                    RunStatus.requires_human_review
-                )
-
-                review_reason = (
-                    _review_reason(
-                        final_validation.issues
-                    )
-                )
-
-        # ===================================================================
-        # Failed, but revision is disabled or cannot legitimately fix it
-        # ===================================================================
+                status = RunStatus.requires_human_review
+                review_reason = _review_reason()
 
         else:
-            status = (
-                RunStatus.requires_human_review
-            )
-
-            review_reason = (
-                _review_reason(
-                    validation.issues
-                )
-            )
-
-        # ===================================================================
-        # Final artifacts
-        # ===================================================================
+            status = RunStatus.requires_human_review
+            review_reason = _review_reason()
 
         return RunArtifacts(
             requirement=requirement,
             workflow_config=config.value,
             model=self.llm.model,
-
             analysis=analysis,
-
             initial_draft=initial,
+            initial_traceability=initial_traceability,
             initial_checks=initial_checks,
-
+            initial_traceability_checks=initial_traceability_checks,
             validation=validation,
-
             revised_draft=revised,
+            revised_traceability=revised_traceability,
             revised_checks=revised_checks,
-
+            revised_traceability_checks=revised_traceability_checks,
             final_validation=final_validation,
-
             final_eus=current,
-
+            final_traceability=current_traceability,
             status=status,
             review_reason=review_reason,
-
-            api_response_ids=(
-                self.llm.response_ids[
-                    response_start:
-                ]
-            ),
+            api_response_ids=self.llm.response_ids[response_start:],
         )

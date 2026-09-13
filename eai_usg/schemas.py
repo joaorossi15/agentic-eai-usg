@@ -15,21 +15,25 @@ class EthicalRequirement(StrictModel):
     text: str
 
 
+class ObligationSupportType(str, Enum):
+    explicit = "explicit"
+    reasonable_implication = "reasonable_implication"
+
+
+class RequirementObligation(StrictModel):
+    id: str = Field(pattern=r"^O[1-9][0-9]*$")
+    text: str
+    source_span: str
+    support_type: ObligationSupportType
+
+
 class RequirementAnalysis(StrictModel):
     ethical_objective: str
-
     stakeholders: List[str]
-
-    explicit_requirements: List[str]
-
-    supported_implications: List[str]
-
+    obligations: List[RequirementObligation] = Field(min_length=1)
     constraints: List[str]
-
     ambiguities: List[str]
-
     unsupported_assumptions_to_avoid: List[str]
-
     possible_operational_aspects: List[str]
 
 
@@ -46,19 +50,29 @@ class CriterionSupport(StrictModel):
     explanation: str
 
 
-
 class EUS(StrictModel):
     title: str
     description: str
-
     work_items: List[str] = Field(
         min_length=1,
-        description=(
-            "Distinct work items or acceptance criteria that operationalize "
-            "the ethical requirement."
-        ),
+        description="Distinct work items that operationalize the ethical requirement.",
     )
 
+
+class WorkItemTrace(StrictModel):
+    work_item_index: int = Field(ge=0)
+    obligation_ids: List[str] = Field(min_length=1)
+    explanation: str
+
+
+class TraceabilityMap(StrictModel):
+    description_obligation_ids: List[str]
+    work_items: List[WorkItemTrace]
+
+
+class GeneratedEUS(StrictModel):
+    eus: EUS
+    traceability: TraceabilityMap
 
 
 class QualityDimension(str, Enum):
@@ -76,116 +90,77 @@ class Severity(str, Enum):
 
 class IssueResolution(str, Enum):
     revision = "revision"
-    source_limited = "source_limited"
 
 
 class QualityIssue(StrictModel):
     dimension: QualityDimension
     severity: Severity
-
     problem: str
-
     recommended_change: str
-
     resolution: IssueResolution
 
 
 class DeterministicCheckResult(StrictModel):
     passed: bool
-
     structure_issues: List[str]
-
     redundancy_issues: List[str]
+
+
+class TraceabilityCheckResult(StrictModel):
+    passed: bool
+    issues: List[str]
 
 
 class ValidationResult(StrictModel):
     semantic_gate_passed: bool
-
     criterion_support: List[CriterionSupport]
-
-    clarity: int = Field(
-        ge=1,
-        le=5,
-    )
-
-    completeness: int = Field(
-        ge=1,
-        le=5,
-    )
-
-    actionability: int = Field(
-        ge=1,
-        le=5,
-    )
-
-    testability: int = Field(
-        ge=1,
-        le=5,
-    )
-
-    faithfulness: int = Field(
-        ge=1,
-        le=5,
-    )
-
+    clarity: int = Field(ge=1, le=5)
+    completeness: int = Field(ge=1, le=5)
+    actionability: int = Field(ge=1, le=5)
+    testability: int = Field(ge=1, le=5)
+    faithfulness: int = Field(ge=1, le=5)
     resolved_issues: List[str]
-
     unresolved_issues: List[str]
-
     new_issues: List[str]
-
     issues: List[QualityIssue]
-
     passed: bool
 
 
 class RunStatus(str, Enum):
     passed = "passed"
-
-    requires_human_review = (
-        "requires_human_review"
-    )
-
+    requires_human_review = "requires_human_review"
     not_validated = "not_validated"
 
 
 class ReviewReason(str, Enum):
-    unresolved_quality_issue = (
-        "unresolved_quality_issue"
-    )
-
-    source_limitation = (
-        "source_limitation"
-    )
+    unresolved_quality_issue = "unresolved_quality_issue"
 
 
 class RunArtifacts(StrictModel):
     requirement: EthicalRequirement
-
     workflow_config: str
-
     model: str
 
     analysis: RequirementAnalysis | None = None
 
     initial_draft: EUS
-
+    initial_traceability: TraceabilityMap | None = None
     initial_checks: DeterministicCheckResult
+    initial_traceability_checks: TraceabilityCheckResult | None = None
 
     validation: ValidationResult | None = None
 
     revised_draft: EUS | None = None
-
+    revised_traceability: TraceabilityMap | None = None
     revised_checks: DeterministicCheckResult | None = None
+    revised_traceability_checks: TraceabilityCheckResult | None = None
 
     final_validation: ValidationResult | None = None
 
     final_eus: EUS
+    final_traceability: TraceabilityMap | None = None
 
     status: RunStatus
-
     review_reason: ReviewReason | None = None
 
-    api_response_ids: List[str] = Field(
-        default_factory=list
-    )
+    api_response_ids: List[str] = Field(default_factory=list)
