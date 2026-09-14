@@ -1,0 +1,73 @@
+run_id,requirement_id,principle,source_row,requirement,condition,configuration,repetition,model
+ABL-T01__eai_usg__1,ABL-T01,Transparency,252,The audit report shall be displayed to the user.,eai_usg,full,1,gpt-5.6-terra
+ABL-T01__eai_usg__2,ABL-T01,Transparency,252,The audit report shall be displayed to the user.,eai_usg,full,2,gpt-5.6-terra
+ABL-T01__eai_usg__3,ABL-T01,Transparency,252,The audit report shall be displayed to the user.,eai_usg,full,3,gpt-5.6-terra
+ABL-T01__same_model_single_pass__1,ABL-T01,Transparency,252,The audit report shall be displayed to the user.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-T01__same_model_single_pass__2,ABL-T01,Transparency,252,The audit report shall be displayed to the user.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-T01__same_model_single_pass__3,ABL-T01,Transparency,252,The audit report shall be displayed to the user.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-T02__eai_usg__1,ABL-T02,Transparency,967,The system shall display and embed in each message a date/timestamp of when the message was sent.,eai_usg,full,1,gpt-5.6-terra
+ABL-T02__eai_usg__2,ABL-T02,Transparency,967,The system shall display and embed in each message a date/timestamp of when the message was sent.,eai_usg,full,2,gpt-5.6-terra
+ABL-T02__eai_usg__3,ABL-T02,Transparency,967,The system shall display and embed in each message a date/timestamp of when the message was sent.,eai_usg,full,3,gpt-5.6-terra
+ABL-T02__same_model_single_pass__1,ABL-T02,Transparency,967,The system shall display and embed in each message a date/timestamp of when the message was sent.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-T02__same_model_single_pass__2,ABL-T02,Transparency,967,The system shall display and embed in each message a date/timestamp of when the message was sent.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-T02__same_model_single_pass__3,ABL-T02,Transparency,967,The system shall display and embed in each message a date/timestamp of when the message was sent.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-T03__eai_usg__1,ABL-T03,Transparency,1044,Documentation and logs of data sources for Traceability.,eai_usg,full,1,gpt-5.6-terra
+ABL-T03__eai_usg__2,ABL-T03,Transparency,1044,Documentation and logs of data sources for Traceability.,eai_usg,full,2,gpt-5.6-terra
+ABL-T03__eai_usg__3,ABL-T03,Transparency,1044,Documentation and logs of data sources for Traceability.,eai_usg,full,3,gpt-5.6-terra
+ABL-T03__same_model_single_pass__1,ABL-T03,Transparency,1044,Documentation and logs of data sources for Traceability.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-T03__same_model_single_pass__2,ABL-T03,Transparency,1044,Documentation and logs of data sources for Traceability.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-T03__same_model_single_pass__3,ABL-T03,Transparency,1044,Documentation and logs of data sources for Traceability.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-P01__eai_usg__1,ABL-P01,Privacy,476,The product shall provide players no access to information that might reveal the identity of another player,eai_usg,full,1,gpt-5.6-terra
+ABL-P01__eai_usg__2,ABL-P01,Privacy,476,The product shall provide players no access to information that might reveal the identity of another player,eai_usg,full,2,gpt-5.6-terra
+ABL-P01__eai_usg__3,ABL-P01,Privacy,476,The product shall provide players no access to information that might reveal the identity of another player,eai_usg,full,3,gpt-5.6-terra
+ABL-P01__same_model_single_pass__1,ABL-P01,Privacy,476,The product shall provide players no access to information that might reveal the identity of another player,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-P01__same_model_single_pass__2,ABL-P01,Privacy,476,The product shall provide players no access to information that might reveal the identity of another player,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-P01__same_model_single_pass__3,ABL-P01,Privacy,476,The product shall provide players no access to information that might reveal the identity of another player,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-P02__eai_usg__1,ABL-P02,Privacy,700,The user must be able to set an option to hide information based on who has tagged it.,eai_usg,full,1,gpt-5.6-terra
+ABL-P02__eai_usg__2,ABL-P02,Privacy,700,The user must be able to set an option to hide information based on who has tagged it.,eai_usg,full,2,gpt-5.6-terra
+ABL-P02__eai_usg__3,ABL-P02,Privacy,700,The user must be able to set an option to hide information based on who has tagged it.,eai_usg,full,3,gpt-5.6-terra
+ABL-P02__same_model_single_pass__1,ABL-P02,Privacy,700,The user must be able to set an option to hide information based on who has tagged it.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-P02__same_model_single_pass__2,ABL-P02,Privacy,700,The user must be able to set an option to hide information based on who has tagged it.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-P02__same_model_single_pass__3,ABL-P02,Privacy,700,The user must be able to set an option to hide information based on who has tagged it.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-P03__eai_usg__1,ABL-P03,Privacy,1046,The system follows regulations on data privacy and ensures that data access is granted only to relevant personnel.,eai_usg,full,1,gpt-5.6-terra
+ABL-P03__eai_usg__2,ABL-P03,Privacy,1046,The system follows regulations on data privacy and ensures that data access is granted only to relevant personnel.,eai_usg,full,2,gpt-5.6-terra
+ABL-P03__eai_usg__3,ABL-P03,Privacy,1046,The system follows regulations on data privacy and ensures that data access is granted only to relevant personnel.,eai_usg,full,3,gpt-5.6-terra
+ABL-P03__same_model_single_pass__1,ABL-P03,Privacy,1046,The system follows regulations on data privacy and ensures that data access is granted only to relevant personnel.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-P03__same_model_single_pass__2,ABL-P03,Privacy,1046,The system follows regulations on data privacy and ensures that data access is granted only to relevant personnel.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-P03__same_model_single_pass__3,ABL-P03,Privacy,1046,The system follows regulations on data privacy and ensures that data access is granted only to relevant personnel.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-F01__eai_usg__1,ABL-F01,Freedom & Autonomy,824,The system shall allow the user to change the password.,eai_usg,full,1,gpt-5.6-terra
+ABL-F01__eai_usg__2,ABL-F01,Freedom & Autonomy,824,The system shall allow the user to change the password.,eai_usg,full,2,gpt-5.6-terra
+ABL-F01__eai_usg__3,ABL-F01,Freedom & Autonomy,824,The system shall allow the user to change the password.,eai_usg,full,3,gpt-5.6-terra
+ABL-F01__same_model_single_pass__1,ABL-F01,Freedom & Autonomy,824,The system shall allow the user to change the password.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-F01__same_model_single_pass__2,ABL-F01,Freedom & Autonomy,824,The system shall allow the user to change the password.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-F01__same_model_single_pass__3,ABL-F01,Freedom & Autonomy,824,The system shall allow the user to change the password.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-F02__eai_usg__1,ABL-F02,Freedom & Autonomy,858,The system shall allow user to update the profile information.,eai_usg,full,1,gpt-5.6-terra
+ABL-F02__eai_usg__2,ABL-F02,Freedom & Autonomy,858,The system shall allow user to update the profile information.,eai_usg,full,2,gpt-5.6-terra
+ABL-F02__eai_usg__3,ABL-F02,Freedom & Autonomy,858,The system shall allow user to update the profile information.,eai_usg,full,3,gpt-5.6-terra
+ABL-F02__same_model_single_pass__1,ABL-F02,Freedom & Autonomy,858,The system shall allow user to update the profile information.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-F02__same_model_single_pass__2,ABL-F02,Freedom & Autonomy,858,The system shall allow user to update the profile information.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-F02__same_model_single_pass__3,ABL-F02,Freedom & Autonomy,858,The system shall allow user to update the profile information.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-F03__eai_usg__1,ABL-F03,Freedom & Autonomy,701,The user must be able to add photos from his/her photo library to his/her medical record.,eai_usg,full,1,gpt-5.6-terra
+ABL-F03__eai_usg__2,ABL-F03,Freedom & Autonomy,701,The user must be able to add photos from his/her photo library to his/her medical record.,eai_usg,full,2,gpt-5.6-terra
+ABL-F03__eai_usg__3,ABL-F03,Freedom & Autonomy,701,The user must be able to add photos from his/her photo library to his/her medical record.,eai_usg,full,3,gpt-5.6-terra
+ABL-F03__same_model_single_pass__1,ABL-F03,Freedom & Autonomy,701,The user must be able to add photos from his/her photo library to his/her medical record.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-F03__same_model_single_pass__2,ABL-F03,Freedom & Autonomy,701,The user must be able to add photos from his/her photo library to his/her medical record.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-F03__same_model_single_pass__3,ABL-F03,Freedom & Autonomy,701,The user must be able to add photos from his/her photo library to his/her medical record.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-J01__eai_usg__1,ABL-J01,Justice & Equity,970,The system shall provide multi language support.,eai_usg,full,1,gpt-5.6-terra
+ABL-J01__eai_usg__2,ABL-J01,Justice & Equity,970,The system shall provide multi language support.,eai_usg,full,2,gpt-5.6-terra
+ABL-J01__eai_usg__3,ABL-J01,Justice & Equity,970,The system shall provide multi language support.,eai_usg,full,3,gpt-5.6-terra
+ABL-J01__same_model_single_pass__1,ABL-J01,Justice & Equity,970,The system shall provide multi language support.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-J01__same_model_single_pass__2,ABL-J01,Justice & Equity,970,The system shall provide multi language support.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-J01__same_model_single_pass__3,ABL-J01,Justice & Equity,970,The system shall provide multi language support.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-J02__eai_usg__1,ABL-J02,Justice & Equity,736,The Web interface should be compatible with standards in order to be usable via all major Web browsers in a wide variety of environments.,eai_usg,full,1,gpt-5.6-terra
+ABL-J02__eai_usg__2,ABL-J02,Justice & Equity,736,The Web interface should be compatible with standards in order to be usable via all major Web browsers in a wide variety of environments.,eai_usg,full,2,gpt-5.6-terra
+ABL-J02__eai_usg__3,ABL-J02,Justice & Equity,736,The Web interface should be compatible with standards in order to be usable via all major Web browsers in a wide variety of environments.,eai_usg,full,3,gpt-5.6-terra
+ABL-J02__same_model_single_pass__1,ABL-J02,Justice & Equity,736,The Web interface should be compatible with standards in order to be usable via all major Web browsers in a wide variety of environments.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-J02__same_model_single_pass__2,ABL-J02,Justice & Equity,736,The Web interface should be compatible with standards in order to be usable via all major Web browsers in a wide variety of environments.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-J02__same_model_single_pass__3,ABL-J02,Justice & Equity,736,The Web interface should be compatible with standards in order to be usable via all major Web browsers in a wide variety of environments.,same_model_single_pass,single_pass,3,gpt-5.6-terra
+ABL-J03__eai_usg__1,ABL-J03,Justice & Equity,296,The product shall be translated into foreign languages other than the target market countries\92 languages in future releases.  For each emerging target market  it shall take no more than 5 days to configure the product for that market\92s language.,eai_usg,full,1,gpt-5.6-terra
+ABL-J03__eai_usg__2,ABL-J03,Justice & Equity,296,The product shall be translated into foreign languages other than the target market countries\92 languages in future releases.  For each emerging target market  it shall take no more than 5 days to configure the product for that market\92s language.,eai_usg,full,2,gpt-5.6-terra
+ABL-J03__eai_usg__3,ABL-J03,Justice & Equity,296,The product shall be translated into foreign languages other than the target market countries\92 languages in future releases.  For each emerging target market  it shall take no more than 5 days to configure the product for that market\92s language.,eai_usg,full,3,gpt-5.6-terra
+ABL-J03__same_model_single_pass__1,ABL-J03,Justice & Equity,296,The product shall be translated into foreign languages other than the target market countries\92 languages in future releases.  For each emerging target market  it shall take no more than 5 days to configure the product for that market\92s language.,same_model_single_pass,single_pass,1,gpt-5.6-terra
+ABL-J03__same_model_single_pass__2,ABL-J03,Justice & Equity,296,The product shall be translated into foreign languages other than the target market countries\92 languages in future releases.  For each emerging target market  it shall take no more than 5 days to configure the product for that market\92s language.,same_model_single_pass,single_pass,2,gpt-5.6-terra
+ABL-J03__same_model_single_pass__3,ABL-J03,Justice & Equity,296,The product shall be translated into foreign languages other than the target market countries\92 languages in future releases.  For each emerging target market  it shall take no more than 5 days to configure the product for that market\92s language.,same_model_single_pass,single_pass,3,gpt-5.6-terra

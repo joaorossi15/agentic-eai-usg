@@ -1,0 +1,13 @@
+ID,Split,Principle,Source Row,Requirement,Target Principle Score,Transparency,Privacy,Freedom & Autonomy,Justice & Equity,Selection Rationale
+ABL-T01,Comparison,Transparency,252,The audit report shall be displayed to the user.,4,4,0,0,0,Selected for strong principle labeling and clear semantics
+ABL-T02,Comparison,Transparency,967,The system shall display and embed in each message a date/timestamp of when the message was sent.,4,4,0,0,0,Selected for strong principle labeling and clear semantics
+ABL-T03,Comparison,Transparency,1044,Documentation and logs of data sources for Traceability.,4,4,1,0,0,Selected for strong principle labeling and clear semantics
+ABL-P01,Comparison,Privacy,476,The product shall provide players no access to information that might reveal the identity of another player,4,0,4,0,0,Selected for strong principle labeling and clear semantics
+ABL-P02,Comparison,Privacy,700,The user must be able to set an option to hide information based on who has tagged it.,4,0,4,1,0,Selected for strong principle labeling and clear semantics
+ABL-P03,Comparison,Privacy,1046,The system follows regulations on data privacy and ensures that data access is granted only to relevant personnel.,4,0,4,0,0,Selected for strong principle labeling and clear semantics
+ABL-F01,Comparison,Freedom & Autonomy,824,The system shall allow the user to change the password.,4,0,1,4,0,Selected for strong principle labeling and clear semantics
+ABL-F02,Comparison,Freedom & Autonomy,858,The system shall allow user to update the profile information.,4,0,1,4,0,Selected for strong principle labeling and clear semantics
+ABL-F03,Comparison,Freedom & Autonomy,701,The user must be able to add photos from his/her photo library to his/her medical record.,4,0,1,4,0,Selected for strong principle labeling and clear semantics
+ABL-J01,Comparison,Justice & Equity,970,The system shall provide multi language support.,4,0,0,1,4,Selected for strong principle labeling and clear semantics
+ABL-J02,Comparison,Justice & Equity,736,The Web interface should be compatible with standards in order to be usable via all major Web browsers in a wide variety of environments.,4,1,0,0,4,Held out for formal component evaluation; selected for strong principle labeling and clear semantics.
+ABL-J03,Comparison,Justice & Equity,296,The product shall be translated into foreign languages other than the target market countries\92 languages in future releases.  For each emerging target market  it shall take no more than 5 days to configure the product for that market\92s language.,4,2,0,0,4,Selected for strong principle labeling and clear semantics

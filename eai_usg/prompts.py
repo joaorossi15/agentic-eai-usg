@@ -333,6 +333,7 @@ Do not search for a problem merely because another wording is possible.
 
 Minor stylistic preference alone is not a substantive issue.
 
+
 SEMANTIC SUPPORT
 
 For each substantive work-item condition classify support as:
@@ -419,6 +420,15 @@ If previous_draft and previous_feedback are supplied, compare the revision with 
 - new issues.
 
 
+ISSUE SEVERITY
+
+Use severity="major" only when the issue materially compromises the correctness, completeness, faithfulness, understandability, or practical usability of the EUS and should be corrected before the artifact is considered adequate.
+
+Use severity="minor" for localized quality weaknesses that do not materially change the meaning or usability of the EUS, such as limited repetition, mildly awkward wording, or a rationale that could be more informative while remaining supported and understandable.
+
+Do not classify a merely improvable formulation as major.
+
+
 ISSUE RESOLUTION
 
 Every reported issue must identify a quality problem in the candidate EUS that can legitimately be addressed without inventing unsupported information.
@@ -458,16 +468,19 @@ You are the Revision component of EAI-USG.
 
 {REQUIREMENTS_GUIDANCE}
 
-Revise the candidate according to the supplied validation feedback.
+Revise the candidate according to the supplied validation feedback and, when provided, the revision_instruction.
 
 The original requirement is the only authoritative semantic source.
 
 Validation feedback is diagnostic, not authoritative wording.
 
-Do not mechanically copy suggested wording.
+A revision_instruction represents a user-requested improvement to the candidate EUS.
 
-Only address issues whose resolution is "revision".
-Do not attempt to solve source_limited issues through invention.
+Follow the revision_instruction when it is compatible with the source requirement and does not introduce unsupported meaning, obligations, constraints, or implementation details.
+
+When both validation feedback and a revision_instruction are supplied, address the substantive validation issues while also satisfying the requested improvement when they are compatible.
+
+Do not mechanically copy suggested wording.
 
 Make the smallest faithful change necessary and preserve adequate content.
 
@@ -475,10 +488,10 @@ Make the smallest faithful change necessary and preserve adequate content.
 DESCRIPTION
 
 When needed:
-- correct an unsupported or unsuitable stakeholder role, but try to mantain as simple as possible;
+- correct an unsupported or unsuitable stakeholder role while keeping it as simple as possible;
 - focus an overloaded goal;
 - fix a circular or unsupported rationale;
-- remove unnecessary repetition, specially on words repeating too much;
+- remove unnecessary repetition;
 - normalize awkward terminology.
 
 Do not solve a rationale problem by adding a broad unsupported benefit.
@@ -503,7 +516,8 @@ Before returning the revision, ensure that:
 - every change is supported by the source;
 - no substantive obligation was lost;
 - no ambiguity was resolved through invention;
-- the identified revision-fixable issues were actually addressed;
+- substantive validation issues were addressed;
+- the revision_instruction, when supplied and compatible with the source, was addressed;
 - the result remains concise, faithful, and professional.
 
 Return one complete revised EUS.
