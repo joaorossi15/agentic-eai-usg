@@ -126,63 +126,11 @@ class ValidationResult(StrictModel):
     passed: bool
 
 
-class RunStatus(str, Enum):
-    passed = "passed"
-    requires_human_review = "requires_human_review"
-    not_validated = "not_validated"
-
-
-class ReviewReason(str, Enum):
-    unresolved_quality_issue = "unresolved_quality_issue"
-
-
-class RunArtifacts(StrictModel):
+class BackendGenerationArtifacts(StrictModel):
     requirement: EthicalRequirement
-    workflow_config: str
+    backend: str
     model: str
-    analysis: RequirementAnalysis | None = None
-    initial_draft: EUS
-    initial_traceability: TraceabilityMap | None = None
-    initial_checks: DeterministicCheckResult
-    initial_traceability_checks: TraceabilityCheckResult | None = None
-    validation: ValidationResult | None = None
-    revised_draft: EUS | None = None
-    revised_traceability: TraceabilityMap | None = None
-    revised_checks: DeterministicCheckResult | None = None
-    revised_traceability_checks: TraceabilityCheckResult | None = None
-    final_validation: ValidationResult | None = None
-    final_eus: EUS
-    final_traceability: TraceabilityMap | None = None
-    status: RunStatus
-    review_reason: ReviewReason | None = None
-    api_response_ids: List[str] = Field(default_factory=list)
-
-
-class EUSValidationArtifacts(StrictModel):
-    requirement: EthicalRequirement
-    model: str
-    analysis: RequirementAnalysis
+    repetition: int = Field(ge=1)
     eus: EUS
-    traceability: TraceabilityMap | None = None
     checks: DeterministicCheckResult
-    traceability_checks: TraceabilityCheckResult | None = None
-    validation: ValidationResult
-    api_response_ids: List[str] = Field(default_factory=list)
-
-
-class EUSRevisionArtifacts(StrictModel):
-    requirement: EthicalRequirement
-    model: str
-    analysis: RequirementAnalysis
-    original_eus: EUS
-    original_traceability: TraceabilityMap | None = None
-    revision_instruction: str | None = None
-    original_checks: DeterministicCheckResult
-    original_traceability_checks: TraceabilityCheckResult | None = None
-    initial_validation: ValidationResult
-    revised_eus: EUS
-    revised_traceability: TraceabilityMap
-    revised_checks: DeterministicCheckResult
-    revised_traceability_checks: TraceabilityCheckResult
-    final_validation: ValidationResult
     api_response_ids: List[str] = Field(default_factory=list)

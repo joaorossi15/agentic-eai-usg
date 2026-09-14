@@ -103,7 +103,7 @@ def run_traceability_checks(
     traced_obligation_ids: set[str] = set(description_ids)
 
     for trace in traceability.work_items:
-        if trace.work_item_index >= len(eus.work_items):
+        if trace.work_item_index < 0 or trace.work_item_index >= len(eus.work_items):
             issues.append(
                 f"Traceability references nonexistent work item "
                 f"{trace.work_item_index + 1}."
@@ -116,6 +116,11 @@ def run_traceability_checks(
             )
 
         traced_work_item_indices.add(trace.work_item_index)
+
+        if not trace.obligation_ids:
+            issues.append(
+                f"Work item {trace.work_item_index + 1} has no traced obligations."
+            )
 
         if len(trace.obligation_ids) != len(set(trace.obligation_ids)):
             issues.append(

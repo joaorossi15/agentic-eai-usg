@@ -1,0 +1,978 @@
+artifact_id,requirement_id,principle,requirement,eus,clarity,completeness,actionability,testability,faithfulness
+A001,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: Service Integration Documentation
+
+Description:
+As a service provider, I want documentation and specifications for joining the system, so that I can determine the permitted actions and applicable usage restrictions.
+
+Work items:
+1. Provide process documentation and specifications for integrating a new service with the system.
+2. Provide a list of actions that are acceptable for a newly integrated service.
+3. Document any restrictions on data usage, bandwidth, and number of API queries.",5,5,5,5,5
+A002,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: Service Onboarding Documentation and Operational Constraints
+
+Description:
+As a service developer, I want process documentation and technical specifications for onboarding a new service, so that I can integrate the service in compliance with permitted actions and operational constraints.
+
+Work items:
+1. Provide process documentation and technical specifications for new services joining the system.
+2. Define the list of acceptable actions permitted for joining services.
+3. Specify any applicable usage restrictions, including data usage, bandwidth limits, and API query limits.",5,5,5,5,5
+A003,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Security of Registered User Data and Transactions
+
+Description:
+As a registered user, I want my transactions and sensitive information to be secured by the website, so that my identity and personal data are protected from theft and misuse.
+
+Work items:
+1. Provide the highest degree of security to registered users.
+2. Secure all transactions made through the website.
+3. Secure sensitive information transmitted to and from the website.
+4. Address identity theft and other security-related issues.
+5. Prevent unauthorized transmission of users' sensitive information to third-party websites.
+6. Process user information only on the basis of the user agreement.
+7. Store all registered user information securely in the central database.",5,5,5,4,5
+A004,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data Statements and Opt-Out Transparency
+
+Description:
+As a user, I want data statements and descriptions of optional and mandatory system services to be available, so that I can distinguish which services I may opt out of and how to do so.
+
+Work items:
+1. Data statements shall be made available to users.
+2. Descriptions shall specify which services are optional and how users can opt out of them.
+3. Descriptions shall identify which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,5
+A005,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Persistence and Full Feature Availability
+
+Description:
+As a registered user, I want my session to remain active during at least 60 minutes of inactivity before being prompted to log out, so that I can continue using the E-store without interruption.
+
+Work items:
+1. The system shall preserve a registered user's session information for at least 60 minutes of inactivity before prompting the user to log out.
+2. The system shall provide a registered user with all options of the E-store regardless of the time at which the user logs in.",5,5,5,5,5
+A006,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Communicate Data Policies and Request Handling
+
+Description:
+As a user, I want the service's data information policy and the handling of large data requests to be communicated, so that I can understand how my data request will be managed.
+
+Work items:
+1. Publish the data information policy on the service application or website.
+2. Establish GDPR-compliance procedures and plan the required steps for requests involving large volumes of user data.
+3. Clearly communicate any resource reallocation or waiting times associated with large user-data requests.",5,5,5,5,3
+A007,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Data Quality and Group Variance Testing
+
+Description:
+As a user, I want the data to be tested across race, gender, and age groups before launch, so that I can assess whether outcomes vary significantly between groups.
+
+Work items:
+1. Test data quality across race, gender, and age groups.
+2. Ensure that variance between the tested groups is not significant.
+3. Conduct real-time testing in the real-world context before launch.",5,5,5,4,5
+A008,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Special Needs Assistance and Aid Tracking
+
+Description:
+As a user with special needs, I want the system to identify my assistance requirements and notify the terminal service provider, so that the required help can be provided.
+
+Work items:
+1. Identify users with special needs.
+2. Provide a feature to inform the terminal service provider of the required help.
+3. Track special needs aids inside the terminal.",5,5,5,5,5
+A009,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Communication of Data Information Policy and GDPR Procedures
+
+Description:
+As a user, I want the service's data information policy to be communicated on the app or web page, so that I can review how the service handles data.
+
+Work items:
+1. The data information policy is communicated on the service app or web page.
+2. Procedures are in place for GDPR compliance.
+3. Required steps are planned for handling exceptional situations such as a large volume of user data requests, for example redirection of resources.
+4. Consequences for users, such as redirection of resources or waiting times, are clearly communicated.",4,5,5,5,5
+A010,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Security of Registered User Information and Transactions
+
+Description:
+As a registered user, I want the website to secure my transactions and sensitive information, so that my identity and personal data are protected from unauthorized access and disclosure.
+
+Work items:
+1. The website shall provide the highest degree of security to registered users.
+2. All transactions made through the website shall be secured.
+3. Sensitive information transmitted to and from the website shall be secured.
+4. Identity theft and other security-related issues shall be addressed.
+5. Unauthorized transmission of users' sensitive information to third-party websites shall be prevented.
+6. User information shall be processed only on the basis of the user agreement.
+7. All information about registered users shall be securely stored in the central database.",5,5,5,4,5
+A011,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Culturally Inclusive Service Presentation
+
+Description:
+As a website visitor, I want service pages to present an African feel through engaging animation so that I can attend to the services and be encouraged to sign up.
+
+Work items:
+1. The website shall convey an African feel.
+2. The website shall not alienate non-African visitors.
+3. Pages describing services shall use animation to attract users' attention and encourage sign-up.",4,5,4,3,4
+A012,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Special Needs Assistance Identification and Aid Tracking
+
+Description:
+As a user with special needs, I want the system to notify the terminal service provider of my required assistance, so that the provider is aware of the help I need.
+
+Work items:
+1. Identify users who have special needs.
+2. Provide functionality to notify the terminal service provider of the required assistance.
+3. Provide tracking for special needs aids inside the terminal.",5,5,5,5,5
+A013,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: Onboarding Documentation and Acceptable Use Specification for New Services
+
+Description:
+As a service provider, I want process documentation and specifications for joining the system, so that I can integrate my service in accordance with the defined requirements.
+
+Work items:
+1. Provide process documentation for onboarding a new service to the system.
+2. Provide specifications that a new service must satisfy to join the system.
+3. Provide a list of acceptable actions for services participating in the system.
+4. State any restrictions applicable to services, such as limits on data usage, bandwidth, or number of API queries.",5,5,5,5,5
+A014,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Service-Specific Data Processing Choices
+
+Description:
+As a passenger, I want to understand the data processing required for services I am considering so that I can assess its implications before choosing whether to use them.
+
+Work items:
+1. Provide a control that identifies the data processing activities necessary for each basic or added-value service the passenger is considering.
+2. Allow the passenger to opt in to or out of a service based on the identified data processing.
+3. Process data selected by the passenger for rights execution according to the selected action, such as anonymisation, deletion, or making the data available for transfer to another service or download.",5,5,5,5,5
+A015,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Support for Users with Special Needs
+
+Description:
+As a user with special needs, I want my required assistance to be communicated to the terminal service provider and my special-needs aids to be trackable within the terminal, so that I can receive the support and locate the aids I require.
+
+Work items:
+1. The system shall identify users with special needs.
+2. The system shall provide a feature to inform the terminal service provider of the help required by a user with special needs.
+3. The system shall be available to track special-needs aids within the terminal.",5,5,5,5,5
+A016,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Multilingual Support and Language Selection
+
+Description:
+As a player, I want to select my language upon accessing the product, so that I can use the product in a language I understand.
+
+Work items:
+1. Make the product available in English, Spanish, and French.
+2. Allow the user to select the language upon accessing the product.",5,5,5,5,5
+A017,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Multilingual Support for English, Spanish, and French
+
+Description:
+As a player, I want to select my preferred language upon accessing the product, so that I can use the product in a language I understand.
+
+Work items:
+1. Make the product available in English, Spanish, and French.
+2. Allow the user to select their language upon accessing the product.",5,5,5,5,5
+A018,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Data Quality Testing Across Demographic Groups
+
+Description:
+As a user, I want data quality to be evaluated across race, gender, and age groups before launch, so that I can examine variation between groups.
+
+Work items:
+1. The data shall be tested for quality.
+2. Testing shall include at least race, gender, and age groups.
+3. Variance between groups shall not be significant.
+4. Real-time testing in a real context shall be completed before launch.",5,5,5,4,5
+A019,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data Statements and Opt-Out Transparency
+
+Description:
+As a user, I want data statements and information regarding optional and mandatory services, so that I can distinguish optional features from non-optional functions and understand my opt-out options.
+
+Work items:
+1. Make data statements available to users.
+2. Provide descriptions of which services are optional and how to opt out of them.
+3. Provide descriptions of which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,5
+A020,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Multilingual Language Availability
+
+Description:
+As a player, I want the product to be available in English, Spanish, and French and to let me select my language when accessing the product, so that I can use the product in a language I understand.
+
+Work items:
+1. The product shall be available in English, Spanish, and French.
+2. The product shall allow the user to select the language upon accessing the product.",5,5,5,5,5
+A021,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data and Opt-Out Transparency
+
+Description:
+As a user, I want access to data statements and descriptions of optional and non-optional services, so that I can determine which services I may opt out of.
+
+Work items:
+1. Make data statements available.
+2. Describe which services are optional and how users can opt out of them.
+3. Describe which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,5
+A022,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Non-disclosure of Player Identity
+
+Description:
+As a player, I want the product to give me no access to information that might reveal the identity of another player, so that my own identity remains undisclosed to other players.
+
+Work items:
+1. The product shall not provide players access to information that might reveal the identity of another player.",3,5,5,5,3
+A023,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe and Bounded Smart-Vehicle Interaction
+
+Description:
+As a user, I want terminal interactions with smart vehicles to have defined data-sharing and information-exchange permission limits, so that I can understand the boundaries of the interaction.
+
+Work items:
+1. Interactions between the terminal and smart vehicles must not compromise the safety of either party.
+2. The limits on data shared between the terminal and smart vehicles must be clear.
+3. The permissions governing information exchange between the terminal and smart vehicles must be clear.",5,5,5,4,5
+A024,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Culturally Distinctive yet Inclusive Design
+
+Description:
+As a user, I want the website to convey an African identity while remaining welcoming to non-Africans, so that I can engage with it regardless of my cultural background.
+
+Work items:
+1. The website's design shall convey an African feel.
+2. The African character of the website shall not alienate non-African users.
+3. Pages describing the services shall use animation to attract the user's attention.
+4. The animation on service description pages shall encourage users to sign up.",4,5,4,3,5
+A025,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Continuity and Consistent Store Access
+
+Description:
+As a registered user, I want my session information retained during periods of inactivity and access to all E-store options regardless of when I log in, so that I can use the E-store without time-based restrictions.
+
+Work items:
+1. Maintain the registered user's session information for at least 60 minutes of inactivity before prompting the user to log out.
+2. Provide registered users with all E-store options regardless of their login time.",5,5,5,5,5
+A026,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Service Data Processing Transparency and Rights Execution
+
+Description:
+As a passenger, I want to see which data processing activities are required for each basic or added-value service, so that I can opt in or out of services based on the data processed.
+
+Work items:
+1. Provide a control that identifies which data processing activities are necessary for each basic or added-value service.
+2. Allow passengers to opt in or out of basic or added-value services based on the data processed for those services.
+3. Process data according to the rights execution selected by the passenger, including anonymization, deletion, or export for download and transfer to another service.",5,5,5,5,4
+A027,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: New Service Onboarding Documentation and Acceptable Usage Specifications
+
+Description:
+As a service integrator, I want process documentation, specifications, and a list of acceptable actions for connecting to the system, so that I can onboard a new service in accordance with system constraints.
+
+Work items:
+1. Provide process documentation for onboarding a new service into the system.
+2. Provide technical specifications required for a new service to join the system.
+3. Specify acceptable service actions and operational restrictions, including constraints on data usage, bandwidth, and API query counts.",5,5,5,5,4
+A028,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Multilingual Availability and Selection
+
+Description:
+As a player, I want to select my language upon accessing the product, so that I can use the product in a language I understand.
+
+Work items:
+1. Make the product available in English, Spanish, and French.
+2. Allow the user to select their language upon accessing the product.",5,5,5,5,5
+A029,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: Service Onboarding Requirements Transparency
+
+Description:
+As a service provider, I want onboarding process documentation, specifications, and permitted actions so that I can determine the conditions for joining the system.
+
+Work items:
+1. Provide documentation and specifications for onboarding a new service to the system.
+2. Provide a list of actions that are acceptable for a new service joining the system.
+3. Specify any restrictions on data usage, bandwidth, and the number of API queries.",5,5,5,5,5
+A030,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe and Bounded Interaction with Smart Vehicles
+
+Description:
+As a user, I want the terminal's interactions with smart vehicles to not compromise the safety of either party, so that neither the terminal nor the vehicle is put at risk by their exchange.
+
+Work items:
+1. Interaction between the terminal and smart vehicles must not compromise the safety of either the terminal or the vehicle.
+2. Clear limits must be defined on what data is shared between the terminal and smart vehicles.
+3. Clear limits must be defined on the permissions each system has for information exchange.",5,5,5,4,5
+A031,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Persistence and Consistent Access to E-store Options
+
+Description:
+As a registered user, I want my session to be maintained for at least 60 minutes of inactivity before I am prompted to log out, so that I can continue my activity without being interrupted.
+
+Work items:
+1. The system shall maintain a registered user's session information for at least 60 minutes of inactivity before prompting the user to log out.
+2. The system shall provide a registered user with all E-store options regardless of the time at which the user logs in.",5,5,5,5,5
+A032,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: Onboarding Documentation and Acceptable Actions for New Services
+
+Description:
+As a service provider, I want process documentation and specifications for joining the system, so that I can integrate my service in accordance with the system's requirements.
+
+Work items:
+1. The system shall provide process documentation for a new service joining the system.
+2. The system shall provide specifications for a new service joining the system.
+3. A list of acceptable actions for a joining service shall be provided, including any restrictions on data usage, bandwidth, and number of API queries.",5,5,5,5,5
+A033,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Inclusive Cultural Design and Service Animations
+
+Description:
+As a user, I want the website to reflect an African aesthetic without alienating non-Africans, so that the platform is culturally representative while remaining welcoming to all audiences.
+
+Work items:
+1. Incorporate an African aesthetic across the website while ensuring the design does not alienate non-African visitors.
+2. Include animations on service description pages to capture user attention and encourage sign-ups.",4,5,4,3,5
+A034,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Service Data Control and Rights Execution
+
+Description:
+As a passenger, I want to see which data processing activities are required for each service and opt in or out, so that I can choose which services to use based on how my data is processed.
+
+Work items:
+1. Identify and present the data processing activities necessary for each basic and added-value service under consideration.
+2. Provide controls allowing the user to opt in to or opt out of services based on the data being processed.
+3. Execute user data rights requests by processing selected data accordingly, including anonymization, deletion, or providing the data for download or transfer to another service.",5,5,5,5,4
+A035,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe and Bounded Interaction with Smart Vehicles
+
+Description:
+As a user, I want the terminal's interaction with smart vehicles to be conducted safely and within clear data-sharing limits, so that neither party's safety is compromised.
+
+Work items:
+1. If the terminal interacts with smart vehicles, the interaction must not compromise the safety of the terminal or the smart vehicle.
+2. Clear limits must be defined on what data is shared between the terminal and smart vehicles.
+3. Clear limits must be defined on the permissions each system has for information exchange.",5,5,5,4,5
+A036,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Inclusive African Service Presentation
+
+Description:
+As a website visitor, I want service pages to convey an African identity while remaining welcoming to non-Africans, so that I can engage with the services without feeling excluded.
+
+Work items:
+1. The website shall present an African feel without alienating non-African visitors.
+2. Pages that describe services shall use animation to attract users' attention and encourage sign-up.",4,5,4,3,5
+A037,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Player Identity Protection
+
+Description:
+As a player, I want other players to have no access to information that could reveal my identity, so that my identity is not disclosed to them.
+
+Work items:
+1. Prevent players from accessing any information that could reveal the identity of another player.",3,5,5,5,2
+A038,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Continuity and Consistent Store Access
+
+Description:
+As a registered user, I want my session to remain available during inactivity and to access all E-store options whenever I log in, so that I can continue using the E-store without time-dependent restrictions.
+
+Work items:
+1. Maintain registered-user session information for at least 60 minutes of inactivity before prompting the user to log out.
+2. Provide registered users with all E-store options regardless of the time at which they log in.",5,5,5,5,5
+A039,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Special-Needs Assistance and Aid Tracking
+
+Description:
+As a terminal service provider, I want to be informed of users' required assistance and track special-needs aids within the terminal, so that I can provide the required help.
+
+Work items:
+1. The system shall identify users with special needs.
+2. The system shall inform the terminal service provider of the help required by users with special needs.
+3. The system shall be available to track special-needs aids within the terminal.",5,5,5,5,4
+A040,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Data Policy and Request Transparency
+
+Description:
+As a user, I want the service's data information policy and expected handling of large data requests communicated clearly, so that I can understand how my data request will be handled.
+
+Work items:
+1. Communicate the data information policy on the service application or web page.
+2. Maintain procedures for GDPR compliance.
+3. Plan the required steps for handling large volumes of user data requests.
+4. Clearly communicate resource reallocation or waiting times that may result from large user data requests.",5,5,5,5,3
+A041,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Player Identity Protection
+
+Description:
+As a player, I want the system to restrict access to information that could reveal another player's identity, so that players cannot identify one another.
+
+Work items:
+1. Prevent players from accessing any information that might reveal the identity of another player.",5,5,5,5,5
+A042,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Data Quality and Group Variance Testing
+
+Description:
+As a user, I want the data quality to be verified through testing across demographic groups, so that I am not disadvantaged by significant differences in outcomes between groups.
+
+Work items:
+1. The quality of the data shall be verified through testing.
+2. Testing shall, at a minimum, cover race, gender, and age.
+3. Variance between the tested groups shall not be significant.
+4. Real-time testing in the real context of use shall be conducted before launch.",5,5,5,4,5
+A043,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Player Identity Protection
+
+Description:
+As a player, I want information that could reveal my identity to be inaccessible to other players, so that other players cannot determine who I am.
+
+Work items:
+1. Prevent players from accessing any information that could reveal the identity of another player.",3,5,5,5,2
+A044,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Player Identity Protection
+
+Description:
+As a player, I want the product to give players no access to information that might reveal another player's identity, so that my identity remains undisclosed to other players.
+
+Work items:
+1. The product shall not provide players with access to information that might reveal the identity of another player.",3,5,5,5,3
+A045,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data Statements and Opt-Out Transparency
+
+Description:
+As a user, I want access to data statements and descriptions of optional and mandatory services, so that I understand data practices and know how to opt out of non-essential features.
+
+Work items:
+1. Provide data statements within the system.
+2. Document which services are optional and provide instructions on how to opt out of them.
+3. Document which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,4
+A046,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Communication of Data Information Policy and GDPR Procedures
+
+Description:
+As a user, I want the service's data information policy communicated on the app/web page and GDPR compliance procedures in place, so that I can review how my data is handled and know what to expect when data requests are processed.
+
+Work items:
+1. The data information policy is communicated on the service app/web page.
+2. Procedures for GDPR compliance are in place.
+3. Required steps are planned for handling situations such as a large volume of user data requests.
+4. Resulting measures, such as redirection of resources or waiting times, are clearly communicated to users.",5,5,5,5,5
+A047,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Security and Authorized Processing of User Information
+
+Description:
+As a registered user, I want my transactions and personal information protected and processed only as agreed, so that I can use the website without exposure to unauthorized access, disclosure, or identity theft.
+
+Work items:
+1. Secure all transactions made through the website.
+2. Secure sensitive information transmitted to and from the website.
+3. Prevent identity theft and other security-related issues affecting registered users.
+4. Prevent unauthorized transmission of users' sensitive information to third-party websites for reference.
+5. Process user information in accordance with the user agreement.
+6. Securely store all registered-user information in the central database.",5,4,5,4,5
+A048,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Communicate Data Policy and GDPR Request Handling
+
+Description:
+As a user, I want the service's data information policy and the handling of data requests to be communicated, so that I can understand how my personal-data request may be managed.
+
+Work items:
+1. The service app or web page must communicate the data information policy.
+2. Procedures for GDPR compliance must be in place.
+3. Required steps for handling large volumes of user data requests must be planned.
+4. Where handling a request requires resource redirection or causes waiting times, this must be clearly communicated.",5,5,5,5,4
+A049,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Protect Player Identity
+
+Description:
+As a player, I want other players' identity-revealing information withheld so that I cannot identify them.
+
+Work items:
+1. The product shall not provide players access to information that might reveal another player's identity.",5,5,5,5,5
+A050,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Protect Player Identity
+
+Description:
+As a player, I want other players' identity-revealing information withheld so that I can participate without being identified by them.
+
+Work items:
+1. The product shall not provide players access to information that might reveal another player's identity.",3,5,5,5,2
+A051,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Protection of Player Identity
+
+Description:
+As a player, I want the product to give me no access to information that might reveal the identity of another player, so that other players remain anonymous to me.
+
+Work items:
+1. The product shall provide players no access to information that might reveal the identity of another player.",5,5,5,5,5
+A052,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe Vehicle-Terminal Interaction and Data Exchange Limits
+
+Description:
+As a user, I want the terminal to enforce defined boundaries on data sharing and permissions when communicating with smart vehicles, so that the safety of either party is not compromised.
+
+Work items:
+1. Ensure interactions between the terminal and smart vehicles do not compromise the safety of either party.
+2. Establish clear limits on the data shared between the terminal and smart vehicles.
+3. Define clear limits on system permissions for information exchange between the terminal and smart vehicles.",5,5,5,4,5
+A053,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Communication of Data Information Policy and GDPR Request Handling
+
+Description:
+As a user, I want the data information policy to be communicated on the service app/web page, so that I can consult it directly where I use the service.
+
+Work items:
+1. The data information policy is communicated on the service app/web page.
+2. Procedures are in place for GDPR compliance.
+3. Required steps are planned for handling exceptional situations such as a large volume of user data requests.
+4. Where handling of data requests results in redirection of resources or waiting times, this is clearly communicated to users.",5,5,5,5,5
+A054,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data Statements and Service Opt-Out Information
+
+Description:
+As a user, I want access to data statements and information regarding optional and non-optional services, so that I can determine which features I can opt out of and understand mandatory system functions.
+
+Work items:
+1. Make data statements accessible within the system.
+2. Provide descriptions specifying which services are optional and instructions on how to opt out of them.
+3. Provide descriptions specifying which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,5
+A055,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Multilingual Availability and Language Selection
+
+Description:
+As a player, I want the product to be available in English, Spanish, and French and to let me select my language when I access it, so that I can use the product in a language I understand.
+
+Work items:
+1. The product shall be available in English, Spanish, and French.
+2. The product shall allow the user to select the language upon accessing the product.",5,5,5,5,5
+A056,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Data-Processing Transparency and Rights Execution
+
+Description:
+As a passenger, I want to see the data-processing activities required for each basic or added-value service I am considering, so that I can decide whether to opt in to or out of that service based on the data processed.
+
+Work items:
+1. Provide a control that identifies the data-processing activities necessary for each basic and added-value service the passenger is considering.
+2. Allow the passenger to opt in to or out of a service based on its associated data processing.
+3. Process data selected by the passenger for rights execution according to that selection, including anonymization, deletion, or provision for transfer to another service or download.",5,5,5,5,4
+A057,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: New Service Integration Documentation
+
+Description:
+As a service integrator, I want documentation and specifications for joining the system, so that I can determine the permitted actions and applicable usage restrictions.
+
+Work items:
+1. Provide process documentation and specifications for integrating a new service with the system.
+2. Provide a list of actions that a new service is permitted to perform.
+3. Document applicable restrictions on data usage, bandwidth consumption, and the number of API queries.",5,5,5,5,5
+A058,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Data Quality Testing for Group Fairness
+
+Description:
+As a user, I want the data to be quality-tested for performance variance across race, gender, and age groups before launch, so that I can assess whether the system behaves comparably across those groups.
+
+Work items:
+1. Data quality shall be ensured through testing.
+2. Testing shall cover, at minimum, the attributes race, gender, and age.
+3. Variance in results between the tested groups shall not be significant.
+4. Real-time testing in the real deployment context shall be completed before launch.",5,5,5,4,4
+A059,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Registered User Data and Transaction Security
+
+Description:
+As a registered user, I want the website to secure my transactions and personal information, so that my sensitive data is protected against unauthorized transmission and identity theft.
+
+Work items:
+1. Secure all transactions conducted on the website.
+2. Secure sensitive information transmitted to and from the website.
+3. Prevent unauthorized transmission of sensitive user information to third-party websites for reference.
+4. Process user information strictly on the basis of the user agreement.
+5. Securely store all registered user information in the central database.
+6. Resolve identity theft and other security-related issues affecting users.",5,4,5,4,5
+A060,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data Statements and Opt-Out Information
+
+Description:
+As a user, I want data statements and clear descriptions of optional services and opt-out options, so that I can understand which services I may decline and which system functions are mandatory.
+
+Work items:
+1. Make data statements available.
+2. Describe which services are optional.
+3. Describe how to opt out of optional services.
+4. Describe which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,5
+A061,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Data Quality and Group-Variance Testing
+
+Description:
+As a user, I want the data to be tested across race, gender, and age groups before launch, so that I can assess whether outcomes vary significantly between these groups.
+
+Work items:
+1. Test data quality across race, gender, and age groups.
+2. Ensure that variance between the tested groups is not significant.
+3. Conduct real-time testing in the real-world context before launch.",5,5,5,4,5
+A062,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Service Data-Processing Choice and Rights Execution
+
+Description:
+As a passenger, I want to see which data-processing activities are necessary for each basic or added-value service I am considering so that I can choose whether to use the service based on the data processed.
+
+Work items:
+1. Provide a control that identifies the data-processing activities required for each basic or added-value service the passenger is considering.
+2. Allow the passenger to opt in to or out of a service based on its required data processing.
+3. Process data selected by the passenger for rights execution according to the selected action, such as anonymization, deletion, or making the data available for transfer to another service or download.",5,5,5,5,5
+A063,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: Service Onboarding Documentation and Usage Specifications
+
+Description:
+As a service developer, I want onboarding process documentation, specifications, and a list of acceptable actions, so that I can integrate a new service in compliance with system constraints.
+
+Work items:
+1. Provide process documentation and technical specifications for integrating a new service into the system.
+2. Specify acceptable actions for joined services, including any restrictions on data usage, bandwidth, and API query volume.",5,5,5,5,5
+A064,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Data Information Policy and GDPR Request Communication
+
+Description:
+As a user, I want the data information policy and data request processing conditions communicated through the service interface, so that I can review data practices and anticipate processing delays.
+
+Work items:
+1. Communicate the data information policy within the service application and on the web page.
+2. Establish procedures and planned operational steps to maintain GDPR compliance when processing user data requests, including high-volume data requests.
+3. Clearly communicate expected waiting times, resource redirections, or related processing constraints to users during data requests.",5,5,5,5,3
+A065,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Data Quality and Demographic Testing
+
+Description:
+As a user, I want data quality evaluated across demographic groups, so that significant disparities between groups are prevented.
+
+Work items:
+1. Test data quality across demographic attributes, including at least race, gender, and age.
+2. Verify that variance between demographic groups is not significant.
+3. Perform real-time testing in an operational context prior to launch.",5,5,5,4,5
+A066,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Demographic Fairness and Real-Context Quality Testing
+
+Description:
+As a user, I want the system to undergo data quality and performance testing across demographic groups and in real contexts, so that significant variance across groups is avoided prior to launch.
+
+Work items:
+1. Conduct data quality testing across at least race, gender, and age attributes.
+2. Verify that variance between demographic groups is not significant.
+3. Perform real-time testing in a real context prior to launch.",5,5,5,4,4
+A067,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Service-Specific Data Processing Transparency and Opt-In/Opt-Out Control
+
+Description:
+As a passenger, I want to see which data processing activities are necessary for each basic or added-value service I am considering, so that I can opt in to or out of a service based on the data it processes.
+
+Work items:
+1. The application shall identify, for each basic or added-value service the passenger is considering, which data processing activities are necessary for that service.
+2. The passenger shall be able to opt in to or out of a service based on the data processing activities identified for it.
+3. Data the passenger has selected for the exercise of her rights shall be processed accordingly, e.g. anonymized, deleted, or made available for the passenger to download or transfer to another service.",5,5,5,5,5
+A068,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Culturally Inclusive Aesthetic and Service Page Animations
+
+Description:
+As a user, I want the website to reflect an African aesthetic without alienating non-African audiences, so that I can engage with the platform without feeling excluded.
+
+Work items:
+1. Design the website to convey an African aesthetic.
+2. Ensure the website visual design and presentation do not alienate non-African users.
+3. Incorporate animations on pages describing services to capture user attention and encourage sign-ups.",4,5,4,3,5
+A069,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Multilingual Language Selection
+
+Description:
+As a player, I want to select my language among English, Spanish, and French when accessing the product, so that I can use it in a language I understand.
+
+Work items:
+1. The product shall be available in English, Spanish, and French.
+2. The product shall allow the user to select the language upon accessing the product.",5,5,5,5,5
+A070,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Language Selection Accessibility
+
+Description:
+As a player, I want to select English, Spanish, or French when I access the product so that I can use it in a language I understand.
+
+Work items:
+1. The product shall be available in English, Spanish, and French.
+2. The product shall allow users to select their language upon accessing the product.",5,5,5,5,5
+A071,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Inactivity Duration and Time-Independent Store Access
+
+Description:
+As a registered user, I want my session retained during periods of inactivity and access to all e-store features regardless of when I log in, so that I can continue my activities without premature logouts or time-based restrictions on functionality.
+
+Work items:
+1. Retain the registered user's session information for at least 60 minutes of inactivity before prompting to log out.
+2. Make all e-store options available to the registered user regardless of the time of login.",5,5,5,5,5
+A072,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Registered User Security and Information Protection
+
+Description:
+As a registered user, I want my transactions, sensitive information, and stored account information protected, so that I can use the website without exposure to security threats or unauthorized disclosure.
+
+Work items:
+1. Secure all transactions made through the website.
+2. Secure sensitive information transmitted to and from the website.
+3. Address identity theft and other security-related issues affecting registered users.
+4. Prevent unauthorized transmission of users' sensitive information to third-party websites for reference.
+5. Process user information only on the basis of the user agreement.
+6. Securely store all registered-user information in the central database.",5,4,5,4,5
+A073,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data Statements and Opt-Out Transparency
+
+Description:
+As a user, I want data statements and clear information about optional services and non-optional system functions, so that I can understand which services I may decline.
+
+Work items:
+1. Make data statements available.
+2. Describe which services are optional and how users can opt out of them.
+3. Describe which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,5
+A074,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Service-Specific Data Processing Transparency and Opt-In/Opt-Out
+
+Description:
+As a passenger, I want to see which data processing activities are necessary for each basic or added-value service I am considering, so that I can opt in to or out of the service based on the data processed.
+
+Work items:
+1. The application shall identify, for each basic or added-value service the passenger is considering, which data processing activities are necessary for that service.
+2. The passenger shall be able to opt in to or out of a service based on the data processing activities identified for it.
+3. Data the passenger has selected for the execution of her rights shall be processed accordingly, e.g. anonymized, deleted, or made available for the passenger to download or transfer to another service.",5,5,5,5,5
+A075,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Service Data Transparency, Consent, and Data Rights Execution
+
+Description:
+As a passenger, I want to identify which data processing activities are required for each service and manage my participation and data rights, so that I can decide which services to use based on their data practices.
+
+Work items:
+1. Identify and display which data processing activities are necessary for each basic or value-added service the passenger is considering.
+2. Allow the passenger to opt in to or opt out of a service based on the data processed for that service.
+3. Process data selected by the passenger for rights execution according to the chosen action, including anonymization, deletion, or providing data for download or transfer to another service.",5,5,5,5,4
+A076,ABL-P01,Privacy,The product shall provide players no access to information that might reveal the identity of another player,"Title: Protect Player Identity
+
+Description:
+As a player, I want other players' identities to remain undisclosed so that I cannot identify another player.
+
+Work items:
+1. The product shall not provide players with access to information that might reveal another player's identity.",5,5,5,5,5
+A077,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Demographic and Contextual Data Quality Testing
+
+Description:
+As a user, I want data quality evaluated through demographic testing, so that significant variance between demographic groups is avoided.
+
+Work items:
+1. Test data quality across demographic groups, including at least race, gender, and age.
+2. Ensure that variance between demographic groups is not significant.
+3. Conduct real-time testing in a real context prior to launch.",5,5,5,4,5
+A078,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Persistence and Full Feature Availability
+
+Description:
+As a registered user, I want my session to be maintained for at least 60 minutes of inactivity before I am prompted to log out, so that I can resume my activity without being logged out prematurely.
+
+Work items:
+1. The system shall maintain a registered user's session information for at least 60 minutes of inactivity before prompting the user to log out.
+2. The system shall provide a registered user with all E-store options regardless of the time at which the user logs in.",5,5,5,5,5
+A079,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Culturally Inclusive Design and Engaging Service Presentation
+
+Description:
+As a user, I want the website to convey an African feel without alienating non-Africans, so that I feel welcome regardless of my cultural background.
+
+Work items:
+1. The website's design shall convey an African feel.
+2. The website's design shall not alienate non-African users.
+3. Pages describing the services shall use animation to attract the user's attention and encourage sign-up.",4,5,4,3,5
+A080,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Special-Needs Assistance and Aid Tracking
+
+Description:
+As a user with special needs, I want my required assistance to be communicated to the terminal service provider so that I can obtain the help I require in the terminal.
+
+Work items:
+1. The system shall identify users with special needs.
+2. The system shall provide a feature to inform the terminal service provider of the help required by users with special needs.
+3. The system shall be available to track special-needs aids within the terminal.",5,5,5,5,5
+A081,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe and Bounded Interaction with Smart Vehicles
+
+Description:
+As a user, I want the terminal's interaction with smart vehicles to preserve the safety of both the terminal and the vehicle, so that neither party is put at risk through their information exchange.
+
+Work items:
+1. Interaction between the terminal and smart vehicles must not compromise the safety of the terminal or the vehicle.
+2. Clear limits must be defined on what data is shared between the terminal and smart vehicles.
+3. Clear limits must be defined on the permissions each system has for information exchange.",5,5,5,4,5
+A082,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Transparency of Data Statements and Opt-Out Options
+
+Description:
+As a user, I want data statements and descriptions of optional and non-optional services to be available, so that I can distinguish which services I can opt out of and how.
+
+Work items:
+1. Data statements shall be made available.
+2. Descriptions of which services are optional shall be provided.
+3. Descriptions of how to opt out of optional services shall be provided.
+4. A description of which parts of the system are used by harbor officials and cannot be opted out of shall be provided.",5,5,5,5,5
+A083,ABL-J01,Justice & Equity,"Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch.","Title: Data Quality and Fairness Testing Across Demographic Groups
+
+Description:
+As a user, I want the data quality to be verified through testing across demographic groups, so that I am not subject to significant disparities in outcomes based on race, gender, or age.
+
+Work items:
+1. Data quality is ensured through testing.
+2. Testing covers at least race, gender, and age.
+3. Variance between demographic groups is not significant.
+4. Real-time testing in the real context of use is performed before launch.",5,5,5,4,5
+A084,ABL-F01,Freedom & Autonomy,"The value add application the passenger is using needs to impelent a control which identifies, which data processing activities are necessary for which basic or added value services the user is considering to use and she can thus opt in or out of the service based on the data processed. The data the user has selected for her rights execution needs to be processed accordingly, e.g. anonymized, deleted or made available for the user to transfer to another service/download.","Title: Informed Opt-In/Opt-Out Based on Data Processing per Service
+
+Description:
+As a passenger, I want the application to identify which data processing activities are necessary for each basic or added-value service I am considering, so that I can opt in to or out of a service based on the data it processes.
+
+Work items:
+1. The application shall implement a control that identifies which data processing activities are necessary for which basic or added-value services the passenger is considering using.
+2. The passenger shall be able to opt in to or out of a service based on the data processing activities identified for that service.
+3. Data the passenger has selected for the execution of her rights shall be processed accordingly, e.g. anonymized, deleted, or made available for the passenger to download or transfer to another service.",5,5,5,5,5
+A085,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Continuity and Consistent Store Access
+
+Description:
+As a registered user, I want my session to remain available during periods of inactivity and to access all E-store options whenever I log in, so that I can continue using the E-store without losing access due to inactivity or login time.
+
+Work items:
+1. A registered user's session information must be maintained for at least 60 minutes of inactivity before the system prompts the user to log out.
+2. Registered users must be provided with all E-store options regardless of the time at which they log in.",5,5,5,5,5
+A086,ABL-T03,Transparency,"System needs to provide process documentation and specs for new service joining the system. List of acceptable actions should be given. E.g. are there restrictions of data usage, bandwidth, number of API queries","Title: Onboarding Documentation and Usage Constraints for New Services
+
+Description:
+As a service provider, I want process documentation and specifications for joining the system, so that I can understand the joining procedure and the constraints that apply to my service.
+
+Work items:
+1. The system shall provide process documentation for a new service joining the system.
+2. The system shall provide specifications for a new service joining the system.
+3. The documentation shall include a list of acceptable actions for a joining service.
+4. The list of acceptable actions shall state any applicable restrictions, such as restrictions on data usage, bandwidth, or number of API queries.",5,5,5,5,5
+A087,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Inactivity Duration and Unrestricted Access Hours
+
+Description:
+As a registered user, I want my session information preserved during inactive periods and all e-store options available whenever I log in, so that I can complete activities without premature session termination or time-dependent feature restrictions.
+
+Work items:
+1. Maintain registered user session information for at least 60 minutes of inactivity before prompting the user to log out.
+2. Provide registered users with access to all e-store options regardless of what time they log in.",5,5,5,5,5
+A088,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Secure Handling of Registered-User Information
+
+Description:
+As a registered user, I want my transactions and personal information to be protected and processed according to my agreement, so that I can use the website without unauthorized disclosure or identity misuse.
+
+Work items:
+1. Provide the highest degree of security for registered users.
+2. Secure all transactions made through the website.
+3. Secure sensitive information transmitted to and from the website.
+4. Prevent identity theft and other security-related issues.
+5. Avoid unauthorized transmission of users' sensitive information to third-party websites for reference.
+6. Process user information on the basis of the user agreement.
+7. Securely store all registered-user information in the central database.",5,5,5,4,5
+A089,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Registered User Data and Transaction Security
+
+Description:
+As a registered user, I want my transactions, communications, and stored data to be secured and processed in accordance with my agreement, so that my sensitive information is protected against unauthorized exposure and identity theft.
+
+Work items:
+1. Secure all transactions conducted on the website.
+2. Secure all sensitive information transmitted to and from the website.
+3. Securely store all registered user information within the central database.
+4. Process user information strictly on the basis of the user agreement.
+5. Prevent unauthorized transmission of sensitive user information to third-party websites for reference.
+6. Resolve identity theft and other security-related issues affecting registered users.",5,4,5,4,5
+A090,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Security of Registered User Information and Transactions
+
+Description:
+As a registered user, I want my transactions and sensitive information to be secured by the website, so that my identity and data are protected from theft and misuse.
+
+Work items:
+1. The website provides the highest degree of security to registered users.
+2. All transactions made through the website are secured.
+3. Sensitive information passed to and from the website is secured.
+4. Identity theft and other security-related issues are addressed.
+5. Unauthorized transmission of users' sensitive information to third-party websites for reference is prevented.
+6. User information is processed only on the basis of the user agreement.
+7. All information about registered users is securely stored in the central database.",5,5,5,4,5
+A091,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Inclusive African-Themed Service Presentation
+
+Description:
+As a website visitor, I want service pages to present an African identity inclusively, so that I can engage with the services and consider signing up.
+
+Work items:
+1. The website shall convey an African feel without alienating non-African visitors.
+2. Pages describing services shall use animation to attract users' attention and encourage sign-up.",4,5,4,3,5
+A092,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Support for Users with Special Needs
+
+Description:
+As a user with special needs, I want the system to inform the terminal service provider of the help I require, so that the assistance I need can be provided.
+
+Work items:
+1. The system identifies users with special needs.
+2. The system provides a feature to inform the terminal service provider of the help required by a user with special needs.
+3. The system supports tracking of special-needs aids inside the terminal.",5,5,5,5,5
+A093,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe Smart Vehicle Interaction and Data Exchange Boundaries
+
+Description:
+As a user, I want terminal interactions with smart vehicles to adhere to defined limits on data sharing and permissions, so that the safety of both parties is not compromised.
+
+Work items:
+1. Ensure terminal interactions with smart vehicles do not compromise the safety of either party.
+2. Define and enforce clear limits on the data shared during terminal and smart vehicle interactions.
+3. Define and enforce clear limits on system permissions governing information exchange between the terminal and smart vehicles.",5,5,5,4,5
+A094,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe Terminal Interaction with Smart Vehicles
+
+Description:
+As a user, I want terminal interactions with smart vehicles to be governed by explicit data and permission boundaries, so that the safety of neither party is compromised during information exchange.
+
+Work items:
+1. Ensure interactions between the terminal and smart vehicles do not compromise the safety of either party.
+2. Define clear limits on the data shared between the terminal and smart vehicles.
+3. Establish clear system permissions governing information exchange between the terminal and smart vehicles.",5,5,5,4,5
+A095,ABL-T02,Transparency,Data statements need to be available and also descriptions what services optional and how to opt—out on those need to be implanted. Description of what parts of the system are used by harbor official and cannot by opt-outed.,"Title: Data Statements and Opt-Out Transparency
+
+Description:
+As a user, I want data statements and descriptions of which services are optional and which system parts are mandatory, so that I can distinguish what I can opt out of and how to do so.
+
+Work items:
+1. Data statements shall be made available to users.
+2. Descriptions shall be provided identifying which services are optional and how users can opt out of them.
+3. A description shall be provided of which parts of the system are used by harbor officials and cannot be opted out of.",5,5,5,5,5
+A096,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Culturally Inclusive Website Presentation and Engagement
+
+Description:
+As a user, I want the website to reflect an African aesthetic without alienating non-African audiences, so that the platform is culturally distinctive while remaining accessible and welcoming to diverse visitors.
+
+Work items:
+1. Incorporate an African visual theme and feel throughout the website.
+2. Ensure the design and content do not alienate or exclude non-African visitors.
+3. Include animations on pages describing services to capture user attention and encourage sign-ups.",4,5,4,3,5
+A097,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Identification and Support of Users with Special Needs
+
+Description:
+As a user with special needs, I want the system to identify me and inform the terminal service provider of the help I require, so that the provider can arrange that help.
+
+Work items:
+1. The system shall identify users with special needs.
+2. The system shall provide a feature that informs the terminal service provider of the help required by an identified user with special needs.
+3. The system shall support tracking of special-needs aids inside the terminal.",5,5,5,5,5
+A098,ABL-P02,Privacy,The website must provide highest degree of security to the registered users. All the transactions that are made must be secured. The sensitive information passed to and from the website must be secured. Identity theft and other security related issues must be solved. Unauthorized transmission of sensitive information of the user to third party websites for reference must be avoided. On the basis of user agreement the information must be processed. All the information about the registered user must be securely stored in the central database.,"Title: Registered User Data and Transaction Security
+
+Description:
+As a registered user, I want the website to secure my transactions and personal data and process my information in accordance with our agreement, so that my sensitive information is protected from unauthorized disclosure and identity theft.
+
+Work items:
+1. Secure all transactions conducted on the website.
+2. Secure all sensitive information transmitted to and from the website.
+3. Resolve identity theft and other security-related issues affecting registered users.
+4. Prevent unauthorized transmission of users' sensitive information to third-party websites for reference.
+5. Process user information strictly on the basis of the user agreement.
+6. Securely store all registered user information in the central database.",5,4,5,4,5
+A099,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Support for Users with Special Needs
+
+Description:
+As a passenger with special needs, I want the system to inform the terminal service provider of the assistance I require, so that the required help can be provided.
+
+Work items:
+1. The system shall identify users with special needs.
+2. The system shall provide a feature to inform the terminal service provider of the assistance required by a user with special needs.
+3. The system shall be available to track special-need aids inside the terminal.",5,5,5,5,5
+A100,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe and Bounded Smart-Vehicle Interaction
+
+Description:
+As a terminal user, I want interactions with smart vehicles to maintain the safety of both the terminal and the vehicle, so that neither party is put at risk during information exchange.
+
+Work items:
+1. When the terminal interacts with a smart vehicle, the interaction must not compromise the safety of either the terminal or the vehicle.
+2. The system must define clear limits on the data shared between the terminal and smart vehicles.
+3. The system must define clear permissions governing information exchange between the terminal and smart vehicles.",5,5,5,4,5
+A101,ABL-J02,Justice & Equity,Systems identifies users with special need and has feature to inform terminal service provider of required help. Systems also need to be available to tract special need aids inside the Terminal.,"Title: Special Needs Identification and Terminal Aid Tracking
+
+Description:
+As a user with special needs, I want the system to identify my needs and inform the terminal service provider of my required help, so that the service provider can provide the necessary assistance.
+
+Work items:
+1. Identify users who have special needs.
+2. Notify the terminal service provider of the specific help required for identified users.
+3. Track special need aids inside the terminal.",5,5,5,5,4
+A102,ABL-J03,Justice & Equity,The website should have an African feel  but should not alienate non-Africans.  The website should use animation on pages which are describing the services  to grab the users attention and encourage them to sign up.,"Title: Culturally Inclusive African Design
+
+Description:
+As a user, I want the website to convey an African feel while remaining welcoming to non-Africans, so that I do not feel alienated regardless of my cultural background.
+
+Work items:
+1. The website shall have an African feel in its design.
+2. The African design shall not alienate non-African users.
+3. Pages describing the services shall use animation to attract users' attention and encourage them to sign up.",4,5,4,3,5
+A103,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Language Selection and Availability
+
+Description:
+As a player, I want to select English, Spanish, or French when accessing the product, so that I can use it in a language I understand.
+
+Work items:
+1. The product shall be available in English, Spanish, and French.
+2. The product shall allow the user to select the language upon accessing the product.",5,5,5,5,5
+A104,ABL-P03,Privacy,"If the terminal interacts with smart vehicles, it must be in a way that does not compromise the safety of either party. There must be clear limits to what data is shared and what permissions the systems have for information exchange.","Title: Safe Smart-Vehicle Interaction Boundaries
+
+Description:
+As a user, I want terminal interactions with smart vehicles to have defined data-sharing and information-exchange permission limits, so that I can understand the boundaries of those interactions.
+
+Work items:
+1. Interactions between the terminal and smart vehicles must not compromise the safety of either party.
+2. Clear limits must be defined for the data shared between the terminal and smart vehicles.
+3. Clear limits must be defined for the permissions each system has to exchange information.",5,5,5,4,5
+A105,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Data Information Policy and GDPR Request Communication
+
+Description:
+As a user, I want data information policies and request-handling procedures communicated on the service app and website, so that I understand data governance practices and what to expect during data requests.
+
+Work items:
+1. Communicate the data information policy on the service application and website.
+2. Establish procedures for GDPR compliance, including planned handling steps for high-volume user data requests.
+3. Clearly communicate resource redirections or waiting times associated with processing large-scale data requests.",5,5,5,5,3
+A106,ABL-F02,Freedom & Autonomy,The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product.,"Title: Language Selection Accessibility
+
+Description:
+As a player, I want to select English, Spanish, or French when I access the product, so that I can use it in a language I understand.
+
+Work items:
+1. The product shall be available in English, Spanish, and French.
+2. The product shall allow users to select their language when accessing the product.",5,5,5,5,5
+A107,ABL-F03,Freedom & Autonomy,Registered User must be able to maintain his/her session information for at least 60 minutes of inactive session before the system prompts him to log out of the system. The registered user must be provided with all the options of the E-store regardless of the time when he/she logs in.,"Title: Session Inactivity Duration and Time-Independent Store Access
+
+Description:
+As a registered user, I want my session preserved during periods of inactivity and access to all e-store features regardless of when I log in, so that I can conduct my activities without premature session loss or time-dependent functional restrictions.
+
+Work items:
+1. Retain the registered user's session information for at least 60 minutes of inactive session before prompting the user to log out.
+2. Provide the registered user with access to all e-store options regardless of the time they log in.",5,5,5,5,5
+A108,ABL-T01,Transparency,Data information policy is communicated at the service app/web page. Procedures in place for GDPR compliance and required steps are planned for example huge amount of user data request. For example redirection of resources or waiting times are clearly communicated.,"Title: Data Information Policy and GDPR Request Handling
+
+Description:
+As a user, I want the data information policy and data request handling procedures communicated on the service application or web page, so that I understand how my data is managed and know what to expect during high-volume data requests.
+
+Work items:
+1. The data information policy is communicated and accessible on the service application and web page.
+2. Procedures and required steps are established for GDPR compliance, including protocols for handling large amounts of user data requests.
+3. Information regarding waiting times and any redirection of resources is clearly communicated to users during data request processing.",5,5,5,5,3

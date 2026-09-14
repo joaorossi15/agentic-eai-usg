@@ -3,14 +3,24 @@ from __future__ import annotations
 import csv
 import json
 import random
+from collections import Counter
 from pathlib import Path
 
 
-INPUT_PATH = Path("results/baseline_results.csv")
-MASTER_PATH = Path("results/baseline_evaluation_master.csv")
-EVALUATOR_PATH = Path("results/baseline_evaluator_sheet.csv")
+INPUT_PATH = Path("results/backend_results.csv")
+MASTER_PATH = Path("results/backend_evaluation_master.csv")
+EVALUATOR_PATH = Path("results/backend_evaluator_sheet.csv")
 
 RANDOM_SEED = 20260914
+
+EXPECTED_ARTIFACTS = 108
+EXPECTED_REQUIREMENTS = 12
+EXPECTED_BACKENDS = {
+    "openai",
+    "anthropic",
+    "google",
+}
+EXPECTED_ARTIFACTS_PER_BACKEND = 36
 
 QUALITY_FIELDS = [
     "clarity",
@@ -29,13 +39,15 @@ def load_results(path: Path) -> list[dict]:
         "run_id",
         "requirement_id",
         "principle",
+        "source_row",
         "requirement",
-        "condition",
-        "repetition",
+        "backend",
         "model",
-        "final_title",
-        "final_description",
-        "final_work_items",
+        "repetition",
+        "title",
+        "description",
+        "work_items",
+        "checks_passed",
     }
 
     with path.open(newline="", encoding="utf-8") as f:
@@ -47,17 +59,69 @@ def load_results(path: Path) -> list[dict]:
         missing = required_columns - set(reader.fieldnames)
 
         if missing:
-            raise ValueError("Missing required columns: " + ", ".join(sorted(missing)))
+            raise ValueError(
+                "Missing required columns: "
+                + ", ".join(sorted(missing))
+            )
 
         rows = list(reader)
 
-    if not rows:
-        raise ValueError("The results CSV contains no artifacts.")
+    if len(rows) != EXPECTED_ARTIFACTS:
+        raise ValueError(
+            f"Expected {EXPECTED_ARTIFACTS} artifacts, found {len(rows)}."
+        )
 
     run_ids = [row["run_id"] for row in rows]
 
     if len(run_ids) != len(set(run_ids)):
         raise ValueError("Duplicate run IDs found in the results.")
+
+    requirement_ids = {
+        row["requirement_id"]
+        for row in rows
+    }
+
+    if len(requirement_ids) != EXPECTED_REQUIREMENTS:
+        raise ValueError(
+            f"Expected {EXPECTED_REQUIREMENTS} unique requirements, "
+            f"found {len(requirement_ids)}."
+        )
+
+    backends = {
+        row["backend"]
+        for row in rows
+    }
+
+    if backends != EXPECTED_BACKENDS:
+        raise ValueError(
+            f"Unexpected backends. "
+            f"Expected: {sorted(EXPECTED_BACKENDS)}. "
+            f"Found: {sorted(backends)}."
+        )
+
+    backend_counts = Counter(
+        row["backend"]
+        for row in rows
+    )
+
+    for backend in EXPECTED_BACKENDS:
+        if backend_counts[backend] != EXPECTED_ARTIFACTS_PER_BACKEND:
+            raise ValueError(
+                f"Expected {EXPECTED_ARTIFACTS_PER_BACKEND} artifacts "
+                f"for {backend}, found {backend_counts[backend]}."
+            )
+
+    failed_checks = [
+        row["run_id"]
+        for row in rows
+        if row["checks_passed"].strip().lower() != "true"
+    ]
+
+    if failed_checks:
+        print(
+            f"Warning: {len(failed_checks)} artifacts failed "
+            "deterministic checks."
+        )
 
     return rows
 
@@ -66,15 +130,32 @@ def parse_work_items(raw: str) -> list[str]:
     try:
         work_items = json.loads(raw)
     except json.JSONDecodeError as exc:
-        raise ValueError(f"Could not parse work items: {raw}") from exc
+        raise ValueError(
+            f"Could not parse work items: {raw}"
+        ) from exc
 
     if not isinstance(work_items, list):
-        raise ValueError(f"Work items must be a JSON list: {raw}")
+        raise ValueError(
+            f"Work items must be a JSON list: {raw}"
+        )
 
-    return [str(item).strip() for item in work_items if str(item).strip()]
+    parsed = [
+        str(item).strip()
+        for item in work_items
+        if str(item).strip()
+    ]
+
+    if not parsed:
+        raise ValueError("EUS contains no valid work items.")
+
+    return parsed
 
 
-def format_eus(title: str, description: str, work_items: list[str]) -> str:
+def format_eus(
+    title: str,
+    description: str,
+    work_items: list[str],
+) -> str:
     work_items_text = "\n".join(
         f"{index}. {item}"
         for index, item in enumerate(work_items, start=1)
@@ -87,26 +168,35 @@ def format_eus(title: str, description: str, work_items: list[str]) -> str:
     )
 
 
-def prepare_artifacts(rows: list[dict]) -> list[dict]:
+def prepare_artifacts(
+    rows: list[dict],
+) -> list[dict]:
     artifacts = []
 
     for row in rows:
-        work_items = parse_work_items(row["final_work_items"])
+        work_items = parse_work_items(
+            row["work_items"]
+        )
 
         artifacts.append({
             "run_id": row["run_id"],
             "requirement_id": row["requirement_id"],
             "principle": row["principle"],
+            "source_row": row["source_row"],
             "requirement": row["requirement"],
-            "condition": row["condition"],
-            "repetition": row["repetition"],
+            "backend": row["backend"],
             "model": row["model"],
-            "title": row["final_title"],
-            "description": row["final_description"],
-            "work_items": json.dumps(work_items, ensure_ascii=False),
+            "repetition": int(row["repetition"]),
+            "title": row["title"],
+            "description": row["description"],
+            "work_items": json.dumps(
+                work_items,
+                ensure_ascii=False,
+            ),
+            "checks_passed": row["checks_passed"],
             "eus": format_eus(
-                title=row["final_title"],
-                description=row["final_description"],
+                title=row["title"],
+                description=row["description"],
                 work_items=work_items,
             ),
         })
@@ -114,31 +204,49 @@ def prepare_artifacts(rows: list[dict]) -> list[dict]:
     rng = random.Random(RANDOM_SEED)
     rng.shuffle(artifacts)
 
-    for index, artifact in enumerate(artifacts, start=1):
+    for index, artifact in enumerate(
+        artifacts,
+        start=1,
+    ):
         artifact["artifact_id"] = f"A{index:03d}"
 
     return artifacts
 
 
-def save_master(artifacts: list[dict], path: Path) -> None:
+def save_master(
+    artifacts: list[dict],
+    path: Path,
+) -> None:
     fieldnames = [
         "artifact_id",
         "run_id",
         "requirement_id",
         "principle",
+        "source_row",
         "requirement",
-        "condition",
-        "repetition",
+        "backend",
         "model",
+        "repetition",
         "title",
         "description",
         "work_items",
+        "checks_passed",
     ]
 
-    path.parent.mkdir(parents=True, exist_ok=True)
+    path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
-    with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+    with path.open(
+        "w",
+        newline="",
+        encoding="utf-8",
+    ) as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=fieldnames,
+        )
         writer.writeheader()
 
         for artifact in artifacts:
@@ -148,7 +256,10 @@ def save_master(artifacts: list[dict], path: Path) -> None:
             })
 
 
-def save_evaluator_sheet(artifacts: list[dict], path: Path) -> None:
+def save_evaluator_sheet(
+    artifacts: list[dict],
+    path: Path,
+) -> None:
     fieldnames = [
         "artifact_id",
         "requirement_id",
@@ -158,10 +269,20 @@ def save_evaluator_sheet(artifacts: list[dict], path: Path) -> None:
         *QUALITY_FIELDS,
     ]
 
-    path.parent.mkdir(parents=True, exist_ok=True)
+    path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
-    with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+    with path.open(
+        "w",
+        newline="",
+        encoding="utf-8",
+    ) as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=fieldnames,
+        )
         writer.writeheader()
 
         for artifact in artifacts:
@@ -183,10 +304,26 @@ def main():
     rows = load_results(INPUT_PATH)
     artifacts = prepare_artifacts(rows)
 
-    save_master(artifacts, MASTER_PATH)
-    save_evaluator_sheet(artifacts, EVALUATOR_PATH)
+    save_master(
+        artifacts,
+        MASTER_PATH,
+    )
+
+    save_evaluator_sheet(
+        artifacts,
+        EVALUATOR_PATH,
+    )
+
+    backend_counts = Counter(
+        artifact["backend"]
+        for artifact in artifacts
+    )
 
     print(f"Loaded {len(rows)} artifacts.")
+    print(f"Unique requirements: {len(set(row['requirement_id'] for row in rows))}")
+    print(f"OpenAI artifacts: {backend_counts['openai']}")
+    print(f"Anthropic artifacts: {backend_counts['anthropic']}")
+    print(f"Google artifacts: {backend_counts['google']}")
     print(f"Randomization seed: {RANDOM_SEED}")
     print(f"Master dataset: {MASTER_PATH}")
     print(f"Blinded evaluator sheet: {EVALUATOR_PATH}")

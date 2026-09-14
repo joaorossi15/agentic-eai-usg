@@ -1,3 +1,5 @@
-from .pipeline import EAIUSGPipeline, WorkflowConfig
+from .pipeline import EAIUSGPipeline
 
-__all__ = ["EAIUSGPipeline", "WorkflowConfig"]
+__all__ = [
+    "EAIUSGPipeline",
+]
