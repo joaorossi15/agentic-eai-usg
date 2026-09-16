@@ -4,35 +4,78 @@ import json
 import os
 from typing import Type, TypeVar
 
+from anthropic import Anthropic
 from dotenv import load_dotenv
-from openai import OpenAI
 from pydantic import BaseModel
 
 load_dotenv()
+
 T = TypeVar("T", bound=BaseModel)
 
 
 class StructuredLLM:
-    def __init__(self, model: str | None = None):
-        self.model = model or os.getenv("EAI_MODEL", "gpt-5.6-terra")
-        self.client = OpenAI()
+    def __init__(
+        self,
+        backend: str | None = None,
+        model: str | None = None,
+    ):
+        self.backend = backend or os.getenv(
+            "EAI_BACKEND",
+            "anthropic",
+        )
+
+        if self.backend != "anthropic":
+            raise ValueError(
+                "The Human-AI study configuration is frozen to "
+                "the Anthropic backend."
+            )
+
+        self.model = model or os.getenv(
+            "EAI_MODEL",
+            "claude-fable-5-1",
+        )
+
+        self.client = Anthropic()
         self.response_ids: list[str] = []
 
-    def generate(self, *, agent_name: str, instructions: str, user_payload: dict, output_model: Type[T]) -> T:
-        response = self.client.responses.create(
+    def generate(
+        self,
+        *,
+        agent_name: str,
+        instructions: str,
+        user_payload: dict,
+        output_model: Type[T],
+    ) -> T:
+        response = self.client.messages.parse(
             model=self.model,
-            instructions=instructions,
-            input=json.dumps(user_payload, ensure_ascii=False, indent=2),
-            text={
-                "format": {
-                    "type": "json_schema",
-                    "name": agent_name,
-                    "description": f"Structured output for EAI-USG {agent_name}.",
-                    "schema": output_model.model_json_schema(),
-                    "strict": True,
+            max_tokens=int(
+                os.getenv(
+                    "EAI_MAX_OUTPUT_TOKENS",
+                    "4096",
+                )
+            ),
+            system=instructions,
+            messages=[
+                {
+                    "role": "user",
+                    "content": json.dumps(
+                        user_payload,
+                        ensure_ascii=False,
+                        indent=2,
+                    ),
                 }
-            },
+            ],
+            output_format=output_model,
         )
+
         if getattr(response, "id", None):
-            self.response_ids.append(response.id)
-        return output_model.model_validate_json(response.output_text)
+            self.response_ids.append(
+                response.id
+            )
+
+        if response.parsed_output is None:
+            raise ValueError(
+                f"No structured output returned for {agent_name}."
+            )
+
+        return response.parsed_output

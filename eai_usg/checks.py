@@ -46,7 +46,10 @@ def run_deterministic_checks(
 
     for i in range(len(eus.work_items)):
         for j in range(i + 1, len(eus.work_items)):
-            score = _similarity(eus.work_items[i], eus.work_items[j])
+            score = _similarity(
+                eus.work_items[i],
+                eus.work_items[j],
+            )
 
             if score >= duplicate_threshold:
                 redundancy_issues.append(
@@ -55,7 +58,10 @@ def run_deterministic_checks(
                 )
 
     for i, item in enumerate(eus.work_items):
-        score = _similarity(eus.description, item)
+        score = _similarity(
+            eus.description,
+            item,
+        )
 
         if score >= description_overlap_threshold:
             redundancy_issues.append(
@@ -77,15 +83,22 @@ def run_traceability_checks(
 ) -> TraceabilityCheckResult:
     issues: list[str] = []
 
-    obligation_ids = {obligation.id for obligation in analysis.obligations}
+    obligation_ids = {
+        obligation.id
+        for obligation in analysis.obligations
+    }
 
     if len(obligation_ids) != len(analysis.obligations):
-        issues.append("Requirement analysis contains duplicate obligation IDs.")
+        issues.append(
+            "Requirement analysis contains duplicate obligation IDs."
+        )
 
     description_ids = traceability.description_obligation_ids
 
     if len(description_ids) != len(set(description_ids)):
-        issues.append("Description traceability contains duplicate obligation IDs.")
+        issues.append(
+            "Description traceability contains duplicate obligation IDs."
+        )
 
     invalid_description_ids = [
         obligation_id
@@ -95,7 +108,7 @@ def run_traceability_checks(
 
     if invalid_description_ids:
         issues.append(
-            f"Description references unknown obligation IDs: "
+            "Description references unknown obligation IDs: "
             f"{', '.join(invalid_description_ids)}."
         )
 
@@ -103,24 +116,36 @@ def run_traceability_checks(
     traced_obligation_ids: set[str] = set(description_ids)
 
     for trace in traceability.work_items:
-        if trace.work_item_index >= len(eus.work_items):
+        if (
+            trace.work_item_index < 0
+            or trace.work_item_index >= len(eus.work_items)
+        ):
             issues.append(
-                f"Traceability references nonexistent work item "
+                "Traceability references nonexistent work item "
                 f"{trace.work_item_index + 1}."
             )
             continue
 
         if trace.work_item_index in traced_work_item_indices:
             issues.append(
-                f"Work item {trace.work_item_index + 1} has multiple traceability entries."
+                f"Work item {trace.work_item_index + 1} has multiple "
+                "traceability entries."
             )
 
-        traced_work_item_indices.add(trace.work_item_index)
+        traced_work_item_indices.add(
+            trace.work_item_index
+        )
+
+        if not trace.obligation_ids:
+            issues.append(
+                f"Work item {trace.work_item_index + 1} "
+                "has no traced obligations."
+            )
 
         if len(trace.obligation_ids) != len(set(trace.obligation_ids)):
             issues.append(
-                f"Work item {trace.work_item_index + 1} traceability contains "
-                f"duplicate obligation IDs."
+                f"Work item {trace.work_item_index + 1} traceability "
+                "contains duplicate obligation IDs."
             )
 
         invalid_ids = [
@@ -131,22 +156,33 @@ def run_traceability_checks(
 
         if invalid_ids:
             issues.append(
-                f"Work item {trace.work_item_index + 1} references unknown "
-                f"obligation IDs: {', '.join(invalid_ids)}."
+                f"Work item {trace.work_item_index + 1} references "
+                f"unknown obligation IDs: {', '.join(invalid_ids)}."
             )
 
-        traced_obligation_ids.update(trace.obligation_ids)
+        traced_obligation_ids.update(
+            trace.obligation_ids
+        )
 
     for index in range(len(eus.work_items)):
         if index not in traced_work_item_indices:
-            issues.append(f"Work item {index + 1} has no traceability entry.")
+            issues.append(
+                f"Work item {index + 1} has no traceability entry."
+            )
 
-    valid_traced_obligation_ids = traced_obligation_ids & obligation_ids
-    untraced_obligation_ids = obligation_ids - valid_traced_obligation_ids
+    valid_traced_obligation_ids = (
+        traced_obligation_ids
+        & obligation_ids
+    )
+
+    untraced_obligation_ids = (
+        obligation_ids
+        - valid_traced_obligation_ids
+    )
 
     if untraced_obligation_ids:
         issues.append(
-            f"Source obligations are not represented in the traceability map: "
+            "Source obligations are not represented in the traceability map: "
             f"{', '.join(sorted(untraced_obligation_ids))}."
         )
 

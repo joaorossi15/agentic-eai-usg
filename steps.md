@@ -1,0 +1,12 @@
+- write the EAI-USG section
+- prepare the website for the evaluation
+- recruit the participants
+- conduct the evaluation
+- judge the evaluation
+- write the results
+- write the discussion
+- write the threats to validity
+- write the conclusion
+- add the polished bits
+- finish the paper
+

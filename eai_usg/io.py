@@ -4,27 +4,36 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .schemas import RunArtifacts
+from pydantic import BaseModel
 
 
-def save_run(
-    run: RunArtifacts,
-    output_dir: str = "outputs/runs",
+def _safe(value: str) -> str:
+    return "".join(
+        c if c.isalnum() or c in "-_" else "_"
+        for c in value
+    )
+
+
+def save_artifact(
+    artifact: BaseModel,
+    requirement_id: str,
+    artifact_type: str,
+    output_dir: str = "outputs",
 ) -> Path:
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    safe_id = "".join(
-        c if c.isalnum() or c in "-_" else "_"
-        for c in run.requirement.id
-    )
 
-    path = out / f"{timestamp}_{safe_id}_{run.workflow_config}.json"
+    path = out / (
+        f"{timestamp}_"
+        f"{_safe(requirement_id)}_"
+        f"{_safe(artifact_type)}.json"
+    )
 
     path.write_text(
         json.dumps(
-            run.model_dump(mode="json"),
+            artifact.model_dump(mode="json"),
             ensure_ascii=False,
             indent=2,
         ),

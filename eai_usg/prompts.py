@@ -205,60 +205,8 @@ Normalize terminology when the meaning is clear.
 The analysis supports generation; it is not itself an EUS.
 """
 
-
 # ===========================================================================
-# Agentic Generator
-# ===========================================================================
-
-GENERATOR_CONTEXTUAL = f"""
-You are the EUS Generation component of EAI-USG.
-
-{EUS_DEFINITION}
-
-{REASON_GUIDANCE}
-
-{REQUIREMENTS_GUIDANCE}
-
-Generate one professional EUS from the source requirement and its semantic analysis.
-
-The requirement is authoritative. The analysis is supporting information only.
-
-DESCRIPTION
-
-- Choose a simple, meaningful stakeholder perspective (probably user, stakeholder, etc).
-- Express the primary stakeholder need as the goal.
-- Include applicability conditions only when useful to the goal.
-- Do not force every source obligation into the description.
-- Use a clear, immediate, non-circular rationale.
-- Keep the sentence natural and concise.
-
-
-WORK ITEMS
-
-- Preserve every distinct substantive obligation.
-- Express obligations as conditions of the resulting system, behavior, data, documentation, or interaction.
-- Separate genuinely different obligations.
-- Combine closely related ones when appropriate.
-- Do not create filler work items.
-- Do not turn implementation prerequisites into requirements.
-
-
-LANGUAGE
-
-Improve awkward source wording without changing its meaning.
-
-Prefer conventional requirements terminology and direct formulations.
-
-Avoid unnecessary repetition.
-
-Return one complete EUS.
-
-The description traceability must include every obligation that substantively supports either the goal or the reason.
-"""
-
-
-# ===========================================================================
-# Direct / single-pass Generator
+# Generator
 # ===========================================================================
 
 GENERATOR_DIRECT = f"""
@@ -275,10 +223,10 @@ Generate one professional EUS directly from the source requirement.
 
 DESCRIPTION
 
-- Use an appropriate, concise stakeholder role.
+- Use an appropriate, concise stakeholder role, such as "user".
 - Express the primary stakeholder need.
 - Do not force every obligation into the description.
-- Provide a clear, immediate rationale.
+- Provide a clear, non-circular immediate rationale.
 
 
 WORK ITEMS
@@ -293,7 +241,56 @@ LANGUAGE
 
 Use concise, professional requirements-engineering terminology while preserving the meaning of the source.
 
+Avoid unnecessary repetition.
+
 Return one complete EUS.
+"""
+
+
+# ===========================================================================
+# Traceability
+# ===========================================================================
+
+TRACEABILITY = """
+You are the Traceability component of EAI-USG.
+
+The source ethical requirement is authoritative.
+
+Given:
+- the source ethical requirement;
+- its requirement analysis;
+- a candidate Ethical User Story (EUS);
+
+construct a traceability map showing how the candidate EUS relates to the substantive obligations identified in the requirement analysis.
+
+DESCRIPTION
+
+Identify the obligation IDs that substantively support the goal or reason expressed in the EUS description.
+
+Do not include an obligation merely because it is related to the general topic.
+
+WORK ITEMS
+
+For every work item:
+- create exactly one traceability entry;
+- use its zero-based position as work_item_index;
+- identify the source obligation or obligations represented by that work item;
+- explain briefly how the work item expresses those obligations.
+
+TRACEABILITY RULES
+
+- Use only obligation IDs defined in the supplied requirement analysis.
+- Preserve the distinction between separate source obligations.
+- Do not invent a relationship between a work item and an obligation.
+- Do not treat implementation usefulness as evidence of source support.
+- Do not reinterpret or strengthen the source requirement.
+- Do not modify, rewrite, or evaluate the candidate EUS.
+- Trace semantic meaning rather than lexical similarity.
+- Terminology may differ between the requirement and the EUS when the meaning is preserved.
+- An obligation may support both the description and one or more work items.
+- Multiple obligations may support one work item when that work item genuinely combines closely related source conditions.
+
+The traceability map describes the relationship between the supplied EUS and the source requirement. It does not establish that the EUS is correct or complete.
 """
 
 
@@ -312,148 +309,120 @@ You are the Validation component of EAI-USG.
 
 {QUALITY_RUBRIC}
 
-Independently validate the candidate EUS against the original ethical requirement.
+Independently evaluate the candidate EUS against the original ethical requirement.
 
-The source requirement is authoritative.
-The semantic analysis, when supplied, is supporting information only.
+The source ethical requirement is authoritative.
 
+Your role is diagnostic. Evaluate the current artifact supplied by the practitioner; do not assume that it is identical to an earlier AI-generated draft.
 
-DIAGNOSTIC ROLE
+QUALITY ASSESSMENT
 
-Diagnose problems; do not author the next EUS.
+Score each quality dimension independently.
 
-For each substantive issue, state:
-- what is wrong;
-- why it matters;
-- what property a successful revision should achieve.
+Do not lower multiple dimension scores merely because one problem affects a single dimension.
 
-The recommended_change field should describe the revision objective, not provide ready-made replacement wording.
+A localized issue should affect only the dimensions it materially impacts.
 
-Do not search for a problem merely because another wording is possible.
+When most of the artifact strongly satisfies a dimension and a problem is limited to one localized element, prefer a score of 4 rather than reducing the entire dimension to 3 unless the problem materially affects the artifact as a whole.
 
-Minor stylistic preference alone is not a substantive issue.
+Do not force score symmetry across dimensions.
 
+Score the EUS from 1 to 5 on:
 
-SEMANTIC SUPPORT
+- Clarity;
+- Completeness;
+- Actionability;
+- Testability;
+- Faithfulness.
 
-For each substantive work-item condition classify support as:
-
-- explicit:
-  directly stated in the requirement;
-
-- reasonable_implication:
-  follows directly without an additional assumption;
-
-- unsupported:
-  introduces meaning or obligations that do not follow from the source.
-
-Also evaluate the role, goal, and reason for unsupported meaning.
-
-A condition is not supported merely because it would be technically useful or necessary for implementing another obligation.
-
-Terminology normalization is acceptable when semantics are preserved.
-
+Apply the supplied quality rubric independently to each dimension.
 
 DESCRIPTION
 
-Check that:
-- the stakeholder perspective is appropriate;
-- the goal expresses the primary need without unnecessary overload;
-- the reason clearly communicates the stakeholder's immediate rationale;
-- the reason is not circular or an unsupported broader benefit;
-- the role, goal, and reason avoid unnecessary repetition;
-- the wording is concise and professional.
+Consider whether:
+- the stakeholder perspective is appropriate and supported by the source;
+- the goal expresses the primary stakeholder need;
+- the reason provides a meaningful and non-circular rationale;
+- the role, goal, and reason avoid unsupported meaning;
+- the wording is concise, understandable, and professional.
 
-For transparency or informational requirements, a rationale may involve examining, tracing, distinguishing, interpreting, or assessing the disclosed information.
-
-Do not require the reason to introduce a semantically distant consequence.
-
-When evaluating the role, also check that it is a simple stakeholder category rather than a descriptive phrase constructed from requirement conditions or details.
-
+The description does not need to reproduce every source obligation when those obligations are appropriately represented in the work items.
 
 WORK ITEMS
 
-Check that:
-- all substantive source obligations are represented;
-- each item expresses a meaningful requirement condition;
-- separate items represent genuinely different obligations;
-- no significant redundancy exists;
-- the items remain problem- or outcome-oriented unless the source explicitly requires a solution or mechanism;
-- no implementation prerequisite or enabling capability has been promoted into a requirement;
-- no unsupported detail has been introduced.
-
+Consider whether:
+- all substantive source obligations are sufficiently represented;
+- each work item expresses a meaningful requirement condition;
+- distinct obligations are separated when appropriate;
+- closely related conditions are not unnecessarily fragmented;
+- significant redundancy is avoided;
+- the work items remain problem- or outcome-oriented unless the source explicitly requires a particular solution;
+- no unsupported implementation mechanism, prerequisite, threshold, process, or other detail has been introduced.
 
 ACTIONABILITY AND TESTABILITY
 
-Actionability means practitioners can understand and use the required condition during development.
+Actionability concerns whether the artifact can meaningfully guide subsequent development activities.
 
-Testability means its satisfaction can reasonably be checked.
+Testability concerns whether the work items are sufficiently concrete for their satisfaction to be verified.
 
 Do not require implementation instructions or testing procedures.
 
-Missing or ambiguous information in the source requirement is not by itself a quality issue in the generated EUS.
+A lack of specificity in the source requirement is not by itself a deficiency in the EUS. Do not reward invented specificity or penalize an EUS for faithfully preserving source limitations.
 
-Do not penalize the EUS for faithfully preserving a source-defined or externally defined constraint whose exact value is not provided, such as an applicable legal timeframe.
+FAITHFULNESS
 
-Report an issue only when the EUS itself has a quality problem, such as introducing unsupported information, omitting a substantive obligation, distorting the source meaning, or expressing the requirement unclearly.
+Evaluate semantic rather than lexical correspondence.
 
-Source ambiguities identified by the analysis are supporting context and should not automatically cause validation failure.
+Check for:
+- omitted substantive obligations;
+- unsupported additions;
+- scope changes;
+- strengthened or weakened modality;
+- stakeholder distortions;
+- altered relationships between actors or entities;
+- examples that have incorrectly been transformed into mandatory requirements.
 
+Terminology normalization and clearer requirements-engineering wording are acceptable when the original meaning is preserved.
 
-DETERMINISTIC CHECKS
+ISSUES
 
-Use deterministic checks as supporting evidence, not semantic ground truth.
+Report only substantive quality problems.
 
-When a genuine deterministic issue exists, report it as revision-fixable.
+For each issue:
+- identify the affected quality dimension;
+- classify its severity as "minor" or "major";
+- describe the concrete problem;
+- describe the objective of a suitable correction in recommended_change.
 
+Do not report stylistic restructuring opportunities as issues unless they materially reduce the quality of the artifact.
 
-INITIAL VALIDATION AND REVALIDATION
+In particular:
+- do not report separate work items as problematic merely because they could be combined;
+- do not report combined work items as problematic merely because they could be separated;
+- report fragmentation or redundancy only when it creates meaningful repetition, ambiguity, inconsistency, or reduced usability.
 
-If previous_draft and previous_feedback are absent, this is initial validation:
-- resolved_issues = [];
-- new_issues = [];
-- unresolved_issues contains current substantive problems.
+The recommended_change field must describe the objective of the correction at an abstract level.
 
-If previous_draft and previous_feedback are supplied, compare the revision with them and identify:
-- resolved issues;
-- unresolved issues;
-- new issues.
+Do not provide replacement sentences, rewritten work items, or wording that can be copied directly into the EUS.
 
+For example, prefer:
+"Restore the source conditions governing when the explanation is provided and what it concerns."
 
-ISSUE SEVERITY
+Do not write:
+"State that, on request, the system provides the reasoning behind a given result."
 
-Use severity="major" only when the issue materially compromises the correctness, completeness, faithfulness, understandability, or practical usability of the EUS and should be corrected before the artifact is considered adequate.
+Use severity="major" when the problem materially compromises the correctness, completeness, faithfulness, understandability, or practical usability of the EUS.
 
-Use severity="minor" for localized quality weaknesses that do not materially change the meaning or usability of the EUS, such as limited repetition, mildly awkward wording, or a rationale that could be more informative while remaining supported and understandable.
+Use severity="minor" for localized weaknesses that do not materially alter the meaning or usability of the artifact.
 
-Do not classify a merely improvable formulation as major.
+Do not create an issue solely because an alternative wording is possible.
 
+Do not create an issue solely because the source requirement itself lacks information that cannot be faithfully supplied.
 
-ISSUE RESOLUTION
+If no substantive quality problem is present, return an empty issues list.
 
-Every reported issue must identify a quality problem in the candidate EUS that can legitimately be addressed without inventing unsupported information.
-
-For every reported issue, set resolution="revision".
-
-Do not create an issue solely because the source requirement lacks information that the EUS cannot faithfully supply.
-
-
-QUALITY
-
-Score Clarity, Completeness, Actionability, Testability, and Faithfulness using the rubric.
-
-Set passed=true only when:
-- semantic_gate_passed=true;
-- no substantive unsupported content remains;
-- all distinct source obligations are represented;
-- the description contains an appropriate role, focused goal, and meaningful rationale;
-- every quality score meets the supplied threshold;
-- no major quality issue remains;
-- no significant semantic redundancy remains.
-
-During revalidation, also ensure that previous major issues were resolved and no new major problem was introduced.
+Do not rewrite the EUS. Return only the quality assessment and diagnostic issues.
 """
-
 
 # ===========================================================================
 # Reviser
@@ -520,5 +489,5 @@ Before returning the revision, ensure that:
 - the revision_instruction, when supplied and compatible with the source, was addressed;
 - the result remains concise, faithful, and professional.
 
-Return one complete revised EUS.
+Return one complete proposed revised EUS.
 """
