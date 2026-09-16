@@ -1,0 +1,108 @@
+{
+  "requirement": {
+    "id": "HUM-F03",
+    "text": "The product shall be available to players who understand English  Spanish and French. The product shall allow the user to select the language upon accessing the product."
+  },
+  "study_metadata": {
+    "principle": "Freedom & Autonomy",
+    "source_row": 961
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Multilingual Availability and Language Selection",
+    "description": "As a player, I want to select English, Spanish, or French when accessing the product, so that I can use it in a language I understand.",
+    "work_items": [
+      "The product shall be available in English, Spanish, and French.",
+      "The product shall allow the user to select the language upon accessing the product."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Ensure inclusive access to the product for players across multiple language communities by supporting English, Spanish, and French and letting users choose their language.",
+    "stakeholders": [
+      "player",
+      "user"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "The product shall be available to players who understand English, Spanish, or French.",
+        "source_span": "The product shall be available to players who understand English  Spanish and French.",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "The product shall support English, Spanish, and French.",
+        "source_span": "The product shall be available to players who understand English  Spanish and French.",
+        "support_type": "reasonable_implication"
+      },
+      {
+        "id": "O3",
+        "text": "The product shall allow the user to select the language upon accessing the product.",
+        "source_span": "The product shall allow the user to select the language upon accessing the product.",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "Supported languages are English, Spanish, and French.",
+      "Language selection must be offered at the point of accessing the product."
+    ],
+    "ambiguities": [
+      "Whether 'available to players who understand English Spanish and French' means players understanding any one of the languages or all three (the former is the reasonable reading).",
+      "Whether 'upon accessing the product' means only at first access, at every access, or whether the language may also be changed afterwards.",
+      "Whether 'available' covers all product content and functionality or only the user interface.",
+      "Whether 'select the language' is limited to the three listed languages or permits others.",
+      "The relationship between 'players' in the first sentence and 'user' in the second."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a default language.",
+      "Do not assume the language can be changed after initial selection.",
+      "Do not assume automatic language detection based on device or locale settings.",
+      "Do not assume translation quality levels or localization scope beyond language availability.",
+      "Do not assume the language preference is persisted across sessions.",
+      "Do not assume support for additional languages beyond English, Spanish, and French."
+    ],
+    "possible_operational_aspects": [
+      "Provision of the product in English, Spanish, and French.",
+      "Presentation of a language selection option when the user accesses the product."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1",
+      "O2",
+      "O3"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1",
+          "O2"
+        ],
+        "explanation": "Stating that the product shall be available in English, Spanish, and French expresses the explicit availability obligation to players understanding those languages (O1) and its reasonable implication that the product supports those three languages (O2)."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O3"
+        ],
+        "explanation": "Directly restates the explicit obligation that the user can select the language upon accessing the product, preserving the point-of-access constraint."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7Vqa4LnhmdXtiASF91s",
+    "msg_011Cf7VquJj6NjvubDbZ8fD3",
+    "msg_011Cf7VrgJf4NLciJf8hfmq7"
+  ]
+}

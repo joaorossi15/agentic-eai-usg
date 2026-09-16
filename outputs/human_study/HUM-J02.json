@@ -1,0 +1,136 @@
+{
+  "requirement": {
+    "id": "HUM-J02",
+    "text": "Ensure the quality of the data by testing. Testing at least with race, gender, age should be done and variance between gropes should not be significant. Realtime testing in real context needs to be done before launch."
+  },
+  "study_metadata": {
+    "principle": "Justice & Equity",
+    "source_row": 1009
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Data Quality Testing Across Demographic Groups",
+    "description": "As a user, I want the data quality to be verified through testing across demographic groups, so that I can be assured the system does not perform differently for people based on race, gender, or age.",
+    "work_items": [
+      "Data quality shall be verified through testing.",
+      "Testing shall cover at least race, gender, and age.",
+      "Variance in results between demographic groups shall not be significant.",
+      "Real-time testing in the real context of use shall be conducted before launch."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Ensure data quality and fair, non-discriminatory system behavior across demographic groups (at minimum race, gender, and age) through testing, including real-context testing before launch.",
+    "stakeholders": [
+      "user",
+      "affected individual",
+      "developer"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "Data quality shall be ensured through testing.",
+        "source_span": "Ensure the quality of the data by testing.",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "Testing shall cover, at minimum, the attributes race, gender, and age.",
+        "source_span": "Testing at least with race, gender, age should be done",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O3",
+        "text": "Variance between demographic groups shall not be significant.",
+        "source_span": "variance between gropes should not be significant",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O4",
+        "text": "Real-time testing in a real context shall be performed before launch.",
+        "source_span": "Realtime testing in real context needs to be done before launch.",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "Testing must include at least race, gender, and age as tested attributes.",
+      "Variance between groups must not be significant.",
+      "Real-time testing must take place in a real context.",
+      "Real-time testing must be completed before launch."
+    ],
+    "ambiguities": [
+      "'gropes' appears to be a typo for 'groups'; interpreted as demographic groups defined by the tested attributes.",
+      "'Significant' is undefined: it is unclear whether statistical significance, a practical threshold, or a qualitative judgment is intended.",
+      "'Quality of the data' is not defined; it is unclear whether it refers to the input data, the training data, or system outputs derived from the data.",
+      "It is unclear what 'variance' refers to (e.g., representation in the data, performance, error rates, or outcomes).",
+      "'Realtime testing in real context' is not defined (e.g., live environment, pilot, field trial, or shadow deployment).",
+      "'At least' indicates that further attributes may be required, but none are specified.",
+      "It is unclear whether testing is a one-time pre-launch activity or must recur after launch."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a specific statistical threshold or fairness metric for 'significant' variance.",
+      "Do not assume a specific testing methodology, tool, or dataset.",
+      "Do not assume additional demographic attributes beyond race, gender, and age are mandatory.",
+      "Do not assume ongoing or periodic post-launch testing is required.",
+      "Do not assume compliance with any particular law, standard, or policy.",
+      "Do not assume a specific definition of data quality beyond what the source states.",
+      "Do not assume a particular form of real-context testing (e.g., pilot with real users) beyond 'real-time testing in real context'."
+    ],
+    "possible_operational_aspects": [
+      "Testing of data quality that includes race, gender, and age as tested attributes.",
+      "Comparison of results between demographic groups to confirm variance is not significant.",
+      "Real-time testing in a real context carried out before launch."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1",
+      "O2",
+      "O3"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "Restates the explicit obligation that data quality be ensured through testing, using 'verified' in place of 'ensured' with preserved meaning."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O2"
+        ],
+        "explanation": "Expresses the minimum attribute coverage for testing (race, gender, age), including the 'at least' qualifier from the source."
+      },
+      {
+        "work_item_index": 2,
+        "obligation_ids": [
+          "O3"
+        ],
+        "explanation": "Expresses the requirement that variance between demographic groups not be significant; 'in results' does not add a threshold or metric beyond the source."
+      },
+      {
+        "work_item_index": 3,
+        "obligation_ids": [
+          "O4"
+        ],
+        "explanation": "Expresses the requirement for real-time testing in a real context performed before launch, preserving both the real-context and pre-launch conditions."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VwpascfYBqGqe7GqhN",
+    "msg_011Cf7VxH17fLncvDzWZ2GRC",
+    "msg_011Cf7Vz92T4JuNmWniN78vX"
+  ]
+}

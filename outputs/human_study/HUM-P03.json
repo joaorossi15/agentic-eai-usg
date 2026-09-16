@@ -1,0 +1,98 @@
+{
+  "requirement": {
+    "id": "HUM-P03",
+    "text": "The data tied to a person can be found and is eraseable in the system upon request."
+  },
+  "study_metadata": {
+    "principle": "Privacy",
+    "source_row": 981
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Locatable and Erasable Personal Data",
+    "description": "As a data subject, I want the data tied to me to be locatable and erasable in the system upon request, so that my personal data can be removed when I ask for it.",
+    "work_items": [
+      "Data tied to a person can be found in the system.",
+      "Data tied to a person can be erased from the system upon request."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Enable individuals to exercise control over their personal data by ensuring that data tied to a person can be located and erased upon request.",
+    "stakeholders": [
+      "data subject"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "Data tied to a person must be locatable within the system.",
+        "source_span": "The data tied to a person can be found",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "Data tied to a person must be erasable from the system upon request.",
+        "source_span": "is eraseable in the system upon request",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "Erasure applies to data tied to a person.",
+      "Erasure is triggered upon request."
+    ],
+    "ambiguities": [
+      "The source does not specify who may make the erasure request (e.g., the data subject or another party).",
+      "The source does not specify whether finding data is itself request-triggered or a general system capability.",
+      "The source does not define what counts as 'data tied to a person' or the completeness of erasure (e.g., copies, backups, derived data).",
+      "The source does not specify any timeframe, procedure, confirmation, or exceptions for erasure."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a specific legal framework (e.g., GDPR right to erasure) or its conditions.",
+      "Do not assume a timeframe or deadline for erasure.",
+      "Do not assume a particular identity verification or request-handling process.",
+      "Do not assume that erasure must extend to backups, third parties, or derived data unless specified.",
+      "Do not assume that the requester must be the data subject.",
+      "Do not assume confirmation or notification obligations after erasure."
+    ],
+    "possible_operational_aspects": [
+      "Ability to find data tied to a person in the system.",
+      "Erasure of data tied to a person performed in response to a request."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1",
+      "O2"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "The work item states that data tied to a person can be found in the system, directly expressing the obligation that such data be locatable (O1)."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O2"
+        ],
+        "explanation": "The work item states that data tied to a person can be erased from the system upon request, directly expressing the obligation of request-triggered erasure (O2)."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VjKtt57fMDYFFqHrih",
+    "msg_011Cf7VjhxRrNBnUsT2dnFJT",
+    "msg_011Cf7VkVmyWpvKTLUrbFN2z"
+  ]
+}

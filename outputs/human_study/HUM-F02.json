@@ -1,0 +1,80 @@
+{
+  "requirement": {
+    "id": "HUM-F02",
+    "text": "It must allow a user to download a backup of their medical information."
+  },
+  "study_metadata": {
+    "principle": "Freedom & Autonomy",
+    "source_row": 706
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Backup Download of Medical Information",
+    "description": "As a user, I want to download a backup of my medical information, so that I can retain my own copy of it.",
+    "work_items": [
+      "The system shall allow a user to download a backup of their medical information."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Ensure users retain control over and access to their own medical information by enabling them to obtain a copy of it.",
+    "stakeholders": [
+      "user"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "The system must enable a user to download a backup of their medical information.",
+        "source_span": "It must allow a user to download a backup of their medical information.",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "The downloadable backup pertains to the user's own medical information."
+    ],
+    "ambiguities": [
+      "The scope of 'medical information' (e.g., which records or data categories are included) is not specified.",
+      "The format, structure, or completeness of the 'backup' is not specified.",
+      "The term 'user' is not further defined (e.g., patient, caregiver, or other role)."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a specific file format, encryption, or delivery mechanism for the backup.",
+      "Do not assume timing, frequency, or scheduling requirements for downloads.",
+      "Do not assume authentication, identity verification, or authorization mechanisms beyond what the source states.",
+      "Do not assume the backup must be machine-readable, interoperable, or portable to other systems.",
+      "Do not assume applicability of specific laws or regulations (e.g., data portability rights)."
+    ],
+    "possible_operational_aspects": [
+      "The download capability is available to the user.",
+      "The backup covers the user's own medical information."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "The work item directly restates O1: the system enables a user to download a backup of their own medical information, preserving the constraint that the backup pertains to the user's own data."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VpRkFhqGzTdxuck3zT",
+    "msg_011Cf7VpinvG7DdwQL5gmthw",
+    "msg_011Cf7VqC7EbXm5aQnbtPn2Z"
+  ]
+}

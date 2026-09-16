@@ -1,0 +1,99 @@
+{
+  "requirement": {
+    "id": "HUM-P02",
+    "text": "All network transactions that involve financial information or personally identifiable information shall be encrypted."
+  },
+  "study_metadata": {
+    "principle": "Privacy",
+    "source_row": 968
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Encryption of Financial and Personal Data in Transit",
+    "description": "As a user, I want all network transactions involving my financial information or personally identifiable information to be encrypted, so that this information is protected from unauthorized access during transmission.",
+    "work_items": [
+      "All network transactions that involve financial information shall be encrypted.",
+      "All network transactions that involve personally identifiable information shall be encrypted."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Protect the confidentiality of financial and personally identifiable information during network transmission.",
+    "stakeholders": [
+      "user",
+      "data subject"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "Network transactions involving financial information shall be encrypted.",
+        "source_span": "All network transactions that involve financial information or personally identifiable information shall be encrypted.",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "Network transactions involving personally identifiable information shall be encrypted.",
+        "source_span": "All network transactions that involve financial information or personally identifiable information shall be encrypted.",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "Applies to all network transactions, without exception, that involve financial information or personally identifiable information.",
+      "Applies only to network transactions; the source does not address data at rest or other processing contexts."
+    ],
+    "ambiguities": [
+      "The source does not define what constitutes financial information or personally identifiable information.",
+      "The source does not define the scope of a 'network transaction' (e.g., internal vs. external communications).",
+      "The source does not specify encryption strength, algorithms, protocols, or key management requirements.",
+      "The source does not specify whether the entire transaction or only the sensitive data elements must be encrypted."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a specific encryption standard, algorithm, or protocol (e.g., TLS version, AES key size).",
+      "Do not assume requirements for encryption of data at rest or in storage.",
+      "Do not assume specific legal or regulatory frameworks (e.g., GDPR, PCI DSS) define the covered information.",
+      "Do not assume requirements for key management, certificate handling, or auditing of encryption.",
+      "Do not assume that transactions without such information must also be encrypted.",
+      "Do not assume a mechanism for classifying or detecting sensitive information as a separate requirement."
+    ],
+    "possible_operational_aspects": [
+      "Applicability is conditional on a network transaction involving financial information or personally identifiable information.",
+      "The obligation is universal within its scope ('all' such transactions)."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1",
+      "O2"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "The work item restates the requirement that all network transactions involving financial information be encrypted, directly expressing O1 and preserving the universal scope ('all')."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O2"
+        ],
+        "explanation": "The work item restates the requirement that all network transactions involving personally identifiable information be encrypted, directly expressing O2 and preserving the universal scope ('all')."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7Vhc4RCMDGKGq2mT7dp",
+    "msg_011Cf7Vi48ZcprAsQo7D7aJe",
+    "msg_011Cf7ViucsTkXmF4JhiHRJz"
+  ]
+}

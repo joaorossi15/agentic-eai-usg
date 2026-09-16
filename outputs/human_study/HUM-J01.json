@@ -1,0 +1,110 @@
+{
+  "requirement": {
+    "id": "HUM-J01",
+    "text": "AI integrated into the system that can help identify data patterns for users with special needs and provide necessary information."
+  },
+  "study_metadata": {
+    "principle": "Justice & Equity",
+    "source_row": 1005
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "AI-Assisted Pattern Identification and Information Provision for Users with Special Needs",
+    "description": "As a user with special needs, I want the system's integrated AI to identify data patterns and provide the information I require, so that I can interpret the data relevant to me.",
+    "work_items": [
+      "The system integrates AI capability that supports users with special needs.",
+      "The integrated AI identifies data patterns relevant to users with special needs.",
+      "The integrated AI provides users with special needs the information they require."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Support inclusion and accessibility by integrating AI that assists users with special needs in identifying data patterns and provides them with the information they need.",
+    "stakeholders": [
+      "users with special needs",
+      "user"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "The system shall integrate AI that helps identify data patterns for users with special needs.",
+        "source_span": "AI integrated into the system that can help identify data patterns for users with special needs",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "The system shall provide necessary information to users with special needs.",
+        "source_span": "and provide necessary information",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "The pattern identification support and information provision are directed at users with special needs.",
+      "The source explicitly requires AI as the mechanism, integrated into the system, rather than leaving the solution open."
+    ],
+    "ambiguities": [
+      "The source does not define 'special needs' or which categories of users are covered.",
+      "The source does not specify what 'data patterns' means, which data is involved, or what identifying patterns is intended to achieve for the user.",
+      "The source does not specify what 'necessary information' is, who determines its necessity, or whether it is derived from the identified data patterns.",
+      "It is unclear whether 'provide necessary information' is a function of the AI or a general obligation of the system.",
+      "The phrase 'can help identify' is ambiguous as to whether the AI identifies patterns autonomously or assists users in doing so, and whether this is a capability or a mandatory behaviour."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume specific disabilities, impairments, or user groups constitute 'special needs'.",
+      "Do not assume specific AI techniques, models, or training approaches.",
+      "Do not assume the data patterns concern personal or sensitive data, or that privacy or consent requirements apply beyond the source.",
+      "Do not assume accuracy, performance, or explainability thresholds for the AI.",
+      "Do not assume the information must be delivered in particular accessible formats or channels.",
+      "Do not assume timing, frequency, or proactive versus on-request delivery of information.",
+      "Do not assume the AI must be optional, configurable, or subject to human oversight."
+    ],
+    "possible_operational_aspects": [
+      "Integration of AI within the system.",
+      "Assistance in identifying data patterns for users with special needs.",
+      "Provision of necessary information to users with special needs."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1",
+      "O2"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "Expresses the integration of AI into the system directed at users with special needs, which is the mechanism and target group stated in O1. It does not itself express the pattern identification or information provision functions."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "Expresses the AI's role in identifying data patterns for users with special needs, corresponding to the pattern identification function in O1."
+      },
+      {
+        "work_item_index": 2,
+        "obligation_ids": [
+          "O2"
+        ],
+        "explanation": "Expresses the provision of the information users with special needs require, corresponding to the 'necessary information' obligation in O2. Attributing this to the AI reflects one reading of a source ambiguity but preserves the substantive obligation."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VtuJZ13SLqKton9J2K",
+    "msg_011Cf7Vuc8iHzduMsTvKNN5o",
+    "msg_011Cf7VwH9Gm3UfzKj5Kw2eg"
+  ]
+}

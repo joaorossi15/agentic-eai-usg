@@ -1,0 +1,101 @@
+{
+  "requirement": {
+    "id": "HUM-F04",
+    "text": "When prompted by passengers, the system should be able to provide information requested, eg customer asking for summary on a trip should be able to get one from the system."
+  },
+  "study_metadata": {
+    "principle": "Freedom & Autonomy",
+    "source_row": 1025
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Passenger Information Requests",
+    "description": "As a passenger, I want the system to provide the information I request when I prompt it, so that I can obtain what I need about my trip, such as a trip summary.",
+    "work_items": [
+      "The system shall provide the requested information when prompted by a passenger.",
+      "When a passenger requests a summary of a trip, the system shall provide one."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Ensure passengers can obtain the information they request from the system on demand, supporting transparency and passenger agency over information about their trip.",
+    "stakeholders": [
+      "passenger"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "When prompted by a passenger, the system shall provide the information the passenger requested.",
+        "source_span": "When prompted by passengers, the system should be able to provide information requested",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "A passenger who requests a summary of a trip shall be able to obtain one from the system.",
+        "source_span": "eg customer asking for summary on a trip should be able to get one from the system",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "Applies when the system is prompted by a passenger (request-driven, not proactive provision).",
+      "The information provided must correspond to what the passenger requested.",
+      "A trip summary is an explicitly stated example of information that must be obtainable."
+    ],
+    "ambiguities": [
+      "The scope of 'information requested' is unspecified; it is unclear whether any request must be satisfiable or only certain categories of information.",
+      "The content and level of detail of a 'trip summary' are not defined.",
+      "'Passengers' and 'customer' are used interchangeably; it is unclear whether they denote the same stakeholder.",
+      "The form of prompting (e.g., spoken, textual, in-app) and the form of the response are not specified.",
+      "'Should be able to' leaves unclear whether this is a capability the system must have or a guarantee that every request is fulfilled."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a specific interaction modality (e.g., voice assistant, chat interface).",
+      "Do not assume timing or response-time requirements.",
+      "Do not assume a defined list of trip summary contents.",
+      "Do not assume the system must answer every conceivable request, including those outside its information domain.",
+      "Do not assume access controls, privacy handling, or authentication requirements beyond what the source states.",
+      "Do not assume a legal or policy basis for the obligation."
+    ],
+    "possible_operational_aspects": [
+      "Provision of information is conditional on a passenger prompt or request.",
+      "The response must match the specific information requested.",
+      "A trip summary is a representative case that must be supported."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1",
+      "O2"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "Expresses the general obligation that the system provide the information a passenger requested when prompted by the passenger, preserving the request-driven condition and the correspondence between request and response."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O2"
+        ],
+        "explanation": "Expresses the explicit trip-summary example: a passenger who requests a summary of a trip shall be able to obtain one from the system."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VsAEBpmfM8sqx68egr",
+    "msg_011Cf7VsaRECxZuNa9j3RsSt",
+    "msg_011Cf7VtXJikNXZ7U4AeSx9A"
+  ]
+}

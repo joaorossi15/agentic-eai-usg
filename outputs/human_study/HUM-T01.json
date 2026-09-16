@@ -1,0 +1,111 @@
+{
+  "requirement": {
+    "id": "HUM-T01",
+    "text": "In service critical or human relating features only explainable AI/ML solutions are used. When requested the system can provide reasoning behind given result."
+  },
+  "study_metadata": {
+    "principle": "Transparency",
+    "source_row": 1024
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Explainable AI in Service-Critical and Human-Related Features",
+    "description": "As a user, I want the system to provide the reasoning behind a result on request, so that I can understand how the result was reached.",
+    "work_items": [
+      "Only explainable AI/ML solutions are used in service-critical features.",
+      "Only explainable AI/ML solutions are used in features relating to humans.",
+      "When requested, the system provides the reasoning behind a given result."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Ensure transparency and explainability of AI/ML used in service-critical or human-related features, so that the reasoning behind results can be provided to those who request it.",
+    "stakeholders": [
+      "user",
+      "affected individual"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "Only explainable AI/ML solutions shall be used in service-critical or human-related features.",
+        "source_span": "In service critical or human relating features only explainable AI/ML solutions are used.",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "Upon request, the system shall provide the reasoning behind a given result.",
+        "source_span": "When requested the system can provide reasoning behind given result.",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "The restriction to explainable AI/ML solutions applies to service-critical or human-related features.",
+      "Reasoning behind a result is to be provided on request rather than unconditionally."
+    ],
+    "ambiguities": [
+      "The source does not define what qualifies as 'explainable' AI/ML.",
+      "The source does not define which features count as 'service critical' or 'human relating'.",
+      "The source does not specify who may request reasoning (e.g., end users, affected individuals, operators, auditors).",
+      "The source does not specify what 'reasoning behind given result' must contain or at what level of detail.",
+      "It is unclear whether the ability to provide reasoning applies only to service-critical or human-related features or to all AI/ML results.",
+      "The phrasing 'can provide' is ambiguous between a required capability and a discretionary option."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume specific explainability techniques or model types are required.",
+      "Do not assume a particular format, medium, or level of detail for the reasoning provided.",
+      "Do not assume timing or response-time requirements for providing reasoning.",
+      "Do not assume the requester is limited to a particular stakeholder group.",
+      "Do not assume that reasoning must be tailored to non-expert comprehension.",
+      "Do not assume that explanations must be logged, stored, or audited.",
+      "Do not assume that features outside the stated scope are exempt from other transparency expectations.",
+      "Do not assume any specific legal or regulatory basis for the requirement."
+    ],
+    "possible_operational_aspects": [
+      "Applicability depends on whether a feature is service-critical or human-related.",
+      "Provision of reasoning is triggered by a request.",
+      "The reasoning provided relates to a specific given result."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O2"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "Expresses the O1 restriction that only explainable AI/ML solutions are used, scoped to the service-critical part of O1's 'service-critical or human-related features'."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "Expresses the O1 restriction that only explainable AI/ML solutions are used, scoped to the human-related part of O1's 'service-critical or human-related features' ('features relating to humans' preserves the meaning of 'human relating')."
+      },
+      {
+        "work_item_index": 2,
+        "obligation_ids": [
+          "O2"
+        ],
+        "explanation": "Directly expresses O2: the system provides the reasoning behind a given result when requested, preserving the request-triggered condition."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VY5vSnB2Np6ATU7skN",
+    "msg_011Cf7VYSiqocsAA36T4v814",
+    "msg_011Cf7Va6jc1kz9Ftvkh58HC"
+  ]
+}

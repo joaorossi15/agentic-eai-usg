@@ -1,0 +1,84 @@
+{
+  "requirement": {
+    "id": "HUM-T04",
+    "text": "The system shall notify customers of changes to its information policy."
+  },
+  "study_metadata": {
+    "principle": "Transparency",
+    "source_row": 955
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Notification of Information Policy Changes",
+    "description": "As a customer, I want to be notified of changes to the system's information policy, so that I am aware of how the policy governing my information has changed.",
+    "work_items": [
+      "The system notifies customers when its information policy changes."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Transparency toward customers regarding how the system's information policy changes, so customers remain informed about how their information is handled.",
+    "stakeholders": [
+      "customer"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "The system shall notify customers when its information policy changes.",
+        "source_span": "The system shall notify customers of changes to its information policy.",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "Applies when the system's information policy changes.",
+      "Notification is directed to customers."
+    ],
+    "ambiguities": [
+      "The source does not define what constitutes the 'information policy' (e.g., privacy policy, data handling policy, terms of information use).",
+      "The source does not specify which changes qualify (all changes vs. material changes).",
+      "The source does not specify the timing of notification (before or after the change takes effect).",
+      "The source does not specify the notification channel, form, or content.",
+      "The source does not specify whether customers must acknowledge or consent to the change."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume notification must occur in advance of the change or within a specific timeframe.",
+      "Do not assume a particular notification channel (e.g., email, in-app message).",
+      "Do not assume that only material or significant changes require notification.",
+      "Do not assume customer acknowledgment or consent is required.",
+      "Do not assume the notification must summarize or explain the specific changes in a particular way.",
+      "Do not assume applicability to any legal or regulatory framework."
+    ],
+    "possible_operational_aspects": [
+      "Triggered by a change to the system's information policy.",
+      "Notification is delivered to customers as the recipient group."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "The work item states that the system notifies customers when its information policy changes, which directly expresses obligation O1 without adding timing, channel, content, or acknowledgment conditions beyond the source."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VeExq2sT967shjXvcL",
+    "msg_011Cf7VebnxwEj3EWLFTtejx",
+    "msg_011Cf7VfgiuWDAG7wwkr6UKf"
+  ]
+}

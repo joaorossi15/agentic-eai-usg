@@ -1,0 +1,103 @@
+{
+  "requirement": {
+    "id": "HUM-T02",
+    "text": "A detailed document explaining the extent of the system's data use should be prepared and available to customers upon request."
+  },
+  "study_metadata": {
+    "principle": "Transparency",
+    "source_row": 1027
+  },
+  "backend": "anthropic",
+  "model": "claude-fable-5-1",
+  "initial_eus": {
+    "title": "Documentation of Data Use Extent",
+    "description": "As a customer, I want a detailed document explaining the extent of the system's data use to be available to me upon request, so that I can examine how the system uses data.",
+    "work_items": [
+      "A detailed document explaining the extent of the system's data use shall be prepared.",
+      "The document shall be made available to customers upon request."
+    ]
+  },
+  "analysis": {
+    "ethical_objective": "Transparency toward customers regarding the extent of the system's data use, so that customers can understand how the system uses data.",
+    "stakeholders": [
+      "customer"
+    ],
+    "obligations": [
+      {
+        "id": "O1",
+        "text": "A detailed document explaining the extent of the system's data use shall be prepared.",
+        "source_span": "A detailed document explaining the extent of the system's data use should be prepared",
+        "support_type": "explicit"
+      },
+      {
+        "id": "O2",
+        "text": "The document shall be made available to customers upon their request.",
+        "source_span": "available to customers upon request",
+        "support_type": "explicit"
+      }
+    ],
+    "constraints": [
+      "The document must be detailed.",
+      "The document must explain the extent of the system's data use.",
+      "Availability is triggered by a customer request; the source does not require proactive distribution.",
+      "Availability applies to customers."
+    ],
+    "ambiguities": [
+      "The level of detail required for the document is not specified.",
+      "What 'extent of the system's data use' covers (e.g., data categories, purposes, recipients, retention) is not defined.",
+      "The form, format, or channel through which the document is made available is not specified.",
+      "Who is responsible for preparing the document is not stated.",
+      "No timeframe for responding to a request is given.",
+      "Whether 'customers' includes prospective customers or other users is not clarified.",
+      "No requirement to keep the document up to date is stated."
+    ],
+    "unsupported_assumptions_to_avoid": [
+      "Do not assume a specific format (e.g., PDF, web page) or delivery channel.",
+      "Do not assume a response time or frequency for providing the document.",
+      "Do not assume the document must be publicly published or proactively delivered without request.",
+      "Do not assume specific content sections, legal compliance frameworks, or regulatory obligations.",
+      "Do not assume a review, update, or approval process for the document.",
+      "Do not assume the document must be available to non-customers."
+    ],
+    "possible_operational_aspects": [
+      "Preparation of a detailed document describing the extent of the system's data use.",
+      "Provision of the document to a customer when the customer requests it."
+    ]
+  },
+  "traceability": {
+    "description_obligation_ids": [
+      "O1",
+      "O2"
+    ],
+    "work_items": [
+      {
+        "work_item_index": 0,
+        "obligation_ids": [
+          "O1"
+        ],
+        "explanation": "The work item requires preparation of a detailed document explaining the extent of the system's data use, directly expressing O1."
+      },
+      {
+        "work_item_index": 1,
+        "obligation_ids": [
+          "O2"
+        ],
+        "explanation": "The work item requires the document to be made available to customers upon request, directly expressing O2 including the request-triggered availability constraint."
+      }
+    ]
+  },
+  "deterministic_checks": {
+    "passed": true,
+    "structure_issues": [],
+    "redundancy_issues": []
+  },
+  "traceability_checks": {
+    "passed": true,
+    "issues": []
+  },
+  "api_response_ids": [
+    "msg_011Cf7VaYpkyNXcyW4YNE76S",
+    "msg_011Cf7VarjXZAc3uctVpGER6",
+    "msg_011Cf7VbeEyJ7DWXgcosFqCg"
+  ]
+}
