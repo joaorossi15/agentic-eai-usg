@@ -1,0 +1,193 @@
+participant_id,participant_number,counterbalance_block,schedule_position,condition_order,task_number,requirement_id,principle,condition
+P001,1,1,0,manual -> eai_usg,1,HUM-P01,Privacy,manual
+P001,1,1,0,manual -> eai_usg,2,HUM-T01,Transparency,manual
+P001,1,1,0,manual -> eai_usg,3,HUM-J01,Justice & Equity,manual
+P001,1,1,0,manual -> eai_usg,4,HUM-P02,Privacy,eai_usg
+P001,1,1,0,manual -> eai_usg,5,HUM-F02,Freedom & Autonomy,eai_usg
+P001,1,1,0,manual -> eai_usg,6,HUM-J02,Justice & Equity,eai_usg
+P002,2,1,1,eai_usg -> manual,1,HUM-P01,Privacy,eai_usg
+P002,2,1,1,eai_usg -> manual,2,HUM-F01,Freedom & Autonomy,eai_usg
+P002,2,1,1,eai_usg -> manual,3,HUM-T02,Transparency,eai_usg
+P002,2,1,1,eai_usg -> manual,4,HUM-F02,Freedom & Autonomy,manual
+P002,2,1,1,eai_usg -> manual,5,HUM-T03,Transparency,manual
+P002,2,1,1,eai_usg -> manual,6,HUM-J02,Justice & Equity,manual
+P003,3,1,2,manual -> eai_usg,1,HUM-P02,Privacy,manual
+P003,3,1,2,manual -> eai_usg,2,HUM-F01,Freedom & Autonomy,manual
+P003,3,1,2,manual -> eai_usg,3,HUM-J01,Justice & Equity,manual
+P003,3,1,2,manual -> eai_usg,4,HUM-T03,Transparency,eai_usg
+P003,3,1,2,manual -> eai_usg,5,HUM-J02,Justice & Equity,eai_usg
+P003,3,1,2,manual -> eai_usg,6,HUM-P03,Privacy,eai_usg
+P004,4,1,3,eai_usg -> manual,1,HUM-T02,Transparency,eai_usg
+P004,4,1,3,eai_usg -> manual,2,HUM-J01,Justice & Equity,eai_usg
+P004,4,1,3,eai_usg -> manual,3,HUM-F02,Freedom & Autonomy,eai_usg
+P004,4,1,3,eai_usg -> manual,4,HUM-T03,Transparency,manual
+P004,4,1,3,eai_usg -> manual,5,HUM-F03,Freedom & Autonomy,manual
+P004,4,1,3,eai_usg -> manual,6,HUM-P03,Privacy,manual
+P005,5,1,4,manual -> eai_usg,1,HUM-T02,Transparency,manual
+P005,5,1,4,manual -> eai_usg,2,HUM-J02,Justice & Equity,manual
+P005,5,1,4,manual -> eai_usg,3,HUM-P02,Privacy,manual
+P005,5,1,4,manual -> eai_usg,4,HUM-J03,Justice & Equity,eai_usg
+P005,5,1,4,manual -> eai_usg,5,HUM-F03,Freedom & Autonomy,eai_usg
+P005,5,1,4,manual -> eai_usg,6,HUM-P03,Privacy,eai_usg
+P006,6,1,5,eai_usg -> manual,1,HUM-P02,Privacy,eai_usg
+P006,6,1,5,eai_usg -> manual,2,HUM-F02,Freedom & Autonomy,eai_usg
+P006,6,1,5,eai_usg -> manual,3,HUM-T03,Transparency,eai_usg
+P006,6,1,5,eai_usg -> manual,4,HUM-J03,Justice & Equity,manual
+P006,6,1,5,eai_usg -> manual,5,HUM-F03,Freedom & Autonomy,manual
+P006,6,1,5,eai_usg -> manual,6,HUM-T04,Transparency,manual
+P007,7,1,6,manual -> eai_usg,1,HUM-J02,Justice & Equity,manual
+P007,7,1,6,manual -> eai_usg,2,HUM-P03,Privacy,manual
+P007,7,1,6,manual -> eai_usg,3,HUM-F02,Freedom & Autonomy,manual
+P007,7,1,6,manual -> eai_usg,4,HUM-T04,Transparency,eai_usg
+P007,7,1,6,manual -> eai_usg,5,HUM-J03,Justice & Equity,eai_usg
+P007,7,1,6,manual -> eai_usg,6,HUM-P04,Privacy,eai_usg
+P008,8,1,7,eai_usg -> manual,1,HUM-F03,Freedom & Autonomy,eai_usg
+P008,8,1,7,eai_usg -> manual,2,HUM-T03,Transparency,eai_usg
+P008,8,1,7,eai_usg -> manual,3,HUM-J02,Justice & Equity,eai_usg
+P008,8,1,7,eai_usg -> manual,4,HUM-F04,Freedom & Autonomy,manual
+P008,8,1,7,eai_usg -> manual,5,HUM-T04,Transparency,manual
+P008,8,1,7,eai_usg -> manual,6,HUM-P04,Privacy,manual
+P009,9,1,8,manual -> eai_usg,1,HUM-J03,Justice & Equity,manual
+P009,9,1,8,manual -> eai_usg,2,HUM-P03,Privacy,manual
+P009,9,1,8,manual -> eai_usg,3,HUM-T03,Transparency,manual
+P009,9,1,8,manual -> eai_usg,4,HUM-P04,Privacy,eai_usg
+P009,9,1,8,manual -> eai_usg,5,HUM-F04,Freedom & Autonomy,eai_usg
+P009,9,1,8,manual -> eai_usg,6,HUM-J04,Justice & Equity,eai_usg
+P010,10,1,9,eai_usg -> manual,1,HUM-F03,Freedom & Autonomy,eai_usg
+P010,10,1,9,eai_usg -> manual,2,HUM-T04,Transparency,eai_usg
+P010,10,1,9,eai_usg -> manual,3,HUM-P03,Privacy,eai_usg
+P010,10,1,9,eai_usg -> manual,4,HUM-T01,Transparency,manual
+P010,10,1,9,eai_usg -> manual,5,HUM-J04,Justice & Equity,manual
+P010,10,1,9,eai_usg -> manual,6,HUM-F04,Freedom & Autonomy,manual
+P011,11,1,10,manual -> eai_usg,1,HUM-F03,Freedom & Autonomy,manual
+P011,11,1,10,manual -> eai_usg,2,HUM-P04,Privacy,manual
+P011,11,1,10,manual -> eai_usg,3,HUM-J03,Justice & Equity,manual
+P011,11,1,10,manual -> eai_usg,4,HUM-J04,Justice & Equity,eai_usg
+P011,11,1,10,manual -> eai_usg,5,HUM-T01,Transparency,eai_usg
+P011,11,1,10,manual -> eai_usg,6,HUM-P01,Privacy,eai_usg
+P012,12,1,11,eai_usg -> manual,1,HUM-T04,Transparency,eai_usg
+P012,12,1,11,eai_usg -> manual,2,HUM-J03,Justice & Equity,eai_usg
+P012,12,1,11,eai_usg -> manual,3,HUM-F04,Freedom & Autonomy,eai_usg
+P012,12,1,11,eai_usg -> manual,4,HUM-F01,Freedom & Autonomy,manual
+P012,12,1,11,eai_usg -> manual,5,HUM-T01,Transparency,manual
+P012,12,1,11,eai_usg -> manual,6,HUM-P01,Privacy,manual
+P013,13,1,12,manual -> eai_usg,1,HUM-P04,Privacy,manual
+P013,13,1,12,manual -> eai_usg,2,HUM-J04,Justice & Equity,manual
+P013,13,1,12,manual -> eai_usg,3,HUM-T04,Transparency,manual
+P013,13,1,12,manual -> eai_usg,4,HUM-P01,Privacy,eai_usg
+P013,13,1,12,manual -> eai_usg,5,HUM-J01,Justice & Equity,eai_usg
+P013,13,1,12,manual -> eai_usg,6,HUM-F01,Freedom & Autonomy,eai_usg
+P014,14,1,13,eai_usg -> manual,1,HUM-F04,Freedom & Autonomy,eai_usg
+P014,14,1,13,eai_usg -> manual,2,HUM-T01,Transparency,eai_usg
+P014,14,1,13,eai_usg -> manual,3,HUM-P04,Privacy,eai_usg
+P014,14,1,13,eai_usg -> manual,4,HUM-T02,Transparency,manual
+P014,14,1,13,eai_usg -> manual,5,HUM-J01,Justice & Equity,manual
+P014,14,1,13,eai_usg -> manual,6,HUM-F01,Freedom & Autonomy,manual
+P015,15,1,14,manual -> eai_usg,1,HUM-F04,Freedom & Autonomy,manual
+P015,15,1,14,manual -> eai_usg,2,HUM-J04,Justice & Equity,manual
+P015,15,1,14,manual -> eai_usg,3,HUM-P01,Privacy,manual
+P015,15,1,14,manual -> eai_usg,4,HUM-T02,Transparency,eai_usg
+P015,15,1,14,manual -> eai_usg,5,HUM-J01,Justice & Equity,eai_usg
+P015,15,1,14,manual -> eai_usg,6,HUM-P02,Privacy,eai_usg
+P016,16,1,15,eai_usg -> manual,1,HUM-F01,Freedom & Autonomy,eai_usg
+P016,16,1,15,eai_usg -> manual,2,HUM-T01,Transparency,eai_usg
+P016,16,1,15,eai_usg -> manual,3,HUM-J04,Justice & Equity,eai_usg
+P016,16,1,15,eai_usg -> manual,4,HUM-P02,Privacy,manual
+P016,16,1,15,eai_usg -> manual,5,HUM-T02,Transparency,manual
+P016,16,1,15,eai_usg -> manual,6,HUM-F02,Freedom & Autonomy,manual
+P017,17,2,5,eai_usg -> manual,1,HUM-F02,Freedom & Autonomy,eai_usg
+P017,17,2,5,eai_usg -> manual,2,HUM-P02,Privacy,eai_usg
+P017,17,2,5,eai_usg -> manual,3,HUM-T03,Transparency,eai_usg
+P017,17,2,5,eai_usg -> manual,4,HUM-F03,Freedom & Autonomy,manual
+P017,17,2,5,eai_usg -> manual,5,HUM-T04,Transparency,manual
+P017,17,2,5,eai_usg -> manual,6,HUM-J03,Justice & Equity,manual
+P018,18,2,6,manual -> eai_usg,1,HUM-J02,Justice & Equity,manual
+P018,18,2,6,manual -> eai_usg,2,HUM-P03,Privacy,manual
+P018,18,2,6,manual -> eai_usg,3,HUM-F02,Freedom & Autonomy,manual
+P018,18,2,6,manual -> eai_usg,4,HUM-T04,Transparency,eai_usg
+P018,18,2,6,manual -> eai_usg,5,HUM-P04,Privacy,eai_usg
+P018,18,2,6,manual -> eai_usg,6,HUM-J03,Justice & Equity,eai_usg
+P019,19,2,7,eai_usg -> manual,1,HUM-T03,Transparency,eai_usg
+P019,19,2,7,eai_usg -> manual,2,HUM-F03,Freedom & Autonomy,eai_usg
+P019,19,2,7,eai_usg -> manual,3,HUM-J02,Justice & Equity,eai_usg
+P019,19,2,7,eai_usg -> manual,4,HUM-P04,Privacy,manual
+P019,19,2,7,eai_usg -> manual,5,HUM-T04,Transparency,manual
+P019,19,2,7,eai_usg -> manual,6,HUM-F04,Freedom & Autonomy,manual
+P020,20,2,8,manual -> eai_usg,1,HUM-P03,Privacy,manual
+P020,20,2,8,manual -> eai_usg,2,HUM-J03,Justice & Equity,manual
+P020,20,2,8,manual -> eai_usg,3,HUM-T03,Transparency,manual
+P020,20,2,8,manual -> eai_usg,4,HUM-F04,Freedom & Autonomy,eai_usg
+P020,20,2,8,manual -> eai_usg,5,HUM-P04,Privacy,eai_usg
+P020,20,2,8,manual -> eai_usg,6,HUM-J04,Justice & Equity,eai_usg
+P021,21,2,9,eai_usg -> manual,1,HUM-F03,Freedom & Autonomy,eai_usg
+P021,21,2,9,eai_usg -> manual,2,HUM-P03,Privacy,eai_usg
+P021,21,2,9,eai_usg -> manual,3,HUM-T04,Transparency,eai_usg
+P021,21,2,9,eai_usg -> manual,4,HUM-F04,Freedom & Autonomy,manual
+P021,21,2,9,eai_usg -> manual,5,HUM-J04,Justice & Equity,manual
+P021,21,2,9,eai_usg -> manual,6,HUM-T01,Transparency,manual
+P022,22,2,10,manual -> eai_usg,1,HUM-P04,Privacy,manual
+P022,22,2,10,manual -> eai_usg,2,HUM-F03,Freedom & Autonomy,manual
+P022,22,2,10,manual -> eai_usg,3,HUM-J03,Justice & Equity,manual
+P022,22,2,10,manual -> eai_usg,4,HUM-T01,Transparency,eai_usg
+P022,22,2,10,manual -> eai_usg,5,HUM-P01,Privacy,eai_usg
+P022,22,2,10,manual -> eai_usg,6,HUM-J04,Justice & Equity,eai_usg
+P023,23,2,11,eai_usg -> manual,1,HUM-T04,Transparency,eai_usg
+P023,23,2,11,eai_usg -> manual,2,HUM-J03,Justice & Equity,eai_usg
+P023,23,2,11,eai_usg -> manual,3,HUM-F04,Freedom & Autonomy,eai_usg
+P023,23,2,11,eai_usg -> manual,4,HUM-F01,Freedom & Autonomy,manual
+P023,23,2,11,eai_usg -> manual,5,HUM-P01,Privacy,manual
+P023,23,2,11,eai_usg -> manual,6,HUM-T01,Transparency,manual
+P024,24,2,12,manual -> eai_usg,1,HUM-J04,Justice & Equity,manual
+P024,24,2,12,manual -> eai_usg,2,HUM-T04,Transparency,manual
+P024,24,2,12,manual -> eai_usg,3,HUM-P04,Privacy,manual
+P024,24,2,12,manual -> eai_usg,4,HUM-F01,Freedom & Autonomy,eai_usg
+P024,24,2,12,manual -> eai_usg,5,HUM-P01,Privacy,eai_usg
+P024,24,2,12,manual -> eai_usg,6,HUM-J01,Justice & Equity,eai_usg
+P025,25,2,13,eai_usg -> manual,1,HUM-P04,Privacy,eai_usg
+P025,25,2,13,eai_usg -> manual,2,HUM-F04,Freedom & Autonomy,eai_usg
+P025,25,2,13,eai_usg -> manual,3,HUM-T01,Transparency,eai_usg
+P025,25,2,13,eai_usg -> manual,4,HUM-F01,Freedom & Autonomy,manual
+P025,25,2,13,eai_usg -> manual,5,HUM-T02,Transparency,manual
+P025,25,2,13,eai_usg -> manual,6,HUM-J01,Justice & Equity,manual
+P026,26,2,14,manual -> eai_usg,1,HUM-J04,Justice & Equity,manual
+P026,26,2,14,manual -> eai_usg,2,HUM-P01,Privacy,manual
+P026,26,2,14,manual -> eai_usg,3,HUM-F04,Freedom & Autonomy,manual
+P026,26,2,14,manual -> eai_usg,4,HUM-P02,Privacy,eai_usg
+P026,26,2,14,manual -> eai_usg,5,HUM-T02,Transparency,eai_usg
+P026,26,2,14,manual -> eai_usg,6,HUM-J01,Justice & Equity,eai_usg
+P027,27,2,15,eai_usg -> manual,1,HUM-J04,Justice & Equity,eai_usg
+P027,27,2,15,eai_usg -> manual,2,HUM-T01,Transparency,eai_usg
+P027,27,2,15,eai_usg -> manual,3,HUM-F01,Freedom & Autonomy,eai_usg
+P027,27,2,15,eai_usg -> manual,4,HUM-P02,Privacy,manual
+P027,27,2,15,eai_usg -> manual,5,HUM-T02,Transparency,manual
+P027,27,2,15,eai_usg -> manual,6,HUM-F02,Freedom & Autonomy,manual
+P028,28,2,0,manual -> eai_usg,1,HUM-J01,Justice & Equity,manual
+P028,28,2,0,manual -> eai_usg,2,HUM-T01,Transparency,manual
+P028,28,2,0,manual -> eai_usg,3,HUM-P01,Privacy,manual
+P028,28,2,0,manual -> eai_usg,4,HUM-P02,Privacy,eai_usg
+P028,28,2,0,manual -> eai_usg,5,HUM-J02,Justice & Equity,eai_usg
+P028,28,2,0,manual -> eai_usg,6,HUM-F02,Freedom & Autonomy,eai_usg
+P029,29,2,1,eai_usg -> manual,1,HUM-F01,Freedom & Autonomy,eai_usg
+P029,29,2,1,eai_usg -> manual,2,HUM-T02,Transparency,eai_usg
+P029,29,2,1,eai_usg -> manual,3,HUM-P01,Privacy,eai_usg
+P029,29,2,1,eai_usg -> manual,4,HUM-T03,Transparency,manual
+P029,29,2,1,eai_usg -> manual,5,HUM-F02,Freedom & Autonomy,manual
+P029,29,2,1,eai_usg -> manual,6,HUM-J02,Justice & Equity,manual
+P030,30,2,2,manual -> eai_usg,1,HUM-F01,Freedom & Autonomy,manual
+P030,30,2,2,manual -> eai_usg,2,HUM-P02,Privacy,manual
+P030,30,2,2,manual -> eai_usg,3,HUM-J01,Justice & Equity,manual
+P030,30,2,2,manual -> eai_usg,4,HUM-P03,Privacy,eai_usg
+P030,30,2,2,manual -> eai_usg,5,HUM-T03,Transparency,eai_usg
+P030,30,2,2,manual -> eai_usg,6,HUM-J02,Justice & Equity,eai_usg
+P031,31,2,3,eai_usg -> manual,1,HUM-J01,Justice & Equity,eai_usg
+P031,31,2,3,eai_usg -> manual,2,HUM-F02,Freedom & Autonomy,eai_usg
+P031,31,2,3,eai_usg -> manual,3,HUM-T02,Transparency,eai_usg
+P031,31,2,3,eai_usg -> manual,4,HUM-F03,Freedom & Autonomy,manual
+P031,31,2,3,eai_usg -> manual,5,HUM-P03,Privacy,manual
+P031,31,2,3,eai_usg -> manual,6,HUM-T03,Transparency,manual
+P032,32,2,4,manual -> eai_usg,1,HUM-T02,Transparency,manual
+P032,32,2,4,manual -> eai_usg,2,HUM-P02,Privacy,manual
+P032,32,2,4,manual -> eai_usg,3,HUM-J02,Justice & Equity,manual
+P032,32,2,4,manual -> eai_usg,4,HUM-F03,Freedom & Autonomy,eai_usg
+P032,32,2,4,manual -> eai_usg,5,HUM-P03,Privacy,eai_usg
+P032,32,2,4,manual -> eai_usg,6,HUM-J03,Justice & Equity,eai_usg

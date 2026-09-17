@@ -1,0 +1,1538 @@
+[
+  {
+    "participant_id": "P001",
+    "participant_number": 1,
+    "counterbalance_block": 1,
+    "schedule_position": 0,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P002",
+    "participant_number": 2,
+    "counterbalance_block": 1,
+    "schedule_position": 1,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P003",
+    "participant_number": 3,
+    "counterbalance_block": 1,
+    "schedule_position": 2,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P004",
+    "participant_number": 4,
+    "counterbalance_block": 1,
+    "schedule_position": 3,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P005",
+    "participant_number": 5,
+    "counterbalance_block": 1,
+    "schedule_position": 4,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P006",
+    "participant_number": 6,
+    "counterbalance_block": 1,
+    "schedule_position": 5,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P007",
+    "participant_number": 7,
+    "counterbalance_block": 1,
+    "schedule_position": 6,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P008",
+    "participant_number": 8,
+    "counterbalance_block": 1,
+    "schedule_position": 7,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P009",
+    "participant_number": 9,
+    "counterbalance_block": 1,
+    "schedule_position": 8,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P010",
+    "participant_number": 10,
+    "counterbalance_block": 1,
+    "schedule_position": 9,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P011",
+    "participant_number": 11,
+    "counterbalance_block": 1,
+    "schedule_position": 10,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P012",
+    "participant_number": 12,
+    "counterbalance_block": 1,
+    "schedule_position": 11,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P013",
+    "participant_number": 13,
+    "counterbalance_block": 1,
+    "schedule_position": 12,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P014",
+    "participant_number": 14,
+    "counterbalance_block": 1,
+    "schedule_position": 13,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P015",
+    "participant_number": 15,
+    "counterbalance_block": 1,
+    "schedule_position": 14,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P016",
+    "participant_number": 16,
+    "counterbalance_block": 1,
+    "schedule_position": 15,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P017",
+    "participant_number": 17,
+    "counterbalance_block": 2,
+    "schedule_position": 5,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P018",
+    "participant_number": 18,
+    "counterbalance_block": 2,
+    "schedule_position": 6,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P019",
+    "participant_number": 19,
+    "counterbalance_block": 2,
+    "schedule_position": 7,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P020",
+    "participant_number": 20,
+    "counterbalance_block": 2,
+    "schedule_position": 8,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P021",
+    "participant_number": 21,
+    "counterbalance_block": 2,
+    "schedule_position": 9,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P022",
+    "participant_number": 22,
+    "counterbalance_block": 2,
+    "schedule_position": 10,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P023",
+    "participant_number": 23,
+    "counterbalance_block": 2,
+    "schedule_position": 11,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P024",
+    "participant_number": 24,
+    "counterbalance_block": 2,
+    "schedule_position": 12,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T04",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P025",
+    "participant_number": 25,
+    "counterbalance_block": 2,
+    "schedule_position": 13,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-P04",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P026",
+    "participant_number": 26,
+    "counterbalance_block": 2,
+    "schedule_position": 14,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-F04",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P027",
+    "participant_number": 27,
+    "counterbalance_block": 2,
+    "schedule_position": 15,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J04",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P028",
+    "participant_number": 28,
+    "counterbalance_block": 2,
+    "schedule_position": 0,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T01",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P029",
+    "participant_number": 29,
+    "counterbalance_block": 2,
+    "schedule_position": 1,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-P01",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P030",
+    "participant_number": 30,
+    "counterbalance_block": 2,
+    "schedule_position": 2,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-F01",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  },
+  {
+    "participant_id": "P031",
+    "participant_number": 31,
+    "counterbalance_block": 2,
+    "schedule_position": 3,
+    "condition_order": [
+      "eai_usg",
+      "manual"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-J01",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-F02",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-T03",
+        "principle": "Transparency",
+        "condition": "manual"
+      }
+    ]
+  },
+  {
+    "participant_id": "P032",
+    "participant_number": 32,
+    "counterbalance_block": 2,
+    "schedule_position": 4,
+    "condition_order": [
+      "manual",
+      "eai_usg"
+    ],
+    "tasks": [
+      {
+        "task_number": 1,
+        "requirement_id": "HUM-T02",
+        "principle": "Transparency",
+        "condition": "manual"
+      },
+      {
+        "task_number": 2,
+        "requirement_id": "HUM-P02",
+        "principle": "Privacy",
+        "condition": "manual"
+      },
+      {
+        "task_number": 3,
+        "requirement_id": "HUM-J02",
+        "principle": "Justice & Equity",
+        "condition": "manual"
+      },
+      {
+        "task_number": 4,
+        "requirement_id": "HUM-F03",
+        "principle": "Freedom & Autonomy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 5,
+        "requirement_id": "HUM-P03",
+        "principle": "Privacy",
+        "condition": "eai_usg"
+      },
+      {
+        "task_number": 6,
+        "requirement_id": "HUM-J03",
+        "principle": "Justice & Equity",
+        "condition": "eai_usg"
+      }
+    ]
+  }
+]

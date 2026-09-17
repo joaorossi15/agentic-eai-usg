@@ -1,0 +1,91 @@
+{
+  "participants": 32,
+  "condition_order": {
+    "manual_first": 16,
+    "eai_usg_first": 16
+  },
+  "requirements": {
+    "HUM-T01": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-P01": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-F01": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-J01": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-T02": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-P02": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-F02": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-J02": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-T03": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-P03": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-F03": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-J03": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-T04": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-P04": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-F04": {
+      "manual": 6,
+      "eai_usg": 6
+    },
+    "HUM-J04": {
+      "manual": 6,
+      "eai_usg": 6
+    }
+  },
+  "principles": {
+    "Transparency": {
+      "manual": 24,
+      "eai_usg": 24
+    },
+    "Privacy": {
+      "manual": 24,
+      "eai_usg": 24
+    },
+    "Freedom & Autonomy": {
+      "manual": 24,
+      "eai_usg": 24
+    },
+    "Justice & Equity": {
+      "manual": 24,
+      "eai_usg": 24
+    }
+  }
+}
