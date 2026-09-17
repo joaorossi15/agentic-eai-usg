@@ -339,3 +339,56 @@ button.small {
   border-radius: 7px;
   font-size: 14px;
 }
+
+.instructions-card label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.instructions-card input,
+.instructions-card select {
+  width: 100%;
+  margin-top: 7px;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+}
+
+.rating-question {
+  margin: 22px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.rating-question legend {
+  font-weight: 600;
+}
+
+.rating-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.rating-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.rating-options input {
+  width: auto;
+  margin: 0;
+}
+
+.rating-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  color: #6b7280;
+  font-size: 12px;
+}

@@ -24,6 +24,7 @@ from study.storage import (
     start_task as storage_start_task,
     submit_task as storage_submit_task,
 )
+from study.storage import save_background as storage_save_background
 
 
 def _normalize_participant_id(participant_id: str) -> str:
@@ -165,6 +166,7 @@ def get_study_state(participant_id: str) -> dict[str, Any]:
         "started_at": participant["started_at"],
         "completed_at": participant["completed_at"],
         "next_task_number": next_task_number,
+        "background_completed": participant["background"] is not None,
         "tasks": [
             {
                 "task_id": str(task["task_id"]),
@@ -216,6 +218,30 @@ def open_task(participant_id: str, task_number: int) -> dict[str, Any]:
         save_event(str(selected["task_id"]), "task_started")
 
     return _build_task_view(selected)
+
+
+def submit_background(
+    participant_id: str,
+    background: dict[str, Any],
+) -> None:
+    participant_id = _normalize_participant_id(participant_id)
+
+    participant = get_participant(participant_id)
+
+    if participant is None:
+        raise ValueError(
+            f"Participant '{participant_id}' does not exist."
+        )
+
+    if participant["background"] is not None:
+        raise ValueError(
+            "Background questionnaire has already been submitted."
+        )
+
+    storage_save_background(
+        participant_id=participant_id,
+        background=background,
+    )
 
 
 def update_editor(

@@ -1,4 +1,5 @@
 import type {
+  BackgroundQuestionnaire,
   EUS,
   StudyState,
   TaskView,
@@ -47,6 +48,19 @@ export function getStudyState(
   participantId: string,
 ): Promise<StudyState> {
   return request(`/study/${participantId}`);
+}
+
+export function submitBackground(
+  participantId: string,
+  background: BackgroundQuestionnaire,
+): Promise<{ status: string }> {
+  return request(
+    `/study/${participantId}/background`,
+    {
+      method: "POST",
+      body: JSON.stringify(background),
+    },
+  );
 }
 
 export function openTask(

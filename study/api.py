@@ -21,6 +21,7 @@ from study.service import (
     start_study,
     submit_task,
     update_editor,
+    submit_background
 )
 
 
@@ -30,6 +31,15 @@ class StrictModel(BaseModel):
 
 class StartStudyRequest(StrictModel):
     participant_id: str
+
+
+class BackgroundRequest(StrictModel):
+    primary_role: str
+    years_experience: float = Field(ge=0)
+    requirements_familiarity: int = Field(ge=1, le=5)
+    user_story_familiarity: int = Field(ge=1, le=5)
+    ethical_ai_familiarity: int = Field(ge=1, le=5)
+    generative_ai_use: str
 
 
 class DraftEUS(StrictModel):
@@ -117,6 +127,20 @@ def api_start_study(
     except (ValueError, FileNotFoundError, RuntimeError) as exc:
         raise _bad_request(exc) from exc
 
+@app.post("/study/{participant_id}/background")
+def api_submit_background(
+    participant_id: str,
+    request: BackgroundRequest,
+) -> dict[str, str]:
+    try:
+        submit_background(
+            participant_id=participant_id,
+            background=request.model_dump(),
+        )
+    except ValueError as exc:
+        raise _bad_request(exc) from exc
+
+    return {"status": "saved"}
 
 @app.get("/study/{participant_id}")
 def api_get_study_state(

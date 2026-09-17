@@ -44,6 +44,15 @@ export interface TraceabilityResult {
   traceability: TraceabilityMap;
 }
 
+export interface BackgroundQuestionnaire {
+  primary_role: string;
+  years_experience: number;
+  requirements_familiarity: number;
+  user_story_familiarity: number;
+  ethical_ai_familiarity: number;
+  generative_ai_use: string;
+}
+
 export interface QualityIssue {
   dimension:
     | "clarity"
@@ -103,6 +112,7 @@ export interface StudyState {
   status: "not_started" | "in_progress" | "completed" | "withdrawn";
   started_at: string | null;
   completed_at: string | null;
+  background_completed: boolean;
   next_task_number: number | null;
   tasks: StudyTaskSummary[];
 }

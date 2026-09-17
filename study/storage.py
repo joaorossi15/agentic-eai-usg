@@ -104,6 +104,30 @@ def load_frozen_artifact(
     }
 
 
+def save_background(
+    participant_id: str,
+    background: dict[str, Any],
+) -> None:
+    with engine.begin() as connection:
+        result = connection.execute(
+            text(
+                """
+                UPDATE participants
+                SET background = CAST(:background AS JSONB)
+                WHERE participant_id = :participant_id
+                """
+            ),
+            {
+                "participant_id": participant_id,
+                "background": _json(background),
+            },
+        )
+
+        if result.rowcount != 1:
+            raise ValueError(
+                f"Participant '{participant_id}' does not exist."
+            )
+
 def create_participant(
     participant_id: str,
     assignments_path: str = DEFAULT_ASSIGNMENTS_PATH,
