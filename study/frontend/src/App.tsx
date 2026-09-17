@@ -25,6 +25,8 @@ import type {
 
 import "./styles.css";
 
+const PARTICIPANT_STORAGE_KEY = "eai_usg_participant_id";
+
 const EMPTY_EUS: EUS = {
   title: "",
   description: "",
@@ -147,7 +149,7 @@ function CapabilityQuestion({
 
 function App() {
   const [participantId, setParticipantId] = useState(
-    localStorage.getItem("participant_id") ?? "",
+    localStorage.getItem(PARTICIPANT_STORAGE_KEY) ?? "",
   );
 
   const [phase, setPhase] = useState<StudyPhase>("login");
@@ -193,20 +195,22 @@ function App() {
   const saveTimer = useRef<number | null>(null);
 
   async function handleStart() {
-    const normalized = participantId.trim().toUpperCase();
+    const studyParticipantId =
+      participantId || crypto.randomUUID();
 
-    if (!normalized) {
-      return;
+    if (!participantId) {
+      localStorage.setItem(
+        PARTICIPANT_STORAGE_KEY,
+        studyParticipantId,
+      );
+      setParticipantId(studyParticipantId);
     }
 
     setLoading(true);
     setError(null);
 
     try {
-      const state = await startStudy(normalized);
-
-      localStorage.setItem("participant_id", normalized);
-      setParticipantId(normalized);
+      const state = await startStudy(studyParticipantId);
 
       if (state.next_task_number === null) {
         setPhase(state.post_study_completed ? "complete" : "poststudy");
@@ -219,7 +223,7 @@ function App() {
 
       if (hasStartedTasks) {
         const nextTask = await openTask(
-          normalized,
+          studyParticipantId,
           state.next_task_number,
         );
 
@@ -682,29 +686,28 @@ function App() {
   }, [participantId, task]);
 
   if (phase === "login") {
+    const returningParticipant = Boolean(participantId);
+
     return (
       <main className="start-page">
         <div className="start-card">
           <h1>EAI-USG Study</h1>
 
           <p>
-            Enter the participant ID provided by the researcher to begin
-            or continue the study.
+            {returningParticipant
+              ? "A study session was found on this browser. You can continue where you left off."
+              : "Click below to begin the study. A private study identifier will be generated automatically for this browser."}
           </p>
-
-          <input
-            value={participantId}
-            onChange={(event) =>
-              setParticipantId(event.target.value)
-            }
-            placeholder="Participant ID"
-          />
 
           <button
             onClick={handleStart}
             disabled={loading}
           >
-            {loading ? "Loading..." : "Continue"}
+            {loading
+              ? "Loading..."
+              : returningParticipant
+                ? "Continue study"
+                : "Begin study"}
           </button>
 
           {error && (

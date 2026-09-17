@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Any
+from uuid import UUID
 
 from eai_usg.pipeline import EAIUSGPipeline
 from eai_usg.schemas import EUS, ValidationResult
@@ -10,31 +11,39 @@ from study.storage import (
     complete_participant,
     complete_revision,
     complete_validation,
-    create_participant,
     get_ai_interactions,
+    get_or_create_participant,
     get_participant,
     get_task,
     get_tasks,
     initialize_participant_tasks,
     load_frozen_artifact,
+    save_background as storage_save_background,
     save_current_eus,
     save_event,
+    save_post_study as storage_save_post_study,
     set_revision_decision,
     start_participant,
     start_task as storage_start_task,
     submit_task as storage_submit_task,
 )
-from study.storage import save_background as storage_save_background
-from study.storage import save_post_study as storage_save_post_study
 
 
 def _normalize_participant_id(participant_id: str) -> str:
-    participant_id = participant_id.strip().upper()
+    try:
+        return str(UUID(participant_id))
+    except (ValueError, AttributeError, TypeError) as exc:
+        raise ValueError("Invalid participant UUID.") from exc
 
-    if not participant_id:
-        raise ValueError("Participant ID cannot be empty.")
 
-    return participant_id
+def _get_participant_or_raise(participant_id: str) -> dict[str, Any]:
+    participant_id = _normalize_participant_id(participant_id)
+    participant = get_participant(participant_id)
+
+    if participant is None:
+        raise ValueError("Participant does not exist.")
+
+    return participant
 
 
 def _get_task_or_raise(task_id: str) -> dict[str, Any]:
@@ -138,15 +147,8 @@ def _build_task_view(task: dict[str, Any]) -> dict[str, Any]:
 def start_study(participant_id: str) -> dict[str, Any]:
     participant_id = _normalize_participant_id(participant_id)
 
-    create_participant(participant_id)
+    participant = get_or_create_participant(participant_id)
     initialize_participant_tasks(participant_id)
-
-    participant = get_participant(participant_id)
-
-    if participant is None:
-        raise ValueError(
-            f"Participant '{participant_id}' does not exist."
-        )
 
     if participant["status"] != "completed":
         start_participant(participant_id)
@@ -159,7 +161,7 @@ def get_study_state(participant_id: str) -> dict[str, Any]:
     participant = get_participant(participant_id)
 
     if participant is None:
-        raise ValueError(f"Participant '{participant_id}' does not exist.")
+        raise ValueError("Participant does not exist.")
 
     tasks = get_tasks(participant_id)
 
@@ -175,9 +177,9 @@ def get_study_state(participant_id: str) -> dict[str, Any]:
         "status": participant["status"],
         "started_at": participant["started_at"],
         "completed_at": participant["completed_at"],
-        "next_task_number": next_task_number,
         "background_completed": participant["background"] is not None,
         "post_study_completed": participant["post_study"] is not None,
+        "next_task_number": next_task_number,
         "tasks": [
             {
                 "task_id": str(task["task_id"]),
@@ -193,8 +195,8 @@ def get_study_state(participant_id: str) -> dict[str, Any]:
 
 
 def get_next_task(participant_id: str) -> dict[str, Any] | None:
-    participant_id = _normalize_participant_id(participant_id)
-    tasks = get_tasks(participant_id)
+    participant = _get_participant_or_raise(participant_id)
+    tasks = get_tasks(str(participant["participant_id"]))
 
     for task in tasks:
         if task["status"] != "completed":
@@ -204,8 +206,8 @@ def get_next_task(participant_id: str) -> dict[str, Any] | None:
 
 
 def open_task(participant_id: str, task_number: int) -> dict[str, Any]:
-    participant_id = _normalize_participant_id(participant_id)
-    tasks = get_tasks(participant_id)
+    participant = _get_participant_or_raise(participant_id)
+    tasks = get_tasks(str(participant["participant_id"]))
 
     selected = None
 
@@ -217,7 +219,7 @@ def open_task(participant_id: str, task_number: int) -> dict[str, Any]:
             selected = task
 
     if selected is None:
-        raise ValueError(f"Task {task_number} does not exist for participant '{participant_id}'.")
+        raise ValueError(f"Task {task_number} does not exist for this participant.")
 
     if selected["status"] == "completed":
         raise ValueError("Completed tasks cannot be reopened.")
@@ -235,22 +237,13 @@ def submit_background(
     participant_id: str,
     background: dict[str, Any],
 ) -> None:
-    participant_id = _normalize_participant_id(participant_id)
-
-    participant = get_participant(participant_id)
-
-    if participant is None:
-        raise ValueError(
-            f"Participant '{participant_id}' does not exist."
-        )
+    participant = _get_participant_or_raise(participant_id)
 
     if participant["background"] is not None:
-        raise ValueError(
-            "Background questionnaire has already been submitted."
-        )
+        raise ValueError("Background questionnaire has already been submitted.")
 
     storage_save_background(
-        participant_id=participant_id,
+        participant_id=str(participant["participant_id"]),
         background=background,
     )
 
@@ -270,12 +263,14 @@ def update_editor(
 
     save_current_eus(task_id, normalized)
 
-    payload = {
-        "field": field,
-        "eus": normalized,
-    }
-
-    save_event(task_id, "editor_changed", payload)
+    save_event(
+        task_id,
+        "editor_changed",
+        {
+            "field": field,
+            "eus": normalized,
+        },
+    )
 
 
 def request_validation(task_id: str) -> ValidationResult:
@@ -552,9 +547,7 @@ def submit_task(
         },
     )
 
-    participant_id = task["participant_id"]
-    tasks = get_tasks(participant_id)
-
+    participant_id = str(task["participant_id"])
     tasks_completed = all(
         item["status"] == "completed"
         for item in get_tasks(participant_id)
@@ -570,19 +563,11 @@ def submit_post_study(
     participant_id: str,
     post_study: dict[str, Any],
 ) -> None:
-    participant_id = _normalize_participant_id(participant_id)
-
-    participant = get_participant(participant_id)
-
-    if participant is None:
-        raise ValueError(
-            f"Participant '{participant_id}' does not exist."
-        )
+    participant = _get_participant_or_raise(participant_id)
+    participant_id = str(participant["participant_id"])
 
     if participant["post_study"] is not None:
-        raise ValueError(
-            "Post-study questionnaire has already been submitted."
-        )
+        raise ValueError("Post-study questionnaire has already been submitted.")
 
     tasks = get_tasks(participant_id)
 
@@ -600,3 +585,4 @@ def submit_post_study(
     )
 
     complete_participant(participant_id)
+

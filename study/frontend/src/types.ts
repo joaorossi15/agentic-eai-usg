@@ -118,9 +118,7 @@ export interface StudyState {
   tasks: StudyTaskSummary[];
 }
 
-export type CapabilityRating =
-  | number
-  | "not_used";
+export type CapabilityRating = 1 | 2 | 3 | 4 | 5 | "not_used";
 
 export interface PostStudyQuestionnaire {
   initial_draft_useful: number;
@@ -137,3 +135,4 @@ export interface PostStudyQuestionnaire {
   most_useful_aspect: string;
   improvement: string;
 }
+

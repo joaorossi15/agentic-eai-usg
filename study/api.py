@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from typing import Annotated, Any, Literal
+from uuid import UUID
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -19,16 +20,31 @@ from study.service import (
     request_validation,
     resume_task,
     start_study,
+    submit_background,
+    submit_post_study,
     submit_task,
     update_editor,
-    submit_background,
-    submit_post_study 
 )
 
-CapabilityRating = (
-    Annotated[int, Field(ge=1, le=5)]
-    | Literal["not_used"]
-)
+
+class StrictModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+CapabilityRating = Annotated[int, Field(ge=1, le=5)] | Literal["not_used"]
+
+
+class StartStudyRequest(StrictModel):
+    participant_id: UUID
+
+
+class BackgroundRequest(StrictModel):
+    primary_role: str
+    years_experience: float = Field(ge=0)
+    requirements_familiarity: int = Field(ge=1, le=5)
+    user_story_familiarity: int = Field(ge=1, le=5)
+    ethical_ai_familiarity: int = Field(ge=1, le=5)
+    generative_ai_use: str
 
 
 class PostStudyRequest(StrictModel):
@@ -46,22 +62,6 @@ class PostStudyRequest(StrictModel):
     ]
     most_useful_aspect: str
     improvement: str
-
-class StrictModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-
-class StartStudyRequest(StrictModel):
-    participant_id: str
-
-
-class BackgroundRequest(StrictModel):
-    primary_role: str
-    years_experience: float = Field(ge=0)
-    requirements_familiarity: int = Field(ge=1, le=5)
-    user_story_familiarity: int = Field(ge=1, le=5)
-    ethical_ai_familiarity: int = Field(ge=1, le=5)
-    generative_ai_use: str
 
 
 class DraftEUS(StrictModel):
@@ -92,7 +92,7 @@ app = FastAPI(
 
 frontend_origin = os.getenv(
     "STUDY_FRONTEND_ORIGIN",
-    "http://localhost:3000",
+    "http://localhost:5173",
 )
 
 app.add_middleware(
@@ -112,11 +112,14 @@ def _bad_request(exc: Exception) -> HTTPException:
 
 
 def _ensure_task_belongs_to_participant(
-    participant_id: str,
-    task_id: str,
+    participant_id: UUID,
+    task_id: UUID,
 ) -> None:
+    participant_id_str = str(participant_id)
+    task_id_str = str(task_id)
+
     try:
-        state = get_study_state(participant_id)
+        state = get_study_state(participant_id_str)
     except ValueError as exc:
         raise HTTPException(
             status_code=404,
@@ -128,7 +131,7 @@ def _ensure_task_belongs_to_participant(
         for task in state["tasks"]
     }
 
-    if task_id not in participant_task_ids:
+    if task_id_str not in participant_task_ids:
         raise HTTPException(
             status_code=404,
             detail="Task does not belong to this participant.",
@@ -145,18 +148,19 @@ def api_start_study(
     request: StartStudyRequest,
 ) -> dict[str, Any]:
     try:
-        return start_study(request.participant_id)
+        return start_study(str(request.participant_id))
     except (ValueError, FileNotFoundError, RuntimeError) as exc:
         raise _bad_request(exc) from exc
 
+
 @app.post("/study/{participant_id}/background")
 def api_submit_background(
-    participant_id: str,
+    participant_id: UUID,
     request: BackgroundRequest,
 ) -> dict[str, str]:
     try:
         submit_background(
-            participant_id=participant_id,
+            participant_id=str(participant_id),
             background=request.model_dump(),
         )
     except ValueError as exc:
@@ -164,12 +168,13 @@ def api_submit_background(
 
     return {"status": "saved"}
 
+
 @app.get("/study/{participant_id}")
 def api_get_study_state(
-    participant_id: str,
+    participant_id: UUID,
 ) -> dict[str, Any]:
     try:
-        return get_study_state(participant_id)
+        return get_study_state(str(participant_id))
     except ValueError as exc:
         raise HTTPException(
             status_code=404,
@@ -179,10 +184,10 @@ def api_get_study_state(
 
 @app.get("/study/{participant_id}/next")
 def api_get_next_task(
-    participant_id: str,
+    participant_id: UUID,
 ) -> dict[str, Any] | None:
     try:
-        return get_next_task(participant_id)
+        return get_next_task(str(participant_id))
     except ValueError as exc:
         raise HTTPException(
             status_code=404,
@@ -192,12 +197,12 @@ def api_get_next_task(
 
 @app.post("/study/{participant_id}/tasks/{task_number}/open")
 def api_open_task(
-    participant_id: str,
+    participant_id: UUID,
     task_number: int,
 ) -> dict[str, Any]:
     try:
         return open_task(
-            participant_id=participant_id,
+            participant_id=str(participant_id),
             task_number=task_number,
         )
     except ValueError as exc:
@@ -206,8 +211,8 @@ def api_open_task(
 
 @app.put("/study/{participant_id}/tasks/{task_id}/editor")
 def api_update_editor(
-    participant_id: str,
-    task_id: str,
+    participant_id: UUID,
+    task_id: UUID,
     request: UpdateEditorRequest,
 ) -> dict[str, str]:
     _ensure_task_belongs_to_participant(
@@ -217,7 +222,7 @@ def api_update_editor(
 
     try:
         update_editor(
-            task_id=task_id,
+            task_id=str(task_id),
             draft=request.draft.model_dump(),
             field=request.field,
         )
@@ -229,8 +234,8 @@ def api_update_editor(
 
 @app.post("/study/{participant_id}/tasks/{task_id}/validation")
 def api_request_validation(
-    participant_id: str,
-    task_id: str,
+    participant_id: UUID,
+    task_id: UUID,
 ) -> dict[str, Any]:
     _ensure_task_belongs_to_participant(
         participant_id,
@@ -238,7 +243,7 @@ def api_request_validation(
     )
 
     try:
-        validation = request_validation(task_id)
+        validation = request_validation(str(task_id))
 
         return {
             "validation": validation.model_dump(
@@ -251,8 +256,8 @@ def api_request_validation(
 
 @app.post("/study/{participant_id}/tasks/{task_id}/revision")
 def api_request_revision(
-    participant_id: str,
-    task_id: str,
+    participant_id: UUID,
+    task_id: UUID,
     request: RevisionRequest,
 ) -> dict[str, Any]:
     _ensure_task_belongs_to_participant(
@@ -262,7 +267,7 @@ def api_request_revision(
 
     try:
         return request_revision(
-            task_id=task_id,
+            task_id=str(task_id),
             revision_instruction=request.revision_instruction,
         )
     except ValueError as exc:
@@ -273,9 +278,9 @@ def api_request_revision(
     "/study/{participant_id}/tasks/{task_id}/revision/{interaction_id}/accept"
 )
 def api_accept_revision(
-    participant_id: str,
-    task_id: str,
-    interaction_id: str,
+    participant_id: UUID,
+    task_id: UUID,
+    interaction_id: UUID,
 ) -> dict[str, Any]:
     _ensure_task_belongs_to_participant(
         participant_id,
@@ -284,8 +289,8 @@ def api_accept_revision(
 
     try:
         eus = accept_revision(
-            task_id=task_id,
-            interaction_id=interaction_id,
+            task_id=str(task_id),
+            interaction_id=str(interaction_id),
         )
 
         return {
@@ -302,9 +307,9 @@ def api_accept_revision(
     "/study/{participant_id}/tasks/{task_id}/revision/{interaction_id}/reject"
 )
 def api_reject_revision(
-    participant_id: str,
-    task_id: str,
-    interaction_id: str,
+    participant_id: UUID,
+    task_id: UUID,
+    interaction_id: UUID,
 ) -> dict[str, str]:
     _ensure_task_belongs_to_participant(
         participant_id,
@@ -313,8 +318,8 @@ def api_reject_revision(
 
     try:
         reject_revision(
-            task_id=task_id,
-            interaction_id=interaction_id,
+            task_id=str(task_id),
+            interaction_id=str(interaction_id),
         )
     except ValueError as exc:
         raise _bad_request(exc) from exc
@@ -324,8 +329,8 @@ def api_reject_revision(
 
 @app.post("/study/{participant_id}/tasks/{task_id}/pause")
 def api_pause_task(
-    participant_id: str,
-    task_id: str,
+    participant_id: UUID,
+    task_id: UUID,
 ) -> dict[str, str]:
     _ensure_task_belongs_to_participant(
         participant_id,
@@ -333,7 +338,7 @@ def api_pause_task(
     )
 
     try:
-        pause_task(task_id)
+        pause_task(str(task_id))
     except ValueError as exc:
         raise _bad_request(exc) from exc
 
@@ -342,8 +347,8 @@ def api_pause_task(
 
 @app.post("/study/{participant_id}/tasks/{task_id}/resume")
 def api_resume_task(
-    participant_id: str,
-    task_id: str,
+    participant_id: UUID,
+    task_id: UUID,
 ) -> dict[str, str]:
     _ensure_task_belongs_to_participant(
         participant_id,
@@ -351,7 +356,7 @@ def api_resume_task(
     )
 
     try:
-        resume_task(task_id)
+        resume_task(str(task_id))
     except ValueError as exc:
         raise _bad_request(exc) from exc
 
@@ -360,8 +365,8 @@ def api_resume_task(
 
 @app.post("/study/{participant_id}/tasks/{task_id}/submit")
 def api_submit_task(
-    participant_id: str,
-    task_id: str,
+    participant_id: UUID,
+    task_id: UUID,
     request: SubmitTaskRequest,
 ) -> dict[str, Any]:
     _ensure_task_belongs_to_participant(
@@ -371,7 +376,7 @@ def api_submit_task(
 
     try:
         return submit_task(
-            task_id=task_id,
+            task_id=str(task_id),
             final_draft=request.final_eus.model_dump(
                 mode="json"
             ),
@@ -383,15 +388,16 @@ def api_submit_task(
 
 @app.post("/study/{participant_id}/post-study")
 def api_submit_post_study(
-    participant_id: str,
+    participant_id: UUID,
     request: PostStudyRequest,
 ) -> dict[str, str]:
     try:
         submit_post_study(
-            participant_id=participant_id,
+            participant_id=str(participant_id),
             post_study=request.model_dump(),
         )
     except ValueError as exc:
         raise _bad_request(exc) from exc
 
     return {"status": "saved"}
+

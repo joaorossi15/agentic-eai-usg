@@ -1,10 +1,10 @@
 import type {
   BackgroundQuestionnaire,
   EUS,
+  PostStudyQuestionnaire,
   StudyState,
   TaskView,
   ValidationResult,
-  PostStudyQuestionnaire,
 } from "./types";
 
 const API_URL =
@@ -215,3 +215,4 @@ export function submitPostStudy(
     },
   );
 }
+
