@@ -1,8 +1,4 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   acceptRevision,
@@ -31,14 +27,25 @@ const EMPTY_EUS: EUS = {
   work_items: [""],
 };
 
+type StudyPhase =
+  | "login"
+  | "instructions"
+  | "tasks"
+  | "complete";
+
 function App() {
   const [participantId, setParticipantId] = useState(
     localStorage.getItem("participant_id") ?? "",
   );
 
-  const [started, setStarted] = useState(false);
-  const [task, setTask] = useState<TaskView | null>(null);
-  const [draft, setDraft] = useState<EUS>(EMPTY_EUS);
+  const [phase, setPhase] =
+    useState<StudyPhase>("login");
+
+  const [task, setTask] =
+    useState<TaskView | null>(null);
+
+  const [draft, setDraft] =
+    useState<EUS>(EMPTY_EUS);
 
   const [validation, setValidation] =
     useState<ValidationResult | null>(null);
@@ -48,20 +55,31 @@ function App() {
     eus: EUS;
   } | null>(null);
 
-  const [revisionInstruction, setRevisionInstruction] =
-    useState("");
+  const [
+    revisionInstruction,
+    setRevisionInstruction,
+  ] = useState("");
 
-  const [loading, setLoading] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [complete, setComplete] = useState(false);
+  const [loading, setLoading] =
+    useState(false);
 
-  const inactiveStartedAt = useRef<number | null>(null);
+  const [saving, setSaving] =
+    useState(false);
+
+  const [error, setError] =
+    useState<string | null>(null);
+
+  const inactiveStartedAt =
+    useRef<number | null>(null);
+
   const inactiveSeconds = useRef(0);
-  const saveTimer = useRef<number | null>(null);
+
+  const saveTimer =
+    useRef<number | null>(null);
 
   async function handleStart() {
-    const normalized = participantId.trim().toUpperCase();
+    const normalized =
+      participantId.trim().toUpperCase();
 
     if (!normalized) {
       return;
@@ -71,7 +89,8 @@ function App() {
     setError(null);
 
     try {
-      const state = await startStudy(normalized);
+      const state =
+        await startStudy(normalized);
 
       localStorage.setItem(
         "participant_id",
@@ -79,24 +98,65 @@ function App() {
       );
 
       setParticipantId(normalized);
-      setStarted(true);
 
       if (state.next_task_number === null) {
-        setComplete(true);
+        setPhase("complete");
         return;
       }
 
-      const nextTask = await openTask(
-        normalized,
-        state.next_task_number,
-      );
+      const hasStartedTasks =
+        state.tasks.some(
+          (item) =>
+            item.status !== "not_started",
+        );
 
-      loadTask(nextTask);
+      if (hasStartedTasks) {
+        const nextTask = await openTask(
+          normalized,
+          state.next_task_number,
+        );
+
+        loadTask(nextTask);
+        setPhase("tasks");
+      } else {
+        setPhase("instructions");
+      }
     } catch (err) {
       setError(
         err instanceof Error
           ? err.message
           : "Could not start the study.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleBeginTasks() {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const state =
+        await startStudy(participantId);
+
+      if (state.next_task_number === null) {
+        setPhase("complete");
+        return;
+      }
+
+      const firstTask = await openTask(
+        participantId,
+        state.next_task_number,
+      );
+
+      loadTask(firstTask);
+      setPhase("tasks");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not start the tasks.",
       );
     } finally {
       setLoading(false);
@@ -129,35 +189,41 @@ function App() {
     }
 
     if (saveTimer.current !== null) {
-      window.clearTimeout(saveTimer.current);
+      window.clearTimeout(
+        saveTimer.current,
+      );
     }
 
-    saveTimer.current = window.setTimeout(
-      async () => {
-        try {
-          setSaving(true);
+    saveTimer.current =
+      window.setTimeout(
+        async () => {
+          try {
+            setSaving(true);
 
-          await saveEditor(
-            participantId,
-            task.task_id,
-            nextDraft,
-            field,
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          setSaving(false);
-        }
-      },
-      700,
-    );
+            await saveEditor(
+              participantId,
+              task.task_id,
+              nextDraft,
+              field,
+            );
+          } catch (err) {
+            console.error(err);
+          } finally {
+            setSaving(false);
+          }
+        },
+        700,
+      );
   }
 
   function updateWorkItem(
     index: number,
     value: string,
   ) {
-    const workItems = [...draft.work_items];
+    const workItems = [
+      ...draft.work_items,
+    ];
+
     workItems[index] = value;
 
     updateDraft(
@@ -173,7 +239,10 @@ function App() {
     updateDraft(
       {
         ...draft,
-        work_items: [...draft.work_items, ""],
+        work_items: [
+          ...draft.work_items,
+          "",
+        ],
       },
       "work_items",
     );
@@ -187,9 +256,11 @@ function App() {
     updateDraft(
       {
         ...draft,
-        work_items: draft.work_items.filter(
-          (_, itemIndex) => itemIndex !== index,
-        ),
+        work_items:
+          draft.work_items.filter(
+            (_, itemIndex) =>
+              itemIndex !== index,
+          ),
       },
       "work_items",
     );
@@ -216,6 +287,15 @@ function App() {
       );
 
       setValidation(result);
+
+      setTask((current) =>
+        current
+          ? {
+              ...current,
+              validation_used: true,
+            }
+          : current,
+      );
     } catch (err) {
       setError(
         err instanceof Error
@@ -242,16 +322,27 @@ function App() {
         draft,
       );
 
-      const result = await requestRevision(
-        participantId,
-        task.task_id,
-        revisionInstruction,
-      );
+      const result =
+        await requestRevision(
+          participantId,
+          task.task_id,
+          revisionInstruction,
+        );
 
       setRevision({
-        interactionId: result.interaction_id,
+        interactionId:
+          result.interaction_id,
         eus: result.revision,
       });
+
+      setTask((current) =>
+        current
+          ? {
+              ...current,
+              revision_used: true,
+            }
+          : current,
+      );
     } catch (err) {
       setError(
         err instanceof Error
@@ -269,16 +360,23 @@ function App() {
     }
 
     setLoading(true);
+    setError(null);
 
     try {
-      const result = await acceptRevision(
-        participantId,
-        task.task_id,
-        revision.interactionId,
-      );
+      const result =
+        await acceptRevision(
+          participantId,
+          task.task_id,
+          revision.interactionId,
+        );
 
       setDraft(result.current_eus);
       setRevision(null);
+
+      /*
+       * The validation refers to the EUS
+       * before the revision was accepted.
+       */
       setValidation(null);
     } catch (err) {
       setError(
@@ -297,6 +395,7 @@ function App() {
     }
 
     setLoading(true);
+    setError(null);
 
     try {
       await rejectRevision(
@@ -324,7 +423,8 @@ function App() {
 
     const cleaned: EUS = {
       title: draft.title.trim(),
-      description: draft.description.trim(),
+      description:
+        draft.description.trim(),
       work_items: draft.work_items
         .map((item) => item.trim())
         .filter(Boolean),
@@ -354,7 +454,7 @@ function App() {
 
       if (result.study_completed) {
         setTask(null);
-        setComplete(true);
+        setPhase("complete");
         return;
       }
 
@@ -385,7 +485,8 @@ function App() {
 
     async function handleVisibilityChange() {
       if (document.hidden) {
-        inactiveStartedAt.current = Date.now();
+        inactiveStartedAt.current =
+          Date.now();
 
         try {
           await pauseTask(
@@ -395,7 +496,9 @@ function App() {
         } catch {
           return;
         }
-      } else if (inactiveStartedAt.current !== null) {
+      } else if (
+        inactiveStartedAt.current !== null
+      ) {
         inactiveSeconds.current +=
           (Date.now() -
             inactiveStartedAt.current) /
@@ -427,16 +530,16 @@ function App() {
     };
   }, [participantId, task]);
 
-  if (!started) {
+  if (phase === "login") {
     return (
       <main className="start-page">
         <div className="start-card">
           <h1>EAI-USG Study</h1>
 
           <p>
-            Enter the participant ID provided by
-            the researcher to begin or continue
-            the study.
+            Enter the participant ID
+            provided by the researcher to
+            begin or continue the study.
           </p>
 
           <input
@@ -455,33 +558,172 @@ function App() {
           >
             {loading
               ? "Loading..."
-              : "Begin study"}
+              : "Continue"}
           </button>
 
           {error && (
-            <p className="error">{error}</p>
+            <p className="error">
+              {error}
+            </p>
           )}
         </div>
       </main>
     );
   }
 
-  if (complete) {
+  if (phase === "instructions") {
+    return (
+      <main className="start-page">
+        <div className="instructions-card">
+          <h1>Study instructions</h1>
+
+          <p>
+            In this study, you will
+            complete six tasks involving
+            the authoring of Ethical User
+            Stories from given ethical
+            requirements.
+          </p>
+
+          <h2>
+            Ethical User Story format
+          </h2>
+
+          <p>
+            For each task, you will
+            produce an Ethical User Story
+            with:
+          </p>
+
+          <ul>
+            <li>
+              <strong>Title:</strong> a
+              concise name for the ethical
+              requirement being
+              operationalized.
+            </li>
+
+            <li>
+              <strong>
+                Description:
+              </strong>{" "}
+              a user-story-style
+              description expressing the
+              ethical objective.
+            </li>
+
+            <li>
+              <strong>
+                Work items:
+              </strong>{" "}
+              concrete development
+              activities that
+              operationalize the
+              requirement.
+            </li>
+          </ul>
+
+          <h2>Task conditions</h2>
+
+          <p>
+            Some tasks will use
+            structured manual authoring.
+            In these tasks, you will
+            create the Ethical User Story
+            yourself from a blank editor.
+          </p>
+
+          <p>
+            Other tasks will provide
+            EAI-USG support. These tasks
+            begin with an AI-generated
+            Ethical User Story that you
+            may inspect, edit, or replace
+            as you see fit. Additional AI
+            support may also be available
+            during the task.
+          </p>
+
+          <h2>During the study</h2>
+
+          <ul>
+            <li>
+              Read the ethical requirement
+              carefully before authoring.
+            </li>
+
+            <li>
+              You may freely modify the
+              title, description, and work
+              items.
+            </li>
+
+            <li>
+              In EAI-USG-assisted tasks,
+              using the additional AI
+              support is optional.
+            </li>
+
+            <li>
+              Submit the artifact only
+              when you consider the
+              Ethical User Story
+              finished.
+            </li>
+
+            <li>
+              Please do not use external
+              AI assistants while
+              completing the tasks.
+            </li>
+          </ul>
+
+          <p className="instructions-note">
+            The study records task timing
+            and interactions with the
+            study interface for research
+            purposes.
+          </p>
+
+          {error && (
+            <p className="error">
+              {error}
+            </p>
+          )}
+
+          <button
+            onClick={handleBeginTasks}
+            disabled={loading}
+          >
+            {loading
+              ? "Starting..."
+              : "Start tasks"}
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  if (phase === "complete") {
     return (
       <main className="start-page">
         <div className="start-card">
           <h1>Study completed</h1>
 
           <p>
-            Thank you for participating. Your
-            responses have been recorded.
+            Thank you for participating.
+            Your responses have been
+            recorded.
           </p>
         </div>
       </main>
     );
   }
 
-  if (!task) {
+  if (
+    phase !== "tasks" ||
+    !task
+  ) {
     return null;
   }
 
@@ -515,20 +757,25 @@ function App() {
         <section className="editor">
           <div className="section-heading">
             <h2>Ethical User Story</h2>
+
             <span>
-              {saving ? "Saving..." : "Saved"}
+              {saving
+                ? "Saving..."
+                : "Saved"}
             </span>
           </div>
 
           <label>
             Title
+
             <input
               value={draft.title}
               onChange={(event) =>
                 updateDraft(
                   {
                     ...draft,
-                    title: event.target.value,
+                    title:
+                      event.target.value,
                   },
                   "title",
                 )
@@ -538,8 +785,11 @@ function App() {
 
           <label>
             Description
+
             <textarea
-              value={draft.description}
+              value={
+                draft.description
+              }
               rows={4}
               onChange={(event) =>
                 updateDraft(
@@ -556,7 +806,9 @@ function App() {
 
           <div className="work-items">
             <div className="section-heading">
-              <label>Work items</label>
+              <label>
+                Work items
+              </label>
 
               <button
                 className="secondary small"
@@ -572,7 +824,9 @@ function App() {
                   className="work-item"
                   key={index}
                 >
-                  <span>{index + 1}.</span>
+                  <span>
+                    {index + 1}.
+                  </span>
 
                   <textarea
                     value={item}
@@ -588,11 +842,13 @@ function App() {
                   <button
                     className="remove"
                     onClick={() =>
-                      removeWorkItem(index)
+                      removeWorkItem(
+                        index,
+                      )
                     }
                     disabled={
-                      draft.work_items.length ===
-                      1
+                      draft.work_items
+                        .length === 1
                     }
                   >
                     ×
@@ -613,7 +869,9 @@ function App() {
                   Initial traceability
                 </summary>
 
-                <h3>Source obligations</h3>
+                <h3>
+                  Source obligations
+                </h3>
 
                 {task.initial_traceability.analysis.obligations.map(
                   (obligation) => (
@@ -624,7 +882,10 @@ function App() {
                       <strong>
                         {obligation.id}
                       </strong>
-                      <p>{obligation.text}</p>
+
+                      <p>
+                        {obligation.text}
+                      </p>
                     </div>
                   ),
                 )}
@@ -634,7 +895,8 @@ function App() {
                 <p>
                   {task.initial_traceability.traceability.description_obligation_ids.join(
                     ", ",
-                  ) || "No obligation links"}
+                  ) ||
+                    "No obligation links"}
                 </p>
 
                 <h3>Work items</h3>
@@ -643,7 +905,9 @@ function App() {
                   (trace) => (
                     <div
                       className="trace"
-                      key={trace.work_item_index}
+                      key={
+                        trace.work_item_index
+                      }
                     >
                       <strong>
                         Item{" "}
@@ -657,7 +921,9 @@ function App() {
                       </strong>
 
                       <p>
-                        {trace.explanation}
+                        {
+                          trace.explanation
+                        }
                       </p>
                     </div>
                   ),
@@ -669,7 +935,9 @@ function App() {
               <h3>Validation</h3>
 
               <button
-                onClick={handleValidation}
+                onClick={
+                  handleValidation
+                }
                 disabled={
                   loading ||
                   task.validation_used
@@ -683,13 +951,19 @@ function App() {
 
             {validation && (
               <div className="validation">
-                <h3>Validation results</h3>
+                <h3>
+                  Validation results
+                </h3>
 
                 <div className="scores">
                   <span>
                     Clarity{" "}
-                    {validation.clarity}/5
+                    {
+                      validation.clarity
+                    }
+                    /5
                   </span>
+
                   <span>
                     Completeness{" "}
                     {
@@ -697,6 +971,7 @@ function App() {
                     }
                     /5
                   </span>
+
                   <span>
                     Actionability{" "}
                     {
@@ -704,6 +979,7 @@ function App() {
                     }
                     /5
                   </span>
+
                   <span>
                     Testability{" "}
                     {
@@ -711,6 +987,7 @@ function App() {
                     }
                     /5
                   </span>
+
                   <span>
                     Faithfulness{" "}
                     {
@@ -720,23 +997,34 @@ function App() {
                   </span>
                 </div>
 
-                {validation.issues.length >
-                0 ? (
+                {validation.issues
+                  .length > 0 ? (
                   validation.issues.map(
-                    (issue, index) => (
+                    (
+                      issue,
+                      index,
+                    ) => (
                       <div
                         className="issue"
                         key={index}
                       >
                         <strong>
-                          {issue.dimension} —{" "}
-                          {issue.severity}
+                          {
+                            issue.dimension
+                          }{" "}
+                          —{" "}
+                          {
+                            issue.severity
+                          }
                         </strong>
 
-                        <p>{issue.problem}</p>
+                        <p>
+                          {issue.problem}
+                        </p>
 
                         <small>
-                          Revision objective:{" "}
+                          Revision
+                          objective:{" "}
                           {
                             issue.recommended_change
                           }
@@ -746,8 +1034,8 @@ function App() {
                   )
                 ) : (
                   <p>
-                    No substantive issues
-                    identified.
+                    No substantive
+                    issues identified.
                   </p>
                 )}
               </div>
@@ -758,7 +1046,9 @@ function App() {
 
               <textarea
                 placeholder="Optional revision instruction"
-                value={revisionInstruction}
+                value={
+                  revisionInstruction
+                }
                 onChange={(event) =>
                   setRevisionInstruction(
                     event.target.value,
@@ -771,7 +1061,9 @@ function App() {
               />
 
               <button
-                onClick={handleRevision}
+                onClick={
+                  handleRevision
+                }
                 disabled={
                   loading ||
                   !validation ||
@@ -790,18 +1082,27 @@ function App() {
       {revision && (
         <div className="revision-modal">
           <div className="revision-card">
-            <h2>Proposed AI revision</h2>
+            <h2>
+              Proposed AI revision
+            </h2>
 
-            <h3>{revision.eus.title}</h3>
+            <h3>
+              {revision.eus.title}
+            </h3>
 
             <p>
-              {revision.eus.description}
+              {
+                revision.eus
+                  .description
+              }
             </p>
 
             <ol>
               {revision.eus.work_items.map(
                 (item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index}>
+                    {item}
+                  </li>
                 ),
               )}
             </ol>
@@ -836,7 +1137,8 @@ function App() {
 
       <footer className="task-footer">
         <span>
-          Complete the EUS before submitting.
+          Complete the EUS before
+          submitting.
         </span>
 
         <button
