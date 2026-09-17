@@ -10,6 +10,7 @@ import {
   saveEditor,
   startStudy,
   submitBackground,
+  submitPostStudy,
   submitTask,
   validateEUS,
 } from "./api";
@@ -17,6 +18,7 @@ import {
 import type {
   BackgroundQuestionnaire,
   EUS,
+  PostStudyQuestionnaire,
   TaskView,
   ValidationResult,
 } from "./types";
@@ -34,6 +36,7 @@ type StudyPhase =
   | "background"
   | "instructions"
   | "tasks"
+  | "poststudy"
   | "complete";
 
 function RatingQuestion({
@@ -70,6 +73,78 @@ function RatingQuestion({
   );
 }
 
+function AgreementQuestion({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <fieldset className="rating-question">
+      <legend>{label}</legend>
+      <div className="rating-options">
+        {[1, 2, 3, 4, 5].map((rating) => (
+          <label key={rating}>
+            <input
+              type="radio"
+              checked={value === rating}
+              onChange={() => onChange(rating)}
+            />
+            {rating}
+          </label>
+        ))}
+      </div>
+      <div className="rating-labels">
+        <span>Strongly disagree</span>
+        <span>Strongly agree</span>
+      </div>
+    </fieldset>
+  );
+}
+
+function CapabilityQuestion({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number | "not_used";
+  onChange: (value: number | "not_used") => void;
+}) {
+  return (
+    <fieldset className="rating-question">
+      <legend>{label}</legend>
+      <div className="rating-options capability-options">
+        {[1, 2, 3, 4, 5].map((rating) => (
+          <label key={rating}>
+            <input
+              type="radio"
+              checked={value === rating}
+              onChange={() => onChange(rating)}
+            />
+            {rating}
+          </label>
+        ))}
+        <label>
+          <input
+            type="radio"
+            checked={value === "not_used"}
+            onChange={() => onChange("not_used")}
+          />
+          Not used
+        </label>
+      </div>
+      <div className="rating-labels">
+        <span>Strongly disagree</span>
+        <span>Strongly agree</span>
+      </div>
+    </fieldset>
+  );
+}
+
 function App() {
   const [participantId, setParticipantId] = useState(
     localStorage.getItem("participant_id") ?? "",
@@ -94,6 +169,19 @@ function App() {
     user_story_familiarity: 3,
     ethical_ai_familiarity: 3,
     generative_ai_use: "",
+  });
+
+  const [postStudy, setPostStudy] = useState({
+    initial_draft_useful: 0,
+    traceability_useful: 0 as number | "not_used",
+    validation_useful: 0 as number | "not_used",
+    revision_useful: 0 as number | "not_used",
+    control_over_final_eus: 0,
+    easier_than_manual: 0,
+    use_in_practice: 0,
+    preferred_condition: "",
+    most_useful_aspect: "",
+    improvement: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -121,7 +209,7 @@ function App() {
       setParticipantId(normalized);
 
       if (state.next_task_number === null) {
-        setPhase("complete");
+        setPhase(state.post_study_completed ? "complete" : "poststudy");
         return;
       }
 
@@ -188,7 +276,7 @@ function App() {
       const state = await startStudy(participantId);
 
       if (state.next_task_number === null) {
-        setPhase("complete");
+        setPhase(state.post_study_completed ? "complete" : "poststudy");
         return;
       }
 
@@ -445,6 +533,45 @@ function App() {
     }
   }
 
+  async function handlePostStudySubmit() {
+    const requiredRatings = [
+      postStudy.initial_draft_useful,
+      postStudy.control_over_final_eus,
+      postStudy.easier_than_manual,
+      postStudy.use_in_practice,
+    ];
+
+    if (
+      requiredRatings.some((value) => value === 0) ||
+      postStudy.traceability_useful === 0 ||
+      postStudy.validation_useful === 0 ||
+      postStudy.revision_useful === 0 ||
+      !postStudy.preferred_condition
+    ) {
+      setError("Please answer all required questions.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      await submitPostStudy(
+        participantId,
+        postStudy as PostStudyQuestionnaire,
+      );
+      setPhase("complete");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not save the questionnaire.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function handleSubmit() {
     if (!task) {
       return;
@@ -480,9 +607,9 @@ function App() {
         inactiveSeconds.current,
       );
 
-      if (result.study_completed) {
+      if (result.tasks_completed) {
         setTask(null);
-        setPhase("complete");
+        setPhase("poststudy");
         return;
       }
 
@@ -800,6 +927,100 @@ function App() {
             disabled={loading}
           >
             {loading ? "Starting..." : "Start tasks"}
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  if (phase === "poststudy") {
+    return (
+      <main className="start-page">
+        <div className="instructions-card">
+          <h1>Post-study questionnaire</h1>
+          <p>
+            Please answer the following questions about your experience using
+            EAI-USG. For capability-specific questions, select "Not used" if
+            you did not use or inspect that capability.
+          </p>
+
+          <AgreementQuestion
+            label="The initial AI-generated EUS provided a useful starting point."
+            value={postStudy.initial_draft_useful}
+            onChange={(value) => setPostStudy({ ...postStudy, initial_draft_useful: value })}
+          />
+          <CapabilityQuestion
+            label="The traceability information helped me understand how the EUS related to the ethical requirement."
+            value={postStudy.traceability_useful}
+            onChange={(value) => setPostStudy({ ...postStudy, traceability_useful: value })}
+          />
+          <CapabilityQuestion
+            label="The validation feedback helped me identify issues in the EUS."
+            value={postStudy.validation_useful}
+            onChange={(value) => setPostStudy({ ...postStudy, validation_useful: value })}
+          />
+          <CapabilityQuestion
+            label="The AI revision capability was useful when refining the EUS."
+            value={postStudy.revision_useful}
+            onChange={(value) => setPostStudy({ ...postStudy, revision_useful: value })}
+          />
+          <AgreementQuestion
+            label="I felt in control of the final EUS while using EAI-USG."
+            value={postStudy.control_over_final_eus}
+            onChange={(value) => setPostStudy({ ...postStudy, control_over_final_eus: value })}
+          />
+          <AgreementQuestion
+            label="EAI-USG made it easier to create Ethical User Stories than manual authoring."
+            value={postStudy.easier_than_manual}
+            onChange={(value) => setPostStudy({ ...postStudy, easier_than_manual: value })}
+          />
+          <AgreementQuestion
+            label="I would use a tool like EAI-USG when working with ethical requirements in practice."
+            value={postStudy.use_in_practice}
+            onChange={(value) => setPostStudy({ ...postStudy, use_in_practice: value })}
+          />
+
+          <label>
+            Overall, which authoring approach did you prefer?
+            <select
+              value={postStudy.preferred_condition}
+              onChange={(event) =>
+                setPostStudy({ ...postStudy, preferred_condition: event.target.value })
+              }
+            >
+              <option value="">Select an option</option>
+              <option value="manual">Manual authoring</option>
+              <option value="eai_usg">EAI-USG-assisted authoring</option>
+              <option value="no_preference">No preference</option>
+            </select>
+          </label>
+
+          <label>
+            What was the most useful aspect of EAI-USG?
+            <textarea
+              rows={4}
+              value={postStudy.most_useful_aspect}
+              onChange={(event) =>
+                setPostStudy({ ...postStudy, most_useful_aspect: event.target.value })
+              }
+            />
+          </label>
+
+          <label>
+            What, if anything, would you change about EAI-USG?
+            <textarea
+              rows={4}
+              value={postStudy.improvement}
+              onChange={(event) =>
+                setPostStudy({ ...postStudy, improvement: event.target.value })
+              }
+            />
+          </label>
+
+          {error && <p className="error">{error}</p>}
+
+          <button onClick={handlePostStudySubmit} disabled={loading}>
+            {loading ? "Saving..." : "Finish study"}
           </button>
         </div>
       </main>

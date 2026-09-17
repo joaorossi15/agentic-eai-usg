@@ -25,6 +25,7 @@ from study.storage import (
     submit_task as storage_submit_task,
 )
 from study.storage import save_background as storage_save_background
+from study.storage import save_post_study as storage_save_post_study
 
 
 def _normalize_participant_id(participant_id: str) -> str:
@@ -139,7 +140,16 @@ def start_study(participant_id: str) -> dict[str, Any]:
 
     create_participant(participant_id)
     initialize_participant_tasks(participant_id)
-    start_participant(participant_id)
+
+    participant = get_participant(participant_id)
+
+    if participant is None:
+        raise ValueError(
+            f"Participant '{participant_id}' does not exist."
+        )
+
+    if participant["status"] != "completed":
+        start_participant(participant_id)
 
     return get_study_state(participant_id)
 
@@ -167,6 +177,7 @@ def get_study_state(participant_id: str) -> dict[str, Any]:
         "completed_at": participant["completed_at"],
         "next_task_number": next_task_number,
         "background_completed": participant["background"] is not None,
+        "post_study_completed": participant["post_study"] is not None,
         "tasks": [
             {
                 "task_id": str(task["task_id"]),
@@ -544,10 +555,48 @@ def submit_task(
     participant_id = task["participant_id"]
     tasks = get_tasks(participant_id)
 
-    if all(item["status"] == "completed" for item in tasks):
-        complete_participant(participant_id)
+    tasks_completed = all(
+        item["status"] == "completed"
+        for item in get_tasks(participant_id)
+    )
 
     return {
         "task": _build_task_view(result),
-        "study_completed": all(item["status"] == "completed" for item in get_tasks(participant_id)),
+        "tasks_completed": tasks_completed,
     }
+
+
+def submit_post_study(
+    participant_id: str,
+    post_study: dict[str, Any],
+) -> None:
+    participant_id = _normalize_participant_id(participant_id)
+
+    participant = get_participant(participant_id)
+
+    if participant is None:
+        raise ValueError(
+            f"Participant '{participant_id}' does not exist."
+        )
+
+    if participant["post_study"] is not None:
+        raise ValueError(
+            "Post-study questionnaire has already been submitted."
+        )
+
+    tasks = get_tasks(participant_id)
+
+    if len(tasks) != 6 or not all(
+        task["status"] == "completed"
+        for task in tasks
+    ):
+        raise ValueError(
+            "All six tasks must be completed before submitting the post-study questionnaire."
+        )
+
+    storage_save_post_study(
+        participant_id=participant_id,
+        post_study=post_study,
+    )
+
+    complete_participant(participant_id)

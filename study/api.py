@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any
+from typing import Annotated, Any, Literal
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,9 +21,31 @@ from study.service import (
     start_study,
     submit_task,
     update_editor,
-    submit_background
+    submit_background,
+    submit_post_study 
 )
 
+CapabilityRating = (
+    Annotated[int, Field(ge=1, le=5)]
+    | Literal["not_used"]
+)
+
+
+class PostStudyRequest(StrictModel):
+    initial_draft_useful: int = Field(ge=1, le=5)
+    traceability_useful: CapabilityRating
+    validation_useful: CapabilityRating
+    revision_useful: CapabilityRating
+    control_over_final_eus: int = Field(ge=1, le=5)
+    easier_than_manual: int = Field(ge=1, le=5)
+    use_in_practice: int = Field(ge=1, le=5)
+    preferred_condition: Literal[
+        "manual",
+        "eai_usg",
+        "no_preference",
+    ]
+    most_useful_aspect: str
+    improvement: str
 
 class StrictModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -357,3 +379,19 @@ def api_submit_task(
         )
     except ValueError as exc:
         raise _bad_request(exc) from exc
+
+
+@app.post("/study/{participant_id}/post-study")
+def api_submit_post_study(
+    participant_id: str,
+    request: PostStudyRequest,
+) -> dict[str, str]:
+    try:
+        submit_post_study(
+            participant_id=participant_id,
+            post_study=request.model_dump(),
+        )
+    except ValueError as exc:
+        raise _bad_request(exc) from exc
+
+    return {"status": "saved"}

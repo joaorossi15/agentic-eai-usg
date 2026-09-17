@@ -392,3 +392,17 @@ button.small {
   color: #6b7280;
   font-size: 12px;
 }
+
+.instructions-card textarea {
+  width: 100%;
+  margin-top: 7px;
+  padding: 10px;
+  resize: vertical;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.capability-options {
+  flex-wrap: wrap;
+  gap: 12px;
+}

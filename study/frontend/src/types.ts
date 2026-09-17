@@ -113,6 +113,27 @@ export interface StudyState {
   started_at: string | null;
   completed_at: string | null;
   background_completed: boolean;
+  post_study_completed: boolean;
   next_task_number: number | null;
   tasks: StudyTaskSummary[];
+}
+
+export type CapabilityRating =
+  | number
+  | "not_used";
+
+export interface PostStudyQuestionnaire {
+  initial_draft_useful: number;
+  traceability_useful: CapabilityRating;
+  validation_useful: CapabilityRating;
+  revision_useful: CapabilityRating;
+  control_over_final_eus: number;
+  easier_than_manual: number;
+  use_in_practice: number;
+  preferred_condition:
+    | "manual"
+    | "eai_usg"
+    | "no_preference";
+  most_useful_aspect: string;
+  improvement: string;
 }

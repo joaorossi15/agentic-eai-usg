@@ -103,6 +103,30 @@ def load_frozen_artifact(
         "traceability": traceability,
     }
 
+def save_post_study(
+    participant_id: str,
+    post_study: dict[str, Any],
+) -> None:
+    with engine.begin() as connection:
+        result = connection.execute(
+            text(
+                """
+                UPDATE participants
+                SET post_study = CAST(:post_study AS JSONB)
+                WHERE participant_id = :participant_id
+                """
+            ),
+            {
+                "participant_id": participant_id,
+                "post_study": _json(post_study),
+            },
+        )
+
+        if result.rowcount != 1:
+            raise ValueError(
+                f"Participant '{participant_id}' does not exist."
+            )
+
 
 def save_background(
     participant_id: str,

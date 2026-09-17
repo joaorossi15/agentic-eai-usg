@@ -4,6 +4,7 @@ import type {
   StudyState,
   TaskView,
   ValidationResult,
+  PostStudyQuestionnaire,
 } from "./types";
 
 const API_URL =
@@ -188,7 +189,7 @@ export function submitTask(
   inactiveSeconds: number,
 ): Promise<{
   task: TaskView;
-  study_completed: boolean;
+  tasks_completed: boolean;
 }> {
   return request(
     `/study/${participantId}/tasks/${taskId}/submit`,
@@ -198,6 +199,19 @@ export function submitTask(
         final_eus: finalEus,
         inactive_seconds: inactiveSeconds,
       }),
+    },
+  );
+}
+
+export function submitPostStudy(
+  participantId: string,
+  questionnaire: PostStudyQuestionnaire,
+): Promise<{ status: string }> {
+  return request(
+    `/study/${participantId}/post-study`,
+    {
+      method: "POST",
+      body: JSON.stringify(questionnaire),
     },
   );
 }
