@@ -510,6 +510,8 @@ function App() {
       return;
     }
 
+    const currentTask = task;
+
     async function handleVisibilityChange() {
       if (document.hidden) {
         inactiveStartedAt.current = Date.now();
@@ -517,7 +519,7 @@ function App() {
         try {
           await pauseTask(
             participantId,
-            task.task_id,
+            currentTask.task_id,
           );
         } catch {
           return;
@@ -531,7 +533,7 @@ function App() {
         try {
           await resumeTask(
             participantId,
-            task.task_id,
+            currentTask.task_id,
           );
         } catch {
           return;
@@ -1121,4 +1123,3 @@ function App() {
 }
 
 export default App;
-
